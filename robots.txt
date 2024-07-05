@@ -1,1 +1,1 @@
-Sitemap: https://engmaths.github.io/SEMT30002/sitemap.xml
+Sitemap: https://engmaths.github.io/semt30002/sitemap.xml
