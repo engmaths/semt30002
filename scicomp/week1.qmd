@@ -1,0 +1,7 @@
+---
+title: "Week 1"
+---
+
+- Here is some stuff to recap
+- Here are [some exercises](week1-exercises.ip).
+
