@@ -1,0 +1,5 @@
+---
+title: "Scientific Computing and Optimisation"
+---
+
+This unit will bring together your previous experience of solving mathematical problems (optimisation, differential equations) and writing computer programmes using [Python](https://www.python.org/), [Matlab](https://uk.mathworks.com/products/matlab.html), or [Julia](https://julialang.org/). The aim is to provide you with a suite of tools that can be used to transform real-world problems, such as those encountered in the Mathematical and Data Modelling units and final-year projects, into problems that can be efficiently solved on a computer.

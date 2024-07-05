@@ -1,0 +1,7 @@
+---
+title: "Scientific Computing: Overview"
+---
+
+*Weeks 7–11*
+
+The purpose of this bit is...

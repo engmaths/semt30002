@@ -1,0 +1,26 @@
+project:
+  type: website
+
+website:
+  title: "Scientific Computing and Optimisation (SEMT30002)"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - staff.qmd
+      - assessment.qmd
+      - text: "Scientific Computing (weeks 1–5)"
+        menu:
+          - href: scicomp/overview.qmd
+            text: Overview
+          - scicomp/week1.qmd
+      - text: "Optimisation (weeks 7–11)"
+        menu:
+          - href: optim/overview.qmd
+            text: Overview
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
