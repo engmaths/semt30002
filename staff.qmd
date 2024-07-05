@@ -1,5 +1,8 @@
 ---
 title: "Teaching staff"
+format:
+  html:
+    toc: false
 ---
 
 ## Dr Matt Hennessy (unit director)
