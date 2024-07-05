@@ -13,7 +13,8 @@ website:
         menu:
           - href: scicomp/overview.qmd
             text: Overview
-          - scicomp/week1.qmd
+          - href: scicomp/week1.qmd
+            text: Week 1
       - text: "Optimisation (weeks 7–11)"
         menu:
           - href: optim/overview.qmd
