@@ -1,10 +1,10 @@
 {
-  "hash": "207d43ed95e6541d3d705d56014b6377",
+  "hash": "08d6c85345dcd9cf9257fc8f8d041584",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Week 1\"\njupyter: python3\n---\n\n\n\n\n- Here is some stuff to recap\n\nFor a demonstration of a line plot on a polar axis, see @fig-polar.\n\n::: {#cell-fig-polar .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A line plot on a polar axis](week1_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}\n:::\n:::\n\n\n",
+    "markdown": "---\ntitle: \"Week 1\"\njupyter: python3\n---\n\n\n\n\nFor a demonstration of a line plot on a polar axis, see @fig-polar.\n\n::: {#cell-fig-polar .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A line plot on a polar axis](week1_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}\n:::\n:::\n\n\n",
     "supporting": [
-      "week1_files"
+      "week1_files\\figure-html"
     ],
     "filters": [],
     "includes": {}
