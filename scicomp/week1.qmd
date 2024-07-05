@@ -3,8 +3,6 @@ title: "Week 1"
 jupyter: python3
 ---
 
-- Here is some stuff to recap
-
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 ```{python}
