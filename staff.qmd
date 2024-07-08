@@ -7,7 +7,7 @@ format:
 
 ## Dr Matt Hennessy (unit director)
 
-Matt is a Lecturer in Engineering Mathematics.  He regularly uses scientific computing to solve systems of PDEs that describe the behaviours of luids and solids.  
+Matt is a Lecturer in Engineering Mathematics.  He regularly uses scientific computing to solve systems of PDEs that describe the behaviours of fluids and solids.
 
 The best way to contact Matt is by email ([matthew.hennessy@bristol.ac.uk](mailto:matthew.hennessy@bristol.ac.uk))
 
