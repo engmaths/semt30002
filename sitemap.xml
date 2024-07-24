@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
+    <loc>https://engmaths.github.io/semt30002/staff.html</loc>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/assessment.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
   </url>
   <url>
-    <loc>https://engmaths.github.io/semt30002/staff.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/index.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/scicomp/overview.html</loc>
-    <lastmod>2024-07-08T15:51:25.919Z</lastmod>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/index.html</loc>
+    <lastmod>2024-07-24T16:07:56.932Z</lastmod>
   </url>
 </urlset>
