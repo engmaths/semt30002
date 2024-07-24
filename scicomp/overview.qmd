@@ -1,7 +1,11 @@
 ---
-title: "Optimisation: Overview"
+title: "Scientific Computing: overview"
 ---
 
-*Weeks 1–5*
+The first five weeks of the unit will focus on how scientific computing can be applied to the numerical solution of differential equations.  
 
-The purpose of this bit is...
+Ordinary and partial differential equations are used in a wide range of engineering problems, yet in many cases they cannot be solved exactly.  Hence, numerical methods are used to find an approximation of the solution.  This section of the unit will explain:
+
+* The types of errors that are introduced when turning a differential equation into a format that can be solved on a computer;
+* The theoretical limitations of different numerical methods for solving differential equations;
+* How to develop fast and memory-efficient code for solving differential equations.
