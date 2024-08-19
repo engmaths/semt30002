@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "scicomp/week1.html",
+    "href": "scicomp/week1.html",
+    "title": "Week 1",
+    "section": "",
+    "text": "Overview\n\n\nSupplementary material\n\n\nExercises\n\nConsider the following finite-difference approximation of the second derivative \\[\n\\left.\\frac{d^2 u}{dx^2}\\right|_{x=a} = \\frac{2 u(a) + C u(a+\\Delta x) + 4u(a + 2 \\Delta x) - u(a + 3\\Delta x)}{(\\Delta x)^2}\n\\] First, take \\(C = 5\\). By calculating the truncation error analytically or numerically, determine whether this is a valid approximation formula. If the formula is valid, determine the order of the approximation. Is the approximation formula valid when \\(C = -5\\)? If so, what is the order of the approximation?\nImplement a version of Euler’s method (with for loops or using vectorisation) that can solve an arbitrary system of ODEs of the form \\[\n\\renewcommand{\\vec}[1]{\\boldsymbol{#1}}\n\\frac{d\\vec{u}}{dt} = \\vec{f}(\\vec{u}, t, \\mu),\n\\] where \\(\\mu\\) represents one or many parameters that the function \\(\\boldsymbol{f}\\) might depend on. The initial condition is \\(\\boldsymbol{u}(0) = \\boldsymbol{u}_0\\).\nValidate your implementation of Euler’s method by numerically solving the system of ODEs given by \\[\n\\frac{d u_1}{dt} = -\\omega u_2, \\qquad\n\\frac{d u_2}{dt} = \\omega u_1, \\tag{1}\n\\] over the time range \\(0 \\leq t \\leq 2 \\pi\\). The initial condition can be set to \\(u_1(0) = 1\\) and \\(u_2(0) = 0\\). The exact solution to this problem is given by \\(u_1(t) = \\cos(\\omega t)\\) and \\(u_2(t) = \\sin (\\omega t)\\).\n\nSet \\(\\omega = 1\\) and use \\(N_t = 100\\) time steps to find a numerical solution. Plot \\(u_1\\) as a function of time using your numerical solution and the exact solution.\n\nKeeping \\(\\omega = 1\\), create similar plots when \\(N_t\\) is decreased to 50 and increased to 1000. From the plots, what happens to the accuracy of the numerical solution as \\(N_t\\) increases?\n\nFor the ODE system given by (1), use numerical experimentation to determine how different values of \\(\\omega\\) impact the solution. If \\(u_1\\) represents the displacement of a mass on a spring, then what does \\(\\omega\\) physically correspond to?\nFor the ODE system given by (1), compute the error between your numerical solution and the exact solution at time \\(t = 2 \\pi\\); that is, calculate \\(\\varepsilon = |u_1^{N_t} - 1|\\), where \\(u_1^{N_t}\\) is the numerical solution at time step \\(N_t\\).\n\nFor a fixed value of \\(\\omega = 1\\), how fast does the error decrease with \\(\\Delta t\\)? Is it linear, quadratic, etc? Is this what you expect based on the truncation error of Euler’s method?\n\nFor a fixed number of time steps, \\(N_t = 10^4\\), how does the error change as \\(\\omega\\) increases? Can you provide a justification of the results you see? For this problem, try setting \\(\\omega = 1, 2, 4, 8, 16\\).\n\n\n\nCoursework-style exercise\nConsider a pack of \\(N\\) identical lithium-ion batteries that are connected in series. Let \\(i = 1\\) denote the first battery in the pack and \\(i = N\\) denote the last battery in the pack. The other batteries are labelled with \\(i = 2, 3, \\ldots, N - 1\\). Due to the geometry of the pack, only batteries 1 and \\(N\\) are in contact with the environment. Battery \\(i\\) is in contact with batteries \\(i-1\\) and \\(i + 1\\).\nEach battery in the pack acts as a resistor. When an electrical current is drawn from the battery pack, each battery will heat up due to Joule heating. The heat that is generated in battery \\(i\\) will be transferred to batteries \\(i-1\\) and \\(i + 1\\), causing these two batteries to heat up even more. Heat is transferred from one battery to the next until it reaches batteries 1 and \\(N\\), which can then transfer the heat to the air. The more batteries there are, the longer the generated heat remains in the battery pack, and the hotter the pack will get. If the temperature of any battery exceeds 60 \\(^\\circ\\)C, then it will start to degrade. Battery degradation is extremely dangerous, as this can lead to the release of toxic and explosive gases.\nThe aim of this exercise is to simulate the temperature of a battery pack in order to determine whether it is expected to be safe to use.\nAssume that a constant current \\(I\\) is being drawn from the battery pack. If \\(T_i(t)\\) denotes the temperature of battery \\(i\\) at time \\(t\\), then the temperature of each of the batteries can be obtained by solving the ODE system given by \\[\\begin{align}\nc \\frac{d T_1}{dt} &= I^2 R - h(T_{1} - T_\\text{air}) - h(T_{1} - T_{2}), \\tag{2} \\\\\nc \\frac{d T_i}{dt} &= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \\quad i = 2, 3, \\ldots, N - 1, \\tag{3} \\\\\nc \\frac{d T_N}{dt} &= I^2 R - h(T_{N} - T_\\text{air}) - h(T_{N} - T_{N-1}). \\tag{4}\n\\end{align}\\] Here, \\(c\\) is the specific heat of the battery, \\(R\\) is the resistance of the battery, \\(h\\) is the heat transfer coefficient, and \\(T_\\text{air}\\) is the temperature of the air. Values for these parameters are given in the table below. You can assume that the initial temperature of each battery is given by \\(T_\\text{air}\\); that is, \\(T_i(0) = T_\\text{air}\\).\n\nParameter values for each battery.\n\n\n\n\n\n\n\n\n\n\\(I\\) (A)\n\\(c\\) (J/\\(^\\circ\\)C)\n\\(h\\) (W/\\(^\\circ\\)C)\n\\(T_\\text{air}\\) (\\(^\\circ\\)C)\n\\(R\\) (Ohms)\n\n\n\n\n3\n300\n0.7\n23\n0.4\n\n\n\nIn the exercises below, assume that the current is being drawn for one hour.\n\nConsider a battery pack with \\(N = 5\\) batteries.\n\nNumerically solve the ODE system in (2)–(4). Create a single plot that shows the temperature of each battery as a function of time.\nAt each time \\(t\\), compute the maximum temperature across all 6 batteries. Plot the maximum temperature as a function of time.\nUse your results to determine whether the battery is safe to use. Answer: yes.\n\nIs a battery pack with \\(N = 50\\) batteries safe to use? Answer: no.\nWhat is the largest number of batteries that a pack can contain yet still be safe to use? Answer: 11."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Scientific Computing and Optimisation",
+    "section": "",
+    "text": "This unit will bring together your previous experience of solving mathematical problems (optimisation, differential equations) and writing computer programmes using Python, Matlab, or Julia. The aim is to provide you with a suite of tools that can be used to transform real-world problems, such as those encountered in the Mathematical and Data Modelling units and final-year projects, into problems that can be efficiently solved on a computer.\n\nUnit timetable\n\nWeek 1: Finite differences and Euler’s method\nWeek 2: ODE boundary value problems\nWeek 3: Diffusion equations in 1D\nWeek 4: First-order PDEs in 1D\nWeek 5: The 2D Poisson equation\nWeek 6: Reading week (no sessions)\nWeek 7:\nWeek 8:\nWeek 9:\nWeek 10:\nWeek 11: Coursework support\nWeek 12: TBD"
+  },
+  {
+    "objectID": "optim/overview.html",
+    "href": "optim/overview.html",
+    "title": "Scientific Computing: Overview",
+    "section": "",
+    "text": "Weeks 7–11\nThe purpose of this bit is…"
+  },
+  {
+    "objectID": "assessment.html",
+    "href": "assessment.html",
+    "title": "Assessment",
+    "section": "",
+    "text": "This unit will be assessed by a single piece of coursework. It will be released in two parts, one in week 5 and one in week 9.\nThe final deadline is 12 noon on Friday of week 11. Submit your coursework as a PDF via Blackboard."
+  },
+  {
     "objectID": "staff.html",
     "href": "staff.html",
     "title": "Teaching staff",
@@ -28,38 +56,10 @@
     "text": "Roussel Desmond Nzoyem (teaching assistant)\nSomething about David (including contact details?)."
   },
   {
-    "objectID": "assessment.html",
-    "href": "assessment.html",
-    "title": "Assessment",
-    "section": "",
-    "text": "This unit will be assessed by a single piece of coursework. It will be released in two parts, one in week 5 and one in week 9.\nThe final deadline is 12 noon on Friday of week 11. Submit your coursework as a PDF via Blackboard."
-  },
-  {
-    "objectID": "scicomp/week1.html",
-    "href": "scicomp/week1.html",
-    "title": "Week 1",
-    "section": "",
-    "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
-  },
-  {
     "objectID": "scicomp/overview.html",
     "href": "scicomp/overview.html",
     "title": "Scientific Computing: overview",
     "section": "",
-    "text": "The first five weeks of the unit will focus on how scientific computing can be applied to the numerical solution of differential equations.\nOrdinary and partial differential equations are used in a wide range of engineering problems, yet in many cases they cannot be solved exactly. Hence, numerical methods are used to find an approximation of the solution. This section of the unit will explain:\n\nThe types of errors that are introduced when turning a differential equation into a format that can be solved on a computer;\nThe theoretical limitations of different numerical methods for solving differential equations;\nHow to develop fast and memory-efficient code for solving differential equations."
-  },
-  {
-    "objectID": "optim/overview.html",
-    "href": "optim/overview.html",
-    "title": "Scientific Computing: Overview",
-    "section": "",
-    "text": "Weeks 7–11\nThe purpose of this bit is…"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Scientific Computing and Optimisation",
-    "section": "",
-    "text": "This unit will bring together your previous experience of solving mathematical problems (optimisation, differential equations) and writing computer programmes using Python, Matlab, or Julia. The aim is to provide you with a suite of tools that can be used to transform real-world problems, such as those encountered in the Mathematical and Data Modelling units and final-year projects, into problems that can be efficiently solved on a computer.\n\nUnit timetable\n\nWeek 1: Finite differences and Euler’s method\nWeek 2: ODE boundary value problems\nWeek 3: The diffusion equation in 1D\nWeek 4: First-order PDEs in 1D\nWeek 5: The Poisson equation in 2D\nWeek 6: Reading week (no sessions)\nWeek 7:\nWeek 8:\nWeek 9:\nWeek 10:\nWeek 11: Coursework support\nWeek 12: TBD"
+    "text": "The first five weeks will focus on how scientific computing can be applied to the numerical solution of ordinary and partial differential equations. Although differential equations appear in many engineering contexts, they usually cannot be solved by hand. Instead, numerical methods are needed to compute an approximate solution.\n\nWeek 1: Finite differences and Euler’s method\nWeek 2: ODE boundary value problems\nWeek 3: Diffusion equations in 1D\nWeek 4: First-order PDEs in 1D\nWeek 5: The 2D Poisson equation"
   }
 ]

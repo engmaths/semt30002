@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -101,6 +67,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -171,8 +166,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#coursework-style-exercise" id="toc-coursework-style-exercise" class="nav-link" data-scroll-target="#coursework-style-exercise">Coursework-style exercise</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -196,35 +202,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>For a demonstration of a line plot on a polar axis, see <a href="#fig-polar" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="cell-fig-polar" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="week1_files/figure-html/fig-polar-output-1.png" width="450" height="439" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: A line plot on a polar axis
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+</section>
+<section id="supplementary-material" class="level1">
+<h1>Supplementary material</h1>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<ol type="1">
+<li><p>Consider the following finite-difference approximation of the second derivative <span class="math display">\[
+\left.\frac{d^2 u}{dx^2}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
+\]</span> First, take <span class="math inline">\(C = 5\)</span>. By calculating the truncation error analytically or numerically, determine whether this is a valid approximation formula. If the formula is valid, determine the order of the approximation. Is the approximation formula valid when <span class="math inline">\(C = -5\)</span>? If so, what is the order of the approximation?</p></li>
+<li><p>Implement a version of Euler’s method (with <code>for</code> loops or using vectorisation) that can solve an arbitrary system of ODEs of the form <span class="math display">\[
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\frac{d\vec{u}}{dt} = \vec{f}(\vec{u}, t, \mu),
+\]</span> where <span class="math inline">\(\mu\)</span> represents one or many parameters that the function <span class="math inline">\(\boldsymbol{f}\)</span> might depend on. The initial condition is <span class="math inline">\(\boldsymbol{u}(0) = \boldsymbol{u}_0\)</span>.</p></li>
+<li><p>Validate your implementation of Euler’s method by numerically solving the system of ODEs given by <span class="math display">\[
+\frac{d u_1}{dt} = -\omega u_2, \qquad
+\frac{d u_2}{dt} = \omega u_1, \tag{1}
+\]</span> over the time range <span class="math inline">\(0 \leq t \leq 2 \pi\)</span>. The initial condition can be set to <span class="math inline">\(u_1(0) = 1\)</span> and <span class="math inline">\(u_2(0) = 0\)</span>. The exact solution to this problem is given by <span class="math inline">\(u_1(t) = \cos(\omega t)\)</span> and <span class="math inline">\(u_2(t) = \sin (\omega t)\)</span>.</p>
+<ol type="a">
+<li>Set <span class="math inline">\(\omega = 1\)</span> and use <span class="math inline">\(N_t = 100\)</span> time steps to find a numerical solution. Plot <span class="math inline">\(u_1\)</span> as a function of time using your numerical solution and the exact solution.<br>
+</li>
+<li>Keeping <span class="math inline">\(\omega = 1\)</span>, create similar plots when <span class="math inline">\(N_t\)</span> is decreased to 50 and increased to 1000. From the plots, what happens to the accuracy of the numerical solution as <span class="math inline">\(N_t\)</span> increases?</li>
+</ol></li>
+<li><p>For the ODE system given by (1), use numerical experimentation to determine how different values of <span class="math inline">\(\omega\)</span> impact the solution. If <span class="math inline">\(u_1\)</span> represents the displacement of a mass on a spring, then what does <span class="math inline">\(\omega\)</span> physically correspond to?</p></li>
+<li><p>For the ODE system given by (1), compute the error between your numerical solution and the exact solution at time <span class="math inline">\(t = 2 \pi\)</span>; that is, calculate <span class="math inline">\(\varepsilon = |u_1^{N_t} - 1|\)</span>, where <span class="math inline">\(u_1^{N_t}\)</span> is the numerical solution at time step <span class="math inline">\(N_t\)</span>.</p>
+<ol type="a">
+<li>For a fixed value of <span class="math inline">\(\omega = 1\)</span>, how fast does the error decrease with <span class="math inline">\(\Delta t\)</span>? Is it linear, quadratic, etc? Is this what you expect based on the truncation error of Euler’s method?<br>
+</li>
+<li>For a fixed number of time steps, <span class="math inline">\(N_t = 10^4\)</span>, how does the error change as <span class="math inline">\(\omega\)</span> increases? Can you provide a justification of the results you see? For this problem, try setting <span class="math inline">\(\omega = 1, 2, 4, 8, 16\)</span>.</li>
+</ol></li>
+</ol>
+<section id="coursework-style-exercise" class="level3">
+<h3 class="anchored" data-anchor-id="coursework-style-exercise">Coursework-style exercise</h3>
+<p>Consider a pack of <span class="math inline">\(N\)</span> identical lithium-ion batteries that are connected in series. Let <span class="math inline">\(i = 1\)</span> denote the first battery in the pack and <span class="math inline">\(i = N\)</span> denote the last battery in the pack. The other batteries are labelled with <span class="math inline">\(i = 2, 3, \ldots, N - 1\)</span>. Due to the geometry of the pack, only batteries 1 and <span class="math inline">\(N\)</span> are in contact with the environment. Battery <span class="math inline">\(i\)</span> is in contact with batteries <span class="math inline">\(i-1\)</span> and <span class="math inline">\(i + 1\)</span>.</p>
+<p>Each battery in the pack acts as a resistor. When an electrical current is drawn from the battery pack, each battery will heat up due to Joule heating. The heat that is generated in battery <span class="math inline">\(i\)</span> will be transferred to batteries <span class="math inline">\(i-1\)</span> and <span class="math inline">\(i + 1\)</span>, causing these two batteries to heat up even more. Heat is transferred from one battery to the next until it reaches batteries 1 and <span class="math inline">\(N\)</span>, which can then transfer the heat to the air. The more batteries there are, the longer the generated heat remains in the battery pack, and the hotter the pack will get. If the temperature of any battery exceeds 60 <span class="math inline">\(^\circ\)</span>C, then it will start to degrade. Battery degradation is extremely dangerous, as this can lead to the release of toxic and explosive gases.</p>
+<p>The aim of this exercise is to simulate the temperature of a battery pack in order to determine whether it is expected to be safe to use.</p>
+<p>Assume that a constant current <span class="math inline">\(I\)</span> is being drawn from the battery pack. If <span class="math inline">\(T_i(t)\)</span> denotes the temperature of battery <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span>, then the temperature of each of the batteries can be obtained by solving the ODE system given by <span class="math display">\[\begin{align}
+c \frac{d T_1}{dt} &amp;= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
+c \frac{d T_i}{dt} &amp;= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
+c \frac{d T_N}{dt} &amp;= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
+\end{align}\]</span> Here, <span class="math inline">\(c\)</span> is the specific heat of the battery, <span class="math inline">\(R\)</span> is the resistance of the battery, <span class="math inline">\(h\)</span> is the heat transfer coefficient, and <span class="math inline">\(T_\text{air}\)</span> is the temperature of the air. Values for these parameters are given in the table below. You can assume that the initial temperature of each battery is given by <span class="math inline">\(T_\text{air}\)</span>; that is, <span class="math inline">\(T_i(0) = T_\text{air}\)</span>.</p>
+<table class="caption-top table">
+<caption>Parameter values for each battery.</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(I\)</span> (A)</th>
+<th><span class="math inline">\(c\)</span> (J/<span class="math inline">\(^\circ\)</span>C)</th>
+<th><span class="math inline">\(h\)</span> (W/<span class="math inline">\(^\circ\)</span>C)</th>
+<th><span class="math inline">\(T_\text{air}\)</span> (<span class="math inline">\(^\circ\)</span>C)</th>
+<th><span class="math inline">\(R\)</span> (Ohms)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>300</td>
+<td>0.7</td>
+<td>23</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<p>In the exercises below, assume that the current is being drawn for one hour.</p>
+<ol type="1">
+<li><p>Consider a battery pack with <span class="math inline">\(N = 5\)</span> batteries.</p>
+<ol type="a">
+<li>Numerically solve the ODE system in (2)–(4). Create a single plot that shows the temperature of each battery as a function of time.</li>
+<li>At each time <span class="math inline">\(t\)</span>, compute the maximum temperature across all 6 batteries. Plot the maximum temperature as a function of time.</li>
+<li>Use your results to determine whether the battery is safe to use. <em>Answer: yes</em>.</li>
+</ol></li>
+<li><p>Is a battery pack with <span class="math inline">\(N = 50\)</span> batteries safe to use? <em>Answer: no</em>.</p></li>
+<li><p>What is the largest number of batteries that a pack can contain yet still be safe to use? <em>Answer: 11</em>.</p></li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
