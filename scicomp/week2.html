@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Teaching staff – Scientific Computing and Optimisation (SEMT30002)</title>
+<title>Week 2 – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,19 +67,48 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Scientific Computing and Optimisation (SEMT30002)</span>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Scientific Computing and Optimisation</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -89,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./assessment.html"> 
+    <a class="nav-link" href="../assessment.html"> 
 <span class="menu-text">Assessment</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -102,12 +131,16 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-scientific-computing-(weeks-1–5">    
         <li>
-    <a class="dropdown-item" href="./scicomp/overview.html">
+    <a class="dropdown-item" href="../scicomp/overview.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./scicomp/week1.html">
+    <a class="dropdown-item" href="../scicomp/week1.html">
  <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scicomp/week2.html">
+ <span class="dropdown-text">Week 2</span></a>
   </li>  
     </ul>
   </li>
@@ -117,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-optimisation-(weeks-7–11">    
         <li>
-    <a class="dropdown-item" href="./optim/overview.html">
+    <a class="dropdown-item" href="../optim/overview.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
     </ul>
@@ -133,13 +166,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Teaching staff</h1>
+<h1 class="title">Week 2</h1>
 </div>
 
 
@@ -156,18 +198,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="dr-matt-hennessy-unit-director" class="level2">
-<h2 class="anchored" data-anchor-id="dr-matt-hennessy-unit-director">Dr Matt Hennessy (unit director)</h2>
-<p>Matt is a Lecturer in Engineering Mathematics. He regularly uses scientific computing to solve systems of PDEs that describe the behaviours of fluids and solids.</p>
-<p>The best way to contact Matt is by email (<a href="mailto:matthew.hennessy@bristol.ac.uk">matthew.hennessy@bristol.ac.uk</a>)</p>
+<p><span class="math display">\[
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+\]</span></p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This week showcase how finite difference methods can be used to solve boundary value problems (BVPs) for ODEs. In short, the finite difference method converts ODEs into algebraic systems of equations, which can then be solved using two main approaches:</p>
+<ol type="1">
+<li>Writing your own solvers using linear algebra functions.</li>
+<li>Using built-in solvers provided by Python and Matlab.</li>
+</ol>
+<p>The code that you develop this week will form an essential role in the upcoming weeks when the focus shifts towards numerically solving partial differential equations.</p>
 </section>
-<section id="prof-david-barton-unit-lecturer" class="level2">
-<h2 class="anchored" data-anchor-id="prof-david-barton-unit-lecturer">Prof David Barton (unit lecturer)</h2>
-<p>Something about David (including contact details).</p>
-</section>
-<section id="roussel-desmond-nzoyem-teaching-assistant" class="level2">
-<h2 class="anchored" data-anchor-id="roussel-desmond-nzoyem-teaching-assistant">Roussel Desmond Nzoyem (teaching assistant)</h2>
-<p>Something about David (including contact details?).</p>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<p>The goal of the exercises is to create a BVP solver that is capable of finding numerical solutions to ODEs of the form <span class="math display">\[
+D \tdd{u}{x} + q(x, u; \mu) = 0,
+\]</span> where the domain of the problem is given by <span class="math inline">\(a \leq x \leq b\)</span>. In this equation, <span class="math inline">\(D &gt; 0\)</span> is a parameter. The term <span class="math inline">\(q(x, u; \mu)\)</span> represents a function that depends on the spatial coordinate <span class="math inline">\(x\)</span>, the solution <span class="math inline">\(u(x)\)</span>, and a parameter <span class="math inline">\(\mu\)</span>. Your solver should be able to handle all three types of boundary conditions (Dirichlet, Neumann, and Robin).</p>
+<p>Building this solver is a big task. The exercises below are designed so that you can see how to build your code by solving a sequence of simpler problems. Test your code extensively and only add complexity once you are certain it works correctly.</p>
+<ol type="1">
+<li><p>Use finite differences to find a numerical solution to <span class="math display">\[
+\tdd{u}{x} = 0, \quad
+u(a) = \gamma_1, \quad u(b) = \gamma_2.
+\]</span> In this case, the exact solution to the problem is given by <span class="math display">\[
+u(x) =  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x - a) + \gamma_1, \tag{1}
+\]</span> which you can use to test your code.</p></li>
+<li><p>Extend your code so that it can account for a source term in the ODE: <span class="math display">\[
+D \tdd{u}{x} + q(x) = 0, \quad
+u(a) = \gamma_1, \quad u(b) = \gamma_2.
+\]</span> <strong>Hint</strong>: The simplest place to start is to set <span class="math inline">\(q(x) = 1\)</span>; in this case, the exact solution is given by <span class="math display">\[
+u(x) = -\frac{1}{2D}(x-a)(x-b) +  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x - a) + \gamma_1.
+\]</span> Once you’ve developed code for the problem with <span class="math inline">\(q(x) = 1\)</span>, add an <span class="math inline">\(x\)</span> dependence into <span class="math inline">\(q\)</span>. Can you find some exact solutions for this case?</p></li>
+<li><p>Generalise your code so that the source term <span class="math inline">\(q\)</span> can now depend on the solution <span class="math inline">\(u\)</span> as well as a parameter <span class="math inline">\(\mu\)</span>. Use your code to solve the steady Cahn–Hilliard equation <span class="math display">\[
+\tdd{\phi}{x} + \mu(\phi - \phi^3) = 0
+\]</span> with the boundary conditions <span class="math inline">\(\phi(-1) = -1\)</span> and <span class="math inline">\(\phi(1) = 1\)</span> when (a) <span class="math inline">\(\mu = 0.5\)</span> and (b) <span class="math inline">\(\mu = 10\)</span>.</p>
+<p><strong>Hint 1</strong>: If <span class="math inline">\(q\)</span> depends nonlinearly on the solution, as with this problem, then a good initial guess of the solution is usually required for the nonlinear solver to converge. For this problem, a good initial guess can be found by noting that when <span class="math inline">\(\mu\)</span> is small, the source term <span class="math inline">\(q\)</span> is approximately zero. The solution in this case is given by (1), which can be used to form an initial guess.</p>
+<p><strong>Hint 2</strong>: If you find it difficult to obtain a solution when <span class="math inline">\(\mu = 10\)</span>, then try to increase <span class="math inline">\(\mu\)</span> in small increments from <span class="math inline">\(0.5\)</span> to <span class="math inline">\(10\)</span>. Each time a new solution is successfully computed, it is used as the initial guess for the next (larger) value of <span class="math inline">\(\mu\)</span>. This process of gradually ramping up a parameter and using the previously computed solution as the next initial guess is called <a href="https://en.wikipedia.org/wiki/Numerical_continuation#Natural_parameter_continuation">natural parameter continuation</a>.</p></li>
+<li><p>Update your code so that it can account for any combination of Dirichlet, Neumann, and Robin boundary conditions.</p>
+<ol type="a">
+<li>Try using your code to solve the problem <span class="math display">\[
+\tdd{u}{x} + 1 = 0, \quad \left.\td{u}{x}\right|_{x=\pm 1} = 0.
+\]</span> To understand what happens, try solving this problem by hand.</li>
+</ol></li>
+</ol>
+<!-- ## Bonus problems
+
+Think about extending your solver to other types of ODEs.  For example:
+
+~~~
+<ul><li>
+~~~
+The steady reaction-convection-diffusion equation is given by
+$$
+D \tdd{u}{x} - v\td{u}{x}+  q(x, u; \mu) = 0,
+$$
+where $v$ is a parameter (usually the velocity).  Use your solver to
+compute solutions when the boundary conditions are $u(0) = 0$ and $u(1) = 0$ and the parameter values are $D = 1$, $v = 1$, and $q = 1$.  
+
+Now compute solutions for smaller values of $D$, for example, $D = 0.1$, $D = 0.05$, and $D = 0.01$.  What happens to the solution as $D$ decreases?  
+How might you adapt your
+code to handle the case $D \ll 1$ efficiently?
+
+~~~
+</li><li>
+~~~
+
+The linear beam equation is given by
+$$
+-B \frac{\mathrm{d}^4 u}{\mathrm{d}x^4} + q(x) = 0,
+$$
+where $B$ is the bending modulus and $q(x)$ is a load applied along the beam.
+Since this is a fourth-order ODE, four boundary conditions are required, two at each end.  Conditions are usually imposed on $u$, $\mathrm{d}u/\mathrm{d}x$, $\mathrm{d}^2 u/\mathrm{d}x^2$, or $\mathrm{d}^3u/\mathrm{d}x^3$.
+
+Try to solve the linear beam equation with $q(x) = 1$ and the boundary conditions
+$$
+u(0) = 0, \quad \left.\tdd{u}{x}\right|_{x=0} = 0,
+\quad
+u(1) = 0, \quad \left.\tdd{u}{x}\right|_{x=1} = 0.
+$$
+**Hint**: there are a couple of ways to tackle this problem.  One approach is to use
+a finite-difference formula for the fourth derivative, which can be derived using the approach in the supplementary notes or [found online](https://en.wikipedia.org/wiki/Finite_difference_coefficient).  An alternative approach is to split the equation into a system of second-order differential equations by letting $v = \mathrm{d}^2 u / \mathrm{d}x^2$.
+
+~~~
+</li></ul>
+~~~ -->
 
 
 </section>

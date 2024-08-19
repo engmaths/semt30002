@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 – Scientific Computing and Optimisation (SEMT30002)</title>
+<title>Week 1 – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Scientific Computing and Optimisation (SEMT30002)</span>
+    <span class="navbar-title">Scientific Computing and Optimisation</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -137,6 +137,10 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../scicomp/week1.html">
  <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scicomp/week2.html">
+ <span class="dropdown-text">Week 2</span></a>
   </li>  
     </ul>
   </li>
@@ -198,6 +202,11 @@ window.Quarto = {
 </header>
 
 
+<p><span class="math display">\[
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+\]</span></p>
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <p>To start off the unit, we dive into finite differences. This is a general method for approximating derivatives of mathematical functions with algebraic formulae. This will be a crucial step when it comes to deriving numerical methods for solving ODEs and PDEs. We also introduce the idea of truncation error, explain why this is useful, and how it can be calculated using Taylor expansions. Finally, we recap Euler’s method, a simple yet useful approach for numerically approximating the solution of time-dependent ODEs.</p>
@@ -212,15 +221,14 @@ window.Quarto = {
 <h1>Exercises</h1>
 <ol type="1">
 <li><p>Consider the following finite-difference approximation of the second derivative <span class="math display">\[
-\left.\frac{d^2 u}{dx^2}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
+\left.\tdd{u}{x}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
 \]</span> First, take <span class="math inline">\(C = 5\)</span>. By calculating the truncation error analytically or numerically, determine whether this is a valid approximation formula. If the formula is valid, determine the order of the approximation. Is the approximation formula valid when <span class="math inline">\(C = -5\)</span>? If so, what is the order of the approximation?</p></li>
 <li><p>Implement a version of Euler’s method (with <code>for</code> loops or using vectorisation) that can solve an arbitrary system of ODEs of the form <span class="math display">\[
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
-\frac{d\vec{u}}{dt} = \vec{f}(\vec{u}, t, \mu),
+\td{\vec{u}}{t} = \vec{f}(\vec{u}, t, \mu),
 \]</span> where <span class="math inline">\(\mu\)</span> represents one or many parameters that the function <span class="math inline">\(\boldsymbol{f}\)</span> might depend on. The initial condition is <span class="math inline">\(\boldsymbol{u}(0) = \boldsymbol{u}_0\)</span>.</p></li>
 <li><p>Validate your implementation of Euler’s method by numerically solving the system of ODEs given by <span class="math display">\[
-\frac{d u_1}{dt} = -\omega u_2, \qquad
-\frac{d u_2}{dt} = \omega u_1, \tag{1}
+\td{u_1}{t} = -\omega u_2, \qquad
+\td{u_2}{t} = \omega u_1, \tag{1}
 \]</span> over the time range <span class="math inline">\(0 \leq t \leq 2 \pi\)</span>. The initial condition can be set to <span class="math inline">\(u_1(0) = 1\)</span> and <span class="math inline">\(u_2(0) = 0\)</span>. The exact solution to this problem is given by <span class="math inline">\(u_1(t) = \cos(\omega t)\)</span> and <span class="math inline">\(u_2(t) = \sin (\omega t)\)</span>.</p>
 <ol type="a">
 <li>Set <span class="math inline">\(\omega = 1\)</span> and use <span class="math inline">\(N_t = 100\)</span> time steps to find a numerical solution. Plot <span class="math inline">\(u_1\)</span> as a function of time using your numerical solution and the exact solution.<br>
@@ -241,9 +249,9 @@ window.Quarto = {
 <p>Each battery in the pack acts as a resistor. When an electrical current is drawn from the battery pack, each battery will heat up due to Joule heating. The heat that is generated in battery <span class="math inline">\(i\)</span> will be transferred to batteries <span class="math inline">\(i-1\)</span> and <span class="math inline">\(i + 1\)</span>, causing these two batteries to heat up even more. Heat is transferred from one battery to the next until it reaches batteries 1 and <span class="math inline">\(N\)</span>, which can then transfer the heat to the air. The more batteries there are, the longer the generated heat remains in the battery pack, and the hotter the pack will get. If the temperature of any battery exceeds 60 <span class="math inline">\(^\circ\)</span>C, then it will start to degrade. Battery degradation is extremely dangerous, as this can lead to the release of toxic and explosive gases.</p>
 <p>The aim of this exercise is to simulate the temperature of a battery pack in order to determine whether it is expected to be safe to use.</p>
 <p>Assume that a constant current <span class="math inline">\(I\)</span> is being drawn from the battery pack. If <span class="math inline">\(T_i(t)\)</span> denotes the temperature of battery <span class="math inline">\(i\)</span> at time <span class="math inline">\(t\)</span>, then the temperature of each of the batteries can be obtained by solving the ODE system given by <span class="math display">\[\begin{align}
-c \frac{d T_1}{dt} &amp;= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
-c \frac{d T_i}{dt} &amp;= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
-c \frac{d T_N}{dt} &amp;= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
+c \td{T_1}{t} &amp;= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
+c \td{T_i}{t} &amp;= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
+c \td{T_N}{t} &amp;= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
 \end{align}\]</span> Here, <span class="math inline">\(c\)</span> is the specific heat of the battery, <span class="math inline">\(R\)</span> is the resistance of the battery, <span class="math inline">\(h\)</span> is the heat transfer coefficient, and <span class="math inline">\(T_\text{air}\)</span> is the temperature of the air. Values for these parameters are given in the table below. You can assume that the initial temperature of each battery is given by <span class="math inline">\(T_\text{air}\)</span>; that is, <span class="math inline">\(T_i(0) = T_\text{air}\)</span>.</p>
 <table class="caption-top table">
 <caption>Parameter values for each battery.</caption>
