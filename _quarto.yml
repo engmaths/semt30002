@@ -7,7 +7,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - staff.qmd
       - assessment.qmd
       - text: "Scientific Computing (weeks 1–5)"
         menu:

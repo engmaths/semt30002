@@ -20,3 +20,10 @@ This unit will bring together your previous experience of solving mathematical p
 * Week 10:
 * Week 11: Coursework support
 * Week 12: TBD
+
+
+# Teaching staff
+
+* Dr Matthew Hennessy (unit director): [matthew.hennessy@bristol.ac.uk](mailto:matthew.hennessy@bristol.ac.uk)
+* Prof David Barton (unit lecturer): [david.barton@bristol.ac.uk](mailto:david.barton@bristol.ac.uk)
+* Mr Roussel Desmond Nzoyem (teaching assistant): [rd.nzoyemngueguin@bristol.ac.uk](mailto:rd.nzoyemngueguin@bristol.ac.uk)
