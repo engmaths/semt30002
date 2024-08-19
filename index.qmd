@@ -4,12 +4,10 @@ title: "Scientific Computing and Optimisation"
 
 This unit will bring together your previous experience of solving mathematical problems (optimisation, differential equations) and writing computer programmes using [Python](https://www.python.org/), [Matlab](https://uk.mathworks.com/products/matlab.html), or [Julia](https://julialang.org/). The aim is to provide you with a suite of tools that can be used to transform real-world problems, such as those encountered in the Mathematical and Data Modelling units and final-year projects, into problems that can be efficiently solved on a computer.
 
-
-
 # Unit timetable 
 
 * [Week 1: Finite differences and Euler's method](scicomp/week1.qmd)
-* Week 2: ODE boundary value problems
+* [Week 2: ODE boundary value problems](scicomp/week2.qmd)
 * Week 3: Diffusion equations in 1D
 * Week 4: First-order PDEs in 1D
 * Week 5: The 2D Poisson equation
@@ -21,6 +19,13 @@ This unit will bring together your previous experience of solving mathematical p
 * Week 11: Coursework support
 * Week 12: TBD
 
+# Teaching sessions
+
+All teaching sessions will take place in MVB 1.15.
+
+* Monday ????: demo and Q&A session
+* Thursday 1600-1800: lab session
+* Friday ????: drop-in (optional)
 
 # Teaching staff
 
