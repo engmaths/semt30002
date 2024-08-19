@@ -1,0 +1,5 @@
+$$
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+$$

@@ -2,6 +2,8 @@
 title: "Week 1"
 ---
 
+{{< include _macros.qmd >}}
+
 # Overview
 
 To start off the unit, we dive into finite differences.  This is a general method for approximating derivatives of mathematical functions with algebraic formulae.  This will be a crucial step when it comes to deriving numerical methods for solving ODEs and PDEs.  We also introduce the idea of truncation error, explain why this is useful, and how it can be calculated using Taylor expansions.  Finally, we recap Euler's method, a simple yet useful approach for numerically approximating the solution of time-dependent ODEs.
@@ -14,7 +16,7 @@ To start off the unit, we dive into finite differences.  This is a general metho
 
 1. Consider the following finite-difference approximation of the second derivative
 $$
-\left.\frac{d^2 u}{dx^2}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
+\left.\tdd{u}{x}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
 $$
 First, take $C = 5$.  By calculating the truncation error analytically or numerically, determine whether this is a valid approximation formula.
 If the formula is valid, determine the order of the approximation.
@@ -23,14 +25,13 @@ order of the approximation?
 
 2. Implement a version of Euler's method (with `for` loops or using vectorisation) that can solve an arbitrary system of ODEs of the form
 $$
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
-\frac{d\vec{u}}{dt} = \vec{f}(\vec{u}, t, \mu),
+\td{\vec{u}}{t} = \vec{f}(\vec{u}, t, \mu),
 $$
 where $\mu$ represents one or many parameters that the function  $\boldsymbol{f}$ might depend on.  The initial condition is $\boldsymbol{u}(0) = \boldsymbol{u}_0$.
 3. Validate your implementation of Euler's method by numerically solving the system of ODEs given by
 $$
-\frac{d u_1}{dt} = -\omega u_2, \qquad 
-\frac{d u_2}{dt} = \omega u_1, \tag{1}
+\td{u_1}{t} = -\omega u_2, \qquad 
+\td{u_2}{t} = \omega u_1, \tag{1}
 $$
 over the time range $0 \leq t \leq 2 \pi$.  The initial condition can be set to $u_1(0) = 1$ and $u_2(0) = 0$.  The exact solution to this problem is given by $u_1(t) = \cos(\omega t)$ and $u_2(t) = \sin (\omega t)$.
     (a) Set $\omega = 1$ and use $N_t = 100$ time steps to find a numerical solution.  Plot $u_1$ as a function of time using your numerical solution and the exact solution.  
@@ -54,9 +55,9 @@ The aim of this exercise is to simulate the temperature of a battery pack in ord
 
 Assume that a constant current $I$ is being drawn from the battery pack.  If $T_i(t)$ denotes the temperature of battery $i$ at time $t$, then the temperature of each of the batteries can be obtained by solving the ODE system given by
 \begin{align}
-c \frac{d T_1}{dt} &= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
- c \frac{d T_i}{dt} &= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
-c \frac{d T_N}{dt} &= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
+c \td{T_1}{t} &= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
+ c \td{T_i}{t} &= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
+c \td{T_N}{t} &= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
 \end{align}
 Here, $c$ is the specific heat of the battery, $R$ is the resistance of the battery, $h$ is the heat transfer coefficient, and $T_\text{air}$ is the temperature of the air.  Values for these parameters are given in the table below.  You can assume that the initial temperature of each battery is given by $T_\text{air}$; that is, $T_i(0) = T_\text{air}$.
 
