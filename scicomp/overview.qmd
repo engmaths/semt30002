@@ -2,10 +2,10 @@
 title: "Scientific Computing: overview"
 ---
 
-The first five weeks of the unit will focus on how scientific computing can be applied to the numerical solution of differential equations.  
+The first five weeks will focus on how scientific computing can be applied to the numerical solution of ordinary and partial differential equations.  Although differential equations appear in many engineering contexts, they usually cannot be solved by hand.  Instead, numerical methods are needed to compute an approximate solution.
 
-Ordinary and partial differential equations are used in a wide range of engineering problems, yet in many cases they cannot be solved exactly.  Hence, numerical methods are used to find an approximation of the solution.  This section of the unit will explain:
-
-* The types of errors that are introduced when turning a differential equation into a format that can be solved on a computer;
-* The theoretical limitations of different numerical methods for solving differential equations;
-* How to develop fast and memory-efficient code for solving differential equations.
+* [Week 1: Finite differences and Euler's method](week1.qmd)
+* [Week 2: ODE boundary value problems]()
+* [Week 3: Diffusion equations in 1D]()
+* [Week 4: First-order PDEs in 1D]()
+* [Week 5: The 2D Poisson equation]()

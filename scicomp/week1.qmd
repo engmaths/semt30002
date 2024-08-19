@@ -3,22 +3,73 @@ title: "Week 1"
 jupyter: python3
 ---
 
-For a demonstration of a line plot on a polar axis, see @fig-polar.
+# Overview
 
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
+# Supplementary material
 
-import numpy as np
-import matplotlib.pyplot as plt
+# Exercises
 
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
+1. Consider the following finite-difference approximation of the second derivative
+$$
+\left.\frac{d^2 u}{dx^2}\right|_{x=a} = \frac{2 u(a) + C u(a+\Delta x) + 4u(a + 2 \Delta x) - u(a + 3\Delta x)}{(\Delta x)^2}
+$$
+First, take $C = 5$.  By calculating the truncation error analytically or numerically, determine whether this is a valid approximation formula.
+If the formula is valid, determine the order of the approximation.
+Is the approximation formula valid when $C = -5$?  If so, what is the
+order of the approximation?
+
+2. Implement a version of Euler's method (with `for` loops or using vectorisation) that can solve an arbitrary system of ODEs of the form
+$$
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\frac{d\vec{u}}{dt} = \vec{f}(\vec{u}, t, \mu),
+$$
+where $\mu$ represents one or many parameters that the function  $\boldsymbol{f}$ might depend on.  The initial condition is $\boldsymbol{u}(0) = \boldsymbol{u}_0$.
+3. Validate your implementation of Euler's method by numerically solving the system of ODEs given by
+$$
+\frac{d u_1}{dt} = -\omega u_2, \qquad 
+\frac{d u_2}{dt} = \omega u_1, \tag{1}
+$$
+over the time range $0 \leq t \leq 2 \pi$.  The initial condition can be set to $u_1(0) = 1$ and $u_2(0) = 0$.  The exact solution to this problem is given by $u_1(t) = \cos(\omega t)$ and $u_2(t) = \sin (\omega t)$.
+    (a) Set $\omega = 1$ and use $N_t = 100$ time steps to find a numerical solution.  Plot $u_1$ as a function of time using your numerical solution and the exact solution.  
+    (b) Keeping $\omega = 1$, create similar plots when $N_t$ is decreased to 50 and increased to 1000.  From the plots, what happens to the accuracy of the numerical solution as $N_t$ increases?
+
+3. For the ODE system given by (1), use numerical experimentation to determine how different values of $\omega$ impact the solution.  If $u_1$ represents the displacement of a mass on a spring, then what does $\omega$ physically correspond to?
+
+4. For the ODE system given by (1), compute the error between your numerical solution and the exact solution at time $t = 2 \pi$;
+that is, calculate $\varepsilon = |u_1^{N_t} - 1|$, where
+$u_1^{N_t}$ is the numerical solution at time step $N_t$.  
+    (a) For a fixed value of $\omega = 1$, how fast does the error decrease with $\Delta t$?  Is it linear, quadratic, etc?  Is this what you expect based on the truncation error of Euler's method?  
+    (b) For a fixed number of time steps, $N_t = 10^4$, how does the error change as $\omega$ increases?  Can you provide a justification of the results you see?  For this problem, try setting $\omega = 1, 2, 4, 8, 16$.
+
+### Coursework-style exercise
+
+Consider a pack of $N$ identical lithium-ion batteries that are connected in series.  Let $i = 1$ denote the first battery in the pack and $i = N$ denote the last battery in the pack.  The other batteries are labelled with $i = 2, 3, \ldots, N - 1$.  Due to the geometry of the pack, only batteries 1 and $N$ are in contact with the environment.  Battery $i$ is in contact with batteries $i-1$ and $i + 1$.
+
+Each battery in the pack acts as a resistor.  When an electrical current is drawn from the battery pack, each battery will heat up due to Joule heating.  The heat that is generated in battery $i$ will be transferred to batteries $i-1$ and $i + 1$, causing these two batteries to heat up even more.  Heat is transferred from one battery to the next until it reaches batteries 1 and $N$, which can then transfer the heat to the air.  The more batteries there are, the longer the generated heat remains in the battery pack, and the hotter the pack will get.  If the temperature of any battery exceeds 60 $^\circ$C, then it will start to degrade.  Battery degradation is extremely dangerous, as this can lead to the release of toxic and explosive gases.
+
+The aim of this exercise is to simulate the temperature of a battery pack in order to determine whether it is expected to be safe to use.
+
+Assume that a constant current $I$ is being drawn from the battery pack.  If $T_i(t)$ denotes the temperature of battery $i$ at time $t$, then the temperature of each of the batteries can be obtained by solving the ODE system given by
+\begin{align}
+c \frac{d T_1}{dt} &= I^2 R - h(T_{1} - T_\text{air}) - h(T_{1} - T_{2}), \tag{2} \\
+ c \frac{d T_i}{dt} &= I^2 R - h(T_{i} - T_{i-1}) - h(T_{i} - T_{i+1}), \quad i = 2, 3, \ldots, N - 1, \tag{3} \\
+c \frac{d T_N}{dt} &= I^2 R - h(T_{N} - T_\text{air}) - h(T_{N} - T_{N-1}). \tag{4}
+\end{align}
+Here, $c$ is the specific heat of the battery, $R$ is the resistance of the battery, $h$ is the heat transfer coefficient, and $T_\text{air}$ is the temperature of the air.  Values for these parameters are given in the table below.  You can assume that the initial temperature of each battery is given by $T_\text{air}$; that is, $T_i(0) = T_\text{air}$.
+
+
+| $I$ (A)|$c$ (J/$^\circ$C) | $h$ (W/$^\circ$C) | $T_\text{air}$ ($^\circ$C) | $R$ (Ohms) |
+|-----|-----|-----|-----|-----|
+|3 | 300 | 0.7 | 23 | 0.4 |
+: Parameter values for each battery.
+
+In the exercises below, assume that the current is being drawn for one hour. 
+
+1. Consider a battery pack with $N = 5$ batteries.  
+    (a) Numerically solve the ODE system in (2)--(4).  Create a single plot that shows the temperature of each battery as a function of time.
+    (b) At each time $t$, compute the maximum temperature across all 6 batteries.  Plot the maximum temperature as a function of time.
+    (c) Use your results to determine whether the battery is safe to use. *Answer: yes*.
+
+2. Is a battery pack with $N = 50$ batteries safe to use? *Answer: no*.
+
+3. What is the largest number of batteries that a pack can contain yet still be safe to use?  *Answer: 11*.
