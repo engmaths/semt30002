@@ -5,7 +5,7 @@ title: "Scientific Computing: overview"
 The first five weeks will focus on how scientific computing can be applied to the numerical solution of ordinary and partial differential equations.  Although differential equations appear in many engineering contexts, they usually cannot be solved by hand.  Instead, numerical methods are needed to compute an approximate solution.
 
 * [Week 1: Finite differences and Euler's method](week1.qmd)
-* [Week 2: ODE boundary value problems]()
+* [Week 2: ODE boundary value problems](week2.qmd)
 * [Week 3: Diffusion equations in 1D]()
 * [Week 4: First-order PDEs in 1D]()
 * [Week 5: The 2D Poisson equation]()
