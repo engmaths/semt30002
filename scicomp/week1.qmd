@@ -1,11 +1,14 @@
 ---
 title: "Week 1"
-jupyter: python3
 ---
 
 # Overview
 
+To start off the unit, we dive into finite differences.  This is a general method for approximating derivatives of mathematical functions with algebraic formulae.  This will be a crucial step when it comes to deriving numerical methods for solving ODEs and PDEs.  We also introduce the idea of truncation error, explain why this is useful, and how it can be calculated using Taylor expansions.  Finally, we recap Euler's method, a simple yet useful approach for numerically approximating the solution of time-dependent ODEs.
+
 # Supplementary material
+
+* [Notes on the derivation of finite-difference formulae using Taylor expansions](w01-finite_differences.pdf)
 
 # Exercises
 
