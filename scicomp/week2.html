@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2 – Scientific Computing and Optimisation</title>
+<title>Week 2: ODE BVPs – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,7 +181,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 2</h1>
+<h1 class="title">Week 2: ODE BVPs</h1>
 </div>
 
 
@@ -202,13 +202,15 @@ window.Quarto = {
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
 \newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
 \]</span></p>
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <p>This week showcase how finite difference methods can be used to solve boundary value problems (BVPs) for ODEs. In short, the finite difference method converts ODEs into algebraic systems of equations, which can then be solved using two main approaches:</p>
 <ol type="1">
 <li>Writing your own solvers using linear algebra functions.</li>
-<li>Using built-in solvers provided by Python and Matlab.</li>
+<li>Using built-in solvers provided by Python (SciPy) and Matlab.</li>
 </ol>
 <p>The code that you develop this week will form an essential role in the upcoming weeks when the focus shifts towards numerically solving partial differential equations.</p>
 </section>
