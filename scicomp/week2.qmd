@@ -1,5 +1,5 @@
 ---
-title: "Week 2"
+title: "Week 2: ODE BVPs"
 ---
 
 {{< include _macros.qmd >}}
@@ -9,7 +9,7 @@ title: "Week 2"
 This week showcase how finite difference methods can be used to solve boundary value problems (BVPs) for ODEs.  In short, the finite difference method converts ODEs into algebraic systems of equations, which can then be solved using two main approaches:
 
 1. Writing your own solvers using linear algebra functions.
-2. Using built-in solvers provided by Python and Matlab.
+2. Using built-in solvers provided by Python (SciPy) and Matlab.
 
 The code that you develop this week will form an essential role in the upcoming weeks when the focus shifts towards numerically solving partial differential equations.  
 
