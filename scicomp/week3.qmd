@@ -1,0 +1,122 @@
+---
+title: "Week 3: Diffusion equations in 1D"
+---
+
+{{< include _macros.qmd >}}
+
+# Overview
+
+This week we enter the realm of numerically solving partial differential
+equations (PDEs).  We will focus on one of the most important PDEs
+of them all: the diffusion equation.  By using finite differences to discretise space, the diffusion equation can be converted into a system of ODEs.  There are two main ways to solve this ODE system.
+
+The explicit Euler method is the simplest method, and it can be extended to nonlinear problems relatively easily.  However, the method only works if the time step $\Delta t$ is sufficiently small.  This means that a large number of time steps may be required to obtain a solution.
+
+The implicit Euler method is more complex because it involves solving a system of algebraic equations at each time step.  Howver, larger values of the time step $\Delta t$ are usually possible.  In fact, for the linear diffusion equations, the implicit Euler method is *unconditionally stable*, meaning it will work for any time step size $\Delta t$.  The need to solve an algebraic system of equations at each time step comes at a high computational cost.  Hence, there is a tradeoff between being able to take fewer time steps to obtain a numerical solution and the higher computational cost per time step.
+
+
+# Supplementary material
+
+Use the links below to find additional notes on
+
+* [Some solutions to the diffusion equation](w03-diffusion_equation.pdf)
+
+
+# Exercises
+
+The goal of this week is to develop code that can solve
+reaction-diffusion equations of the form
+$$
+\pd{u}{t} = D \pdd{u}{x} + q(x, t, u; \mu), \tag{1}
+$$
+where the diffusion coefficient $D > 0$.  The domain of the problem is given by $a \leq x \leq b$.  The term $q(x, t, u; \mu)$ represents a function that depends on the spatial coordinate $x$, time $t$, the solution $u(x, t)$, and a parameter $\mu$.  
+
+Your code should be able to handle all combinations of boundary conditions.  You should implement both the explicit and implicit Euler method.
+
+
+
+1. Use the explicit Euler method to solve the linear diffusion equation without a source term
+$$
+\pd{u}{t} = D\pdd{u}{x}.
+$$
+Set the boundary conditions to
+$u(a,t) = 0$ and $u(b,t) = 0$ and the initial condition to
+$$
+u(x,0) = \sin\left(\frac{\pi (x - a)}{b - a}\right).
+$$
+
+    The exact solution to the problem is given by
+    $$
+    u(x, t) =  \exp\left(-\frac{D \pi^2 t}{(b-a)^2}\right)\sin\left(\frac{\pi (x - a)}{b - a}\right).
+    $$
+    which you can use to test your code.
+
+2. Use the implicit Euler method to solve the problem in Exercise 1, using the same analytical solution to validate your code. 
+
+2. Explicit vs implicit Euler.  In this exercise, you will compare the performance of the two Euler methods.  Consider the diffusion equation and boundary conditions from Exercise 1.  Take $a = 0$, $b = 1$, and $D = 0.1$.  Discretise the spatial domain using 31 grid points ($N = 30$) and solve the problem until time $T = 1$.
+    (a) Fix the time step to be $\Delta t = 0.005$. Show that this time step is smaller than the maximum time step that can be used with the explicit Euler method.  Solve the problem using the explicit and implicit Euler method.  Which method is the fastest and why?
+    (b) Increase the time step to $\Delta t = 0.1$ and solve with the implicit Euler method.  How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with $\Delta t = 0.005$?  Which of the two methods leads to a more accurate solution when $t = 1$?
+
+2. Extend your code so that it can account for non-homogeneous Dirichlet boundary conditions and a source term in the diffusion equation.
+That is, your code should be able to solve
+$$
+\pd{u}{t} = D \pdd{u}{x} + q(x, t, u; \mu), \\
+$$
+with boundary conditions $u(a, t) = \alpha$,  $u(b,t) = \beta$
+and initial condition $u(x,0) = f(x)$.  Use the supplementary notes to find exact solutions that you can use to test your code with.
+**Hint**: It may help to code up an explicit Euler method for this problem first due to its simplicity.  Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.
+
+3. Solve the Fisher-KPP equation (a nonlinear reaction-diffusion equation) given by
+$$
+\pd{u}{t} = D\pdd{u}{x} + r u (1 - u)
+$$
+on the domain $0 \leq x \leq 10$.  The boundary and initial conditions are
+$$
+u(0,t) = 1, \qquad u(10,t) = 0, \qquad u(x,0) = 0.
+$$
+You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$ and use 51 grid points ($N = 50$).  What types of solution do you see?
+
+4. Update your code so that it can also account for Dirichlet, Neumann, and Robin boundary conditions with time-dependent coefficients.
+
+
+<!-- ## Bonus problems
+
+~~~
+<ul><li>
+~~~
+
+Solve the Fisher-KPP equation given by
+$$
+\pd{u}{t} = D\pdd{u}{x} + r u (1 - u)
+$$
+on the domain $0 \leq x \leq 10$.  The boundary and initial conditions are
+$$
+u(0,t) = 1, \qquad \left.\pd{u}{x}\right|_{x=10} = 0, \qquad u(x,0) = 0.
+$$
+You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$.
+What types of solutions do you see?
+
+~~~
+</li><li>
+~~~
+The Allen-Cahn equation describes how a homogeneous mixture of two liquids A and B will spontaneously separate into its components (e.g. a mixture of oil and water separating into blobs of pure oil suspended in pure water).  This process is called
+[phase separation](https://en.wikipedia.org/wiki/Phase_separation).  
+The Allen-Cahn equation is given by
+$$
+\pd{u}{t} = \epsilon^2 \pdd{u}{x} + u - u^3,
+$$
+where $u$ is a concentration-like variable defined as follows:
+$u = -1$ corresponds to pure liquid A, $u = 1$ corresponds to pure liquid
+B, and $u = 0$ corresponds to a 50/50 mix of A and B.  
+
+Use your code to solve the Allen-Cahn equation on the domain $0 \leq x \leq 1$ with $\epsilon = 0.01$ until $t = 50$.  The boundary conditions are
+$$
+\left.\pd{u}{x}\right|_{x=0} = 0, \quad \left.\pd{u}{x}\right|_{x=1} = 0.
+$$
+Set the initial condition to be uniformly distributed random numbers between $-0.001$ and $0.001$.  You will need to use a relatively fine mesh to resolve the solution so try taking $N = 150$.
+
+Try solving this problem with various methods (explicit Euler, RK, `solve_ivp`) to get a feel for the pros and cons of each and to determine which method works best.
+
+~~~
+</li></ul>
+~~~ -->
