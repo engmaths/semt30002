@@ -19,6 +19,10 @@ This unit will bring together your previous experience of solving mathematical p
 * Week 11: Coursework support
 * Week 12: TBD
 
+# Software
+
+You can code in Python, Matlab, or Julia.  The choice is yours.  However, some demos and examples will only be provided in one programming language.
+
 # Teaching sessions
 
 All teaching sessions will take place in MVB 1.15.
