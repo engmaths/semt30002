@@ -8,4 +8,4 @@ The first five weeks will focus on how scientific computing can be applied to th
 * [Week 2: ODE boundary value problems](week2.qmd)
 * [Week 3: Diffusion equations in 1D](week3.qmd)
 * [Week 4: First-order PDEs in 1D]()
-* [Week 5: The 2D Poisson equation]()
+* [Week 5: The 2D Poisson equation](week5.qmd)
