@@ -57,16 +57,14 @@ $$
     (a) Fix the time step to be $\Delta t = 0.005$. Show that this time step is smaller than the maximum time step that can be used with the explicit Euler method.  Solve the problem using the explicit and implicit Euler method.  Which method is the fastest and why?
     (b) Increase the time step to $\Delta t = 0.1$ and solve with the implicit Euler method.  How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with $\Delta t = 0.005$?  Which of the two methods leads to a more accurate solution when $t = 1$?
 
-2. Extend your code so that it can account for non-homogeneous Dirichlet boundary conditions and a source term in the diffusion equation.
-That is, your code should be able to solve
+2. Extend your code so that it can solve linear reaction-diffusion equations of the form
 $$
-\pd{u}{t} = D \pdd{u}{x} + q(x, t, u; \mu), \\
+\pd{u}{t} = D \pdd{u}{x} + q(x), \\
 $$
-with boundary conditions $u(a, t) = \alpha$,  $u(b,t) = \beta$
-and initial condition $u(x,0) = f(x)$.  Use the supplementary notes to find exact solutions that you can use to test your code with.
-**Hint**: It may help to code up an explicit Euler method for this problem first due to its simplicity.  Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.
+with two Dirichlet boundary conditions. Use the supplementary notes to find exact solutions that you can use to test your code with.
 
-3. Solve the Fisher-KPP equation (a nonlinear reaction-diffusion equation) given by
+
+3. Solve the Fisher-KPP equation (a *nonlinear* reaction-diffusion equation) given by
 $$
 \pd{u}{t} = D\pdd{u}{x} + r u (1 - u)
 $$
@@ -76,47 +74,14 @@ u(0,t) = 1, \qquad u(10,t) = 0, \qquad u(x,0) = 0.
 $$
 You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$ and use 51 grid points ($N = 50$).  What types of solution do you see?
 
-4. Update your code so that it can also account for Dirichlet, Neumann, and Robin boundary conditions with time-dependent coefficients.
+    **Hint**: It may help to code up an explicit Euler method for this problem first due to its simplicity. Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.
 
-
-<!-- ## Bonus problems
-
-~~~
-<ul><li>
-~~~
-
-Solve the Fisher-KPP equation given by
+4. Extend your code so that it can handle Neumann and Robin boundary conditions.  One way to start this process is to solve
 $$
-\pd{u}{t} = D\pdd{u}{x} + r u (1 - u)
+\pd{u}{t} = D\pdd{u}{x}
 $$
-on the domain $0 \leq x \leq 10$.  The boundary and initial conditions are
+with boundary conditions given by
 $$
-u(0,t) = 1, \qquad \left.\pd{u}{x}\right|_{x=10} = 0, \qquad u(x,0) = 0.
+\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=L} = j,  \quad u(x,0) = 0.
 $$
-You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$.
-What types of solutions do you see?
-
-~~~
-</li><li>
-~~~
-The Allen-Cahn equation describes how a homogeneous mixture of two liquids A and B will spontaneously separate into its components (e.g. a mixture of oil and water separating into blobs of pure oil suspended in pure water).  This process is called
-[phase separation](https://en.wikipedia.org/wiki/Phase_separation).  
-The Allen-Cahn equation is given by
-$$
-\pd{u}{t} = \epsilon^2 \pdd{u}{x} + u - u^3,
-$$
-where $u$ is a concentration-like variable defined as follows:
-$u = -1$ corresponds to pure liquid A, $u = 1$ corresponds to pure liquid
-B, and $u = 0$ corresponds to a 50/50 mix of A and B.  
-
-Use your code to solve the Allen-Cahn equation on the domain $0 \leq x \leq 1$ with $\epsilon = 0.01$ until $t = 50$.  The boundary conditions are
-$$
-\left.\pd{u}{x}\right|_{x=0} = 0, \quad \left.\pd{u}{x}\right|_{x=1} = 0.
-$$
-Set the initial condition to be uniformly distributed random numbers between $-0.001$ and $0.001$.  You will need to use a relatively fine mesh to resolve the solution so try taking $N = 150$.
-
-Try solving this problem with various methods (explicit Euler, RK, `solve_ivp`) to get a feel for the pros and cons of each and to determine which method works best.
-
-~~~
-</li></ul>
-~~~ -->
+**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $L \gg 1$ (e.g. $L = 10$) and use the similarity solution in the supplementary notes, which gives $u(L,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$.
