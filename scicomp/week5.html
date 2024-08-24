@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Scientific Computing and Optimisation</title>
+<title>Week 5: The 2D Poisson equation – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Scientific Computing and Optimisation</span>
     </a>
   </div>
@@ -89,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./assessment.html"> 
+    <a class="nav-link" href="../assessment.html"> 
 <span class="menu-text">Assessment</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -102,15 +131,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-scientific-computing-(weeks-1–5">    
         <li>
-    <a class="dropdown-item" href="./scicomp/overview.html">
+    <a class="dropdown-item" href="../scicomp/overview.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./scicomp/week1.html">
+    <a class="dropdown-item" href="../scicomp/week1.html">
  <span class="dropdown-text">Week 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./scicomp/week2.html">
+    <a class="dropdown-item" href="../scicomp/week2.html">
  <span class="dropdown-text">Week 2</span></a>
   </li>  
     </ul>
@@ -121,7 +150,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-optimisation-(weeks-7–11">    
         <li>
-    <a class="dropdown-item" href="./optim/overview.html">
+    <a class="dropdown-item" href="../optim/overview.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
     </ul>
@@ -142,10 +171,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#unit-timetable" id="toc-unit-timetable" class="nav-link active" data-scroll-target="#unit-timetable">Unit timetable</a></li>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#teaching-sessions" id="toc-teaching-sessions" class="nav-link" data-scroll-target="#teaching-sessions">Teaching sessions</a></li>
-  <li><a href="#teaching-staff" id="toc-teaching-staff" class="nav-link" data-scroll-target="#teaching-staff">Teaching staff</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -154,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific Computing and Optimisation</h1>
+<h1 class="title">Week 5: The 2D Poisson equation</h1>
 </div>
 
 
@@ -171,44 +198,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This unit will bring together your previous experience of solving mathematical problems (optimisation, differential equations) and writing computer programmes using <a href="https://www.python.org/">Python</a>, <a href="https://uk.mathworks.com/products/matlab.html">Matlab</a>, or <a href="https://julialang.org/">Julia</a>. The aim is to provide you with a suite of tools that can be used to transform real-world problems, such as those encountered in the Mathematical and Data Modelling units and final-year projects, into problems that can be efficiently solved on a computer.</p>
-<section id="unit-timetable" class="level1">
-<h1>Unit timetable</h1>
-<ul>
-<li><a href="./scicomp/week1.html">Week 1: Finite differences and Euler’s method</a></li>
-<li><a href="./scicomp/week2.html">Week 2: ODE boundary value problems</a></li>
-<li><a href="./scicomp/week3.html">Week 3: Diffusion equations in 1D</a></li>
-<li>Week 4: First-order PDEs in 1D</li>
-<li><a href="./scicomp/week5.html">Week 5: The 2D Poisson equation</a></li>
-<li><strong>Week 6: Reading week (no sessions)</strong></li>
-<li>Week 7:</li>
-<li>Week 8:</li>
-<li>Week 9:</li>
-<li>Week 10:</li>
-<li>Week 11: Coursework support</li>
-<li>Week 12: TBD</li>
-</ul>
+<p><span class="math display">\[
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
+\]</span></p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This week, we will use finite differences to solve PDEs in two dimensions. Particular focus will be placed on solving Poisson’s equation. For 2D problems, the number of unknowns and hence the size of the linear systems quickly grow as the number of grid points is increased. Sparse matrices, which only store the non-zero elements of a matrix, can lead to substantial reductions in the memory that needed to numerically solve the PDE, especially for 2D problems.</p>
 </section>
-<section id="software" class="level1">
-<h1>Software</h1>
-<p>You can code in Python, Matlab, or Julia. The choice is yours. However, some demos and examples will only be provided in one programming language.</p>
-</section>
-<section id="teaching-sessions" class="level1">
-<h1>Teaching sessions</h1>
-<p>All teaching sessions will take place in MVB 1.15.</p>
-<ul>
-<li>Monday ????: demo and Q&amp;A session</li>
-<li>Thursday 1600-1800: lab session</li>
-<li>Friday ????: drop-in (optional)</li>
-</ul>
-</section>
-<section id="teaching-staff" class="level1">
-<h1>Teaching staff</h1>
-<ul>
-<li>Dr Matthew Hennessy (unit director): <a href="mailto:matthew.hennessy@bristol.ac.uk">matthew.hennessy@bristol.ac.uk</a></li>
-<li>Prof David Barton (unit lecturer): <a href="mailto:david.barton@bristol.ac.uk">david.barton@bristol.ac.uk</a></li>
-<li>Mr Roussel Desmond Nzoyem (teaching assistant): <a href="mailto:rd.nzoyemngueguin@bristol.ac.uk">rd.nzoyemngueguin@bristol.ac.uk</a></li>
-</ul>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<ol type="1">
+<li><p>Solve the Poisson equation <span class="math display">\[
+\nabla^2 u + 1 = 0
+\]</span> on the domain <span class="math inline">\(a \leq x \leq b\)</span> and <span class="math inline">\(c \leq y \leq d\)</span>. Assume that <span class="math inline">\(u = 0\)</span> on the boundaries.</p></li>
+<li><p>Use memory profiling to determine how much memory is required to solve the problem in Exercise 1. How does the memory usage depend on the number of grid points?</p></li>
+<li><p>Generalise your code from Exercise 1 so that it can solve problems of the form <span class="math display">\[
+D \nabla^2 u + q(x,y) = 0.
+\]</span> To validate your code, set <span class="math display">\[
+q(x,y) = -\frac{D (b-a)^2(d-c)^2}{\pi^4}\sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right];
+\]</span> in this case, the exact solution to the problem is given by <span class="math display">\[
+u(x,y) = \sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right].
+\]</span></p></li>
+<li><p>Further generalise your code so that non-homogeneous Dirichlet boundary conditions can be used. For example, solve the Poisson equation for Exercise 1 but replace the boundary condition at <span class="math inline">\(x = a\)</span> with <span class="math inline">\(u(a, y) = \sin(\pi(y-c)/(d-c))\)</span>.</p></li>
+<li><p>Use sparse matrices to solve the 1D Poisson equation given by <span class="math display">\[
+\tdd{u}{x} + 1 = 0
+\]</span> with <span class="math inline">\(u(0) = u(1) = 0\)</span>.</p>
+<ol type="a">
+<li>First use 101 grid points (<span class="math inline">\(N = 100\)</span>). Time your code and profile its memory usage. Is your sparse code faster and more memory efficient than your previous code?</li>
+<li>Repeat part (a) but now use <span class="math inline">\(N = 1000\)</span>. If you have correctly implemented sparse matrices, then you should now see a significant speed up and memory reduction.</li>
+</ol></li>
+<li><p>Solve the 2D Poisson equation with sparse matrices.</p></li>
+</ol>
 
 
 </section>

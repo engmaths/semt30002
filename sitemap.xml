@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/overview.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/index.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/assessment.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week2.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week5.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/scicomp/week3.html</loc>
-    <lastmod>2024-08-23T22:30:44.504Z</lastmod>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week2.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/assessment.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/index.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/overview.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
+    <lastmod>2024-08-24T10:59:46.439Z</lastmod>
   </url>
 </urlset>
