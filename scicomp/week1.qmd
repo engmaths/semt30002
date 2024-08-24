@@ -23,7 +23,7 @@ If the formula is valid, determine the order of the approximation.
 Is the approximation formula valid when $C = -5$?  If so, what is the
 order of the approximation?
 
-2. Implement a version of Euler's method (with `for` loops or using vectorisation) that can solve an arbitrary system of ODEs of the form
+2. Implement a version of Euler's method that can solve an arbitrary system of ODEs of the form
 $$
 \td{\vec{u}}{t} = \vec{f}(\vec{u}, t, \mu),
 $$
@@ -45,7 +45,7 @@ $u_1^{N_t}$ is the numerical solution at time step $N_t$.
     (a) For a fixed value of $\omega = 1$, how fast does the error decrease with $\Delta t$?  Is it linear, quadratic, etc?  Is this what you expect based on the truncation error of Euler's method?  
     (b) For a fixed number of time steps, $N_t = 10^4$, how does the error change as $\omega$ increases?  Can you provide a justification of the results you see?  For this problem, try setting $\omega = 1, 2, 4, 8, 16$.
 
-### Coursework-style exercise
+# Coursework-style problem
 
 Consider a pack of $N$ identical lithium-ion batteries that are connected in series.  Let $i = 1$ denote the first battery in the pack and $i = N$ denote the last battery in the pack.  The other batteries are labelled with $i = 2, 3, \ldots, N - 1$.  Due to the geometry of the pack, only batteries 1 and $N$ are in contact with the environment.  Battery $i$ is in contact with batteries $i-1$ and $i + 1$.
 
