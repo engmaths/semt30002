@@ -8,7 +8,7 @@ website:
       - href: index.qmd
         text: Home
       - assessment.qmd
-      - text: "Scientific Computing (weeks 1–5)"
+      - text: "ODEs and PDEs (weeks 1–5)"
         menu:
           - href: scicomp/overview.qmd
             text: Overview
@@ -16,6 +16,12 @@ website:
             text: Week 1
           - href: scicomp/week2.qmd
             text: Week 2
+          - href: scicomp/week3.qmd
+            text: Week 3
+          - href: scicomp/week4.qmd
+            text: Week 4
+          - href: scicomp/week5.qmd
+            text: Week 5
       - text: "Optimisation (weeks 7–11)"
         menu:
           - href: optim/overview.qmd
