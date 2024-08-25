@@ -26,7 +26,7 @@ D \nabla^2 u + q(x,y) = 0.
 $$
 To validate your code, set 
 $$
-q(x,y) = -D \pi^2 \left[\frac{1}{(b-a)^2} + \frac{1}{(d-c)^2}\right]\sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right];
+q(x,y) = D \pi^2 \left[\frac{1}{(b-a)^2} + \frac{1}{(d-c)^2}\right]\sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right];
 $$
 in this case, the exact solution to the problem is given by
 $$
