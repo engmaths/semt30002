@@ -1,0 +1,41 @@
+---
+title: "Timing code in Python and Matlab"
+---
+
+# Python
+
+A simple way to time a piece of code in Python is to use
+the `timeit` package:
+```python
+import timeit
+```
+Then, write a Python function that contains all of the code that you want to time.  For example,
+```python
+def timed_code():
+    A = np.eye(5000)
+    b = np.random.random(5000)
+    x = np.linalg.solve(A, b)
+```
+The next step is to call the `timeit` function from the `timeit` package as follows:
+```python
+time = timeit.timeit(lambda: timed_code(), number = 1)
+```
+This will run the `timed_code` function one time.  The time in seconds will then be stored in the Python variable `time`, which can then be printed to the screen.  
+
+For fast functions, more accurate timings can be obtained by running the function multiple times.  This is possible by increasing the value of the `number` argument.  The time that is returned by `timeit` will the total time.  Dividing the total time by the number of times the function was called with give an accurate average value.
+
+You can learn more about the `timeit` package [here](https://docs.python.org/3/library/timeit.html)
+
+# Matlab
+
+Timing code in Matlab is very easy; this can be done using the `tic` and `toc` functions.  For example, in the command window you can type
+```matlab
+tic 
+A = eye(5000)
+b = rand(5000, 1)
+x = A \ b
+toc
+```
+After the `toc` function is called, the elapsed time since `tic` was called will be printed to the screen.  It's usually better to write the code that you want to time in a function and then call that function in between the `tic` and `toc`.
+
+You can find out more about timing code in Matlab by reading its [official page on the topic](https://nl.mathworks.com/help/matlab/matlab_prog/measure-performance-of-your-program.html).

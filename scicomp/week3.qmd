@@ -17,9 +17,10 @@ The implicit Euler method is more complex because it involves solving a system o
 
 # Supplementary material
 
-Use the links below to find additional notes on
+Use the links below to find:
 
 * [Some solutions to the diffusion equation](w03-diffusion_equation.pdf)
+* [How to time Python and Matlab code](timing_code.qmd)
 
 
 # Exercises
@@ -55,7 +56,7 @@ $$
 
 2. Explicit vs implicit Euler.  In this exercise, you will compare the performance of the two Euler methods.  Consider the diffusion equation and boundary conditions from Exercise 1.  Take $a = 0$, $b = 1$, and $D = 0.1$.  Discretise the spatial domain using 31 grid points ($N = 30$) and solve the problem until time $T = 1$.
     (a) Fix the time step to be $\Delta t = 0.005$. Show that this time step is smaller than the maximum time step that can be used with the explicit Euler method.  Solve the problem using the explicit and implicit Euler method.  Which method is the fastest and why?
-    (b) Increase the time step to $\Delta t = 0.1$ and solve with the implicit Euler method.  How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with $\Delta t = 0.005$?  Which of the two methods leads to a more accurate solution when $t = 1$?
+    (b) Increase the time step to $\Delta t = 0.1$ and solve with the implicit Euler method.  How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with $\Delta t = 0.005$?  Which of the two methods leads to a more accurate solution when $t = 1$?  Find out more about how to time your code [here](timing_code.qmd).
 
 2. Extend your code so that it can solve linear reaction-diffusion equations of the form
 $$
