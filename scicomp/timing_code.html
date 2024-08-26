@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 3: Diffusion equations in 1D – Scientific Computing and Optimisation</title>
+<title>Timing code in Python and Matlab – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,35 +101,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -183,9 +188,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link active" data-scroll-target="#python">Python</a></li>
+  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +198,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 3: Diffusion equations in 1D</h1>
+<h1 class="title">Timing code in Python and Matlab</h1>
 </div>
 
 
@@ -211,63 +215,31 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math display">\[
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
-\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
-\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
-\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
-\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
-\]</span></p>
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>This week we enter the realm of numerically solving partial differential equations (PDEs). We will focus on one of the most important PDEs of them all: the diffusion equation. By using finite differences to discretise space, the diffusion equation can be converted into a system of ODEs. There are two main ways to solve this ODE system.</p>
-<p>The explicit Euler method is the simplest method, and it can be extended to nonlinear problems relatively easily. However, the method only works if the time step <span class="math inline">\(\Delta t\)</span> is sufficiently small. This means that a large number of time steps may be required to obtain a solution.</p>
-<p>The implicit Euler method is more complex because it involves solving a system of algebraic equations at each time step. Howver, larger values of the time step <span class="math inline">\(\Delta t\)</span> are usually possible. In fact, for the linear diffusion equations, the implicit Euler method is <em>unconditionally stable</em>, meaning it will work for any time step size <span class="math inline">\(\Delta t\)</span>. The need to solve an algebraic system of equations at each time step comes at a high computational cost. Hence, there is a tradeoff between being able to take fewer time steps to obtain a numerical solution and the higher computational cost per time step.</p>
+<section id="python" class="level1">
+<h1>Python</h1>
+<p>A simple way to time a piece of code in Python is to use the <code>timeit</code> package:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, write a Python function that contains all of the code that you want to time. For example,</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timed_code():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.eye(<span class="dv">5000</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.random.random(<span class="dv">5000</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linalg.solve(A, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The next step is to call the <code>timeit</code> function from the <code>timeit</code> package as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> timeit.timeit(<span class="kw">lambda</span>: timed_code(), number <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will run the <code>timed_code</code> function one time. The time in seconds will then be stored in the Python variable <code>time</code>, which can then be printed to the screen.</p>
+<p>For fast functions, more accurate timings can be obtained by running the function multiple times. This is possible by increasing the value of the <code>number</code> argument. The time that is returned by <code>timeit</code> will the total time. Dividing the total time by the number of times the function was called with give an accurate average value.</p>
+<p>You can learn more about the <code>timeit</code> package <a href="https://docs.python.org/3/library/timeit.html">here</a></p>
 </section>
-<section id="supplementary-material" class="level1">
-<h1>Supplementary material</h1>
-<p>Use the links below to find:</p>
-<ul>
-<li><a href="w03-diffusion_equation.pdf">Some solutions to the diffusion equation</a></li>
-<li><a href="../scicomp/timing_code.html">How to time Python and Matlab code</a></li>
-</ul>
-</section>
-<section id="exercises" class="level1">
-<h1>Exercises</h1>
-<p>The goal of this week is to develop code that can solve reaction-diffusion equations of the form <span class="math display">\[
-\pd{u}{t} = D \pdd{u}{x} + q(x, t, u; \mu), \tag{1}
-\]</span> where the diffusion coefficient <span class="math inline">\(D &gt; 0\)</span>. The domain of the problem is given by <span class="math inline">\(a \leq x \leq b\)</span>. The term <span class="math inline">\(q(x, t, u; \mu)\)</span> represents a function that depends on the spatial coordinate <span class="math inline">\(x\)</span>, time <span class="math inline">\(t\)</span>, the solution <span class="math inline">\(u(x, t)\)</span>, and a parameter <span class="math inline">\(\mu\)</span>.</p>
-<p>Your code should be able to handle all combinations of boundary conditions. You should implement both the explicit and implicit Euler method.</p>
-<ol type="1">
-<li><p>Use the explicit Euler method to solve the linear diffusion equation without a source term <span class="math display">\[
-\pd{u}{t} = D\pdd{u}{x}.
-\]</span> Set the boundary conditions to <span class="math inline">\(u(a,t) = 0\)</span> and <span class="math inline">\(u(b,t) = 0\)</span> and the initial condition to <span class="math display">\[
-u(x,0) = \sin\left(\frac{\pi (x - a)}{b - a}\right).
-\]</span></p>
-<p>The exact solution to the problem is given by <span class="math display">\[
-u(x, t) =  \exp\left(-\frac{D \pi^2 t}{(b-a)^2}\right)\sin\left(\frac{\pi (x - a)}{b - a}\right).
-\]</span> which you can use to test your code.</p></li>
-<li><p>Use the implicit Euler method to solve the problem in Exercise 1, using the same analytical solution to validate your code.</p></li>
-<li><p>Explicit vs implicit Euler. In this exercise, you will compare the performance of the two Euler methods. Consider the diffusion equation and boundary conditions from Exercise 1. Take <span class="math inline">\(a = 0\)</span>, <span class="math inline">\(b = 1\)</span>, and <span class="math inline">\(D = 0.1\)</span>. Discretise the spatial domain using 31 grid points (<span class="math inline">\(N = 30\)</span>) and solve the problem until time <span class="math inline">\(T = 1\)</span>.</p>
-<ol type="a">
-<li>Fix the time step to be <span class="math inline">\(\Delta t = 0.005\)</span>. Show that this time step is smaller than the maximum time step that can be used with the explicit Euler method. Solve the problem using the explicit and implicit Euler method. Which method is the fastest and why?</li>
-<li>Increase the time step to <span class="math inline">\(\Delta t = 0.1\)</span> and solve with the implicit Euler method. How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with <span class="math inline">\(\Delta t = 0.005\)</span>? Which of the two methods leads to a more accurate solution when <span class="math inline">\(t = 1\)</span>? Find out more about how to time your code <a href="../scicomp/timing_code.html">here</a>.</li>
-</ol></li>
-<li><p>Extend your code so that it can solve linear reaction-diffusion equations of the form <span class="math display">\[
-\pd{u}{t} = D \pdd{u}{x} + q(x), \\
-\]</span> with two Dirichlet boundary conditions. Use the supplementary notes to find exact solutions that you can use to test your code with.</p></li>
-<li><p>Solve the Fisher-KPP equation (a <em>nonlinear</em> reaction-diffusion equation) given by <span class="math display">\[
-\pd{u}{t} = D\pdd{u}{x} + r u (1 - u)
-\]</span> on the domain <span class="math inline">\(0 \leq x \leq 10\)</span>. The boundary and initial conditions are <span class="math display">\[
-u(0,t) = 1, \qquad u(10,t) = 0, \qquad u(x,0) = 0.
-\]</span> You can take <span class="math inline">\(D = 0.1\)</span> and <span class="math inline">\(r = 2\)</span>. Run your simulation until <span class="math inline">\(t = 20\)</span> and use 51 grid points (<span class="math inline">\(N = 50\)</span>). What types of solution do you see?</p>
-<p><strong>Hint</strong>: It may help to code up an explicit Euler method for this problem first due to its simplicity. Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.</p></li>
-<li><p>Extend your code so that it can handle Neumann and Robin boundary conditions. One way to start this process is to solve <span class="math display">\[
-\pd{u}{t} = D\pdd{u}{x}
-\]</span> with boundary conditions given by <span class="math display">\[
-\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=L} = j,  \quad u(x,0) = 0.
-\]</span> <strong>Hint</strong>: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take <span class="math inline">\(L \gg 1\)</span> (e.g.&nbsp;<span class="math inline">\(L = 10\)</span>) and use the similarity solution in the supplementary notes, which gives <span class="math inline">\(u(L,t) \simeq j(4 t / \pi D)^{1/2}\)</span> for sufficiently small values of <span class="math inline">\(t\)</span>.</p></li>
-</ol>
+<section id="matlab" class="level1">
+<h1>Matlab</h1>
+<p>Timing code in Matlab is very easy; this can be done using the <code>tic</code> and <code>toc</code> functions. For example, in the command window you can type</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">tic</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">A</span> <span class="op">=</span> <span class="va">eye</span>(<span class="fl">5000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">b</span> <span class="op">=</span> <span class="va">rand</span>(<span class="fl">5000</span><span class="op">,</span> <span class="fl">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">x</span> <span class="op">=</span> <span class="va">A</span> <span class="op">\</span> <span class="va">b</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">toc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After the <code>toc</code> function is called, the elapsed time since <code>tic</code> was called will be printed to the screen. It’s usually better to write the code that you want to time in a function and then call that function in between the <code>tic</code> and <code>toc</code>.</p>
+<p>You can find out more about timing code in Matlab by reading its <a href="https://nl.mathworks.com/help/matlab/matlab_prog/measure-performance-of-your-program.html">official page on the topic</a>.</p>
 
 
 </section>
