@@ -1,0 +1,23 @@
+---
+title: "Week 4: First-order PDEs in 1D"
+---
+
+{{< include _macros.qmd >}}
+
+# Overview
+
+This week we focus on an first-order PDEs.  These are PDEs that only involve first-order partial derivatives.  Although these are the simplest of all PDEs, they lead to surprising numerical challenges.  In particular, the finite-difference discretisation needs to adapt to the sign of the coefficient in front of the spatial derivative (the wave speed).  Choosing a numerically stable discretisation requires a consideration of the direction of wave propagation.  Adapting the spatial discretisation based on the direction of wave propagation is called **upwinding**.  
+
+In this unit, we will use the upwind scheme to numerically solve first-order PDEs.  Although this method is simple, it suffers from **numerical diffusion**.  This leads to the numerical solution artifically spreading out.  Moreover, there is also a restriction on the time step that is set by the **CFL condition**.
+
+
+# Exercises
+
+The goal of this week is to develop code that can solve
+reaction-advection equations of the form
+$$
+\pd{u}{t} + v(x,t,u) \pd{u}{x} = q(x, t, u; \mu), \tag{1}
+$$
+where the speed $v$ can be positive or negative.  The domain of the problem is given by $a \leq x \leq b$.  The term $q(x, t, u; \mu)$ represents a function that depends on the spatial coordinate $x$, time $t$, the solution $u(x, t)$, and a parameter $\mu$.  
+
+Specific exercises will be added here in due course.

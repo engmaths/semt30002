@@ -9,7 +9,7 @@ This unit will bring together your previous experience of solving mathematical p
 * [Week 1: Finite differences and Euler's method](scicomp/week1.qmd)
 * [Week 2: ODE boundary value problems](scicomp/week2.qmd)
 * [Week 3: Diffusion equations in 1D](scicomp/week3.qmd)
-* Week 4: First-order PDEs in 1D
+* [Week 4: First-order PDEs in 1D](scicomp/week4.qmd)
 * [Week 5: The 2D Poisson equation](scicomp/week5.qmd)
 * **Week 6: Reading week (no sessions)**
 * Week 7:
