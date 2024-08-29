@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2: ODE BVPs – Scientific Computing and Optimisation</title>
+<title>Week 4: First-order PDEs in 1D – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,7 +193,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 2: ODE BVPs</h1>
+<h1 class="title">Week 4: First-order PDEs in 1D</h1>
 </div>
 
 
@@ -219,84 +219,15 @@ window.Quarto = {
 \]</span></p>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>This week showcase how finite difference methods can be used to solve boundary value problems (BVPs) for ODEs. In short, the finite difference method converts ODEs into algebraic systems of equations, which can then be solved using two main approaches:</p>
-<ol type="1">
-<li>Writing your own solvers using linear algebra functions.</li>
-<li>Using built-in solvers provided by Python (SciPy) and Matlab.</li>
-</ol>
-<p>The code that you develop this week will form an essential role in the upcoming weeks when the focus shifts towards numerically solving partial differential equations.</p>
+<p>This week we focus on an first-order PDEs. These are PDEs that only involve first-order partial derivatives. Although these are the simplest of all PDEs, they lead to surprising numerical challenges. In particular, the finite-difference discretisation needs to adapt to the sign of the coefficient in front of the spatial derivative (the wave speed). Choosing a numerically stable discretisation requires a consideration of the direction of wave propagation. Adapting the spatial discretisation based on the direction of wave propagation is called <strong>upwinding</strong>.</p>
+<p>In this unit, we will use the upwind scheme to numerically solve first-order PDEs. Although this method is simple, it suffers from <strong>numerical diffusion</strong>. This leads to the numerical solution artifically spreading out. Moreover, there is also a restriction on the time step that is set by the <strong>CFL condition</strong>.</p>
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
-<p>The goal of the exercises is to create a BVP solver that is capable of finding numerical solutions to ODEs of the form <span class="math display">\[
-D \tdd{u}{x} + q(x, u; \mu) = 0,
-\]</span> where the domain of the problem is given by <span class="math inline">\(a \leq x \leq b\)</span>. In this equation, <span class="math inline">\(D &gt; 0\)</span> is a parameter. The term <span class="math inline">\(q(x, u; \mu)\)</span> represents a function that depends on the spatial coordinate <span class="math inline">\(x\)</span>, the solution <span class="math inline">\(u(x)\)</span>, and a parameter <span class="math inline">\(\mu\)</span>. Your solver should be able to handle all three types of boundary conditions (Dirichlet, Neumann, and Robin).</p>
-<p>Building this solver is a big task. The exercises below are designed so that you can see how to build your code by solving a sequence of simpler problems. Test your code extensively and only add complexity once you are certain it works correctly.</p>
-<ol type="1">
-<li><p>Use finite differences to find a numerical solution to <span class="math display">\[
-\tdd{u}{x} = 0, \quad
-u(a) = \gamma_1, \quad u(b) = \gamma_2.
-\]</span> In this case, the exact solution to the problem is given by <span class="math display">\[
-u(x) =  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x - a) + \gamma_1, \tag{1}
-\]</span> which you can use to test your code.</p></li>
-<li><p>Extend your code so that it can account for a source term in the ODE: <span class="math display">\[
-D \tdd{u}{x} + q(x) = 0, \quad
-u(a) = \gamma_1, \quad u(b) = \gamma_2.
-\]</span> <strong>Hint</strong>: The simplest place to start is to set <span class="math inline">\(q(x) = 1\)</span>; in this case, the exact solution is given by <span class="math display">\[
-u(x) = -\frac{1}{2D}(x-a)(x-b) +  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x - a) + \gamma_1.
-\]</span> Once you’ve developed code for the problem with <span class="math inline">\(q(x) = 1\)</span>, add an <span class="math inline">\(x\)</span> dependence into <span class="math inline">\(q\)</span>. Can you find some exact solutions for this case?</p></li>
-<li><p>Generalise your code so that the source term <span class="math inline">\(q\)</span> can now depend on the solution <span class="math inline">\(u\)</span> as well as a parameter <span class="math inline">\(\mu\)</span>. Use your code to solve the equation <span class="math display">\[
-\tdd{\phi}{x} + \mu(\phi - \phi^3) = 0
-\]</span> with the boundary conditions <span class="math inline">\(\phi(-1) = -1\)</span> and <span class="math inline">\(\phi(1) = 1\)</span> when (a) <span class="math inline">\(\mu = 0.5\)</span> and (b) <span class="math inline">\(\mu = 100\)</span>.</p>
-<p><strong>Hint 1</strong>: If <span class="math inline">\(q\)</span> depends nonlinearly on the solution, as with this problem, then a good initial guess of the solution is usually required for the nonlinear solver to converge. For this problem, a good initial guess can be found by noting that when <span class="math inline">\(\mu\)</span> is small, the source term <span class="math inline">\(q\)</span> is approximately zero. The solution in this case is given by (1), which can be used to form an initial guess.</p>
-<p><strong>Hint 2</strong>: If you find it difficult to obtain a solution when <span class="math inline">\(\mu = 100\)</span>, then try to increase <span class="math inline">\(\mu\)</span> in increments from <span class="math inline">\(0.5\)</span> to <span class="math inline">\(100\)</span>. Each time a new solution is successfully computed, use it as the initial guess for the next (larger) value of <span class="math inline">\(\mu\)</span>. This process of gradually ramping up a parameter and using the previously computed solution as the next initial guess is called <a href="https://en.wikipedia.org/wiki/Numerical_continuation#Natural_parameter_continuation">natural parameter continuation</a>.</p></li>
-<li><p>(Optional) Solve the previous exercise using your own implementation of Newton’s method and a built-in algebraic solver (e.g.&nbsp;<code>root</code> or <code>fsolve</code>). Compare the performance of the solver. What solver is more likely to converge? <em>Answer: you should see that Newton’s method is more likely to converge (assuming you’re using the default options with the built-in solver)</em>.</p></li>
-<li><p>Update your code so that it can account for any combination of Dirichlet, Neumann, and Robin boundary conditions. Remember to validate your code against problems with known solutions!</p></li>
-<li><p>Try using your code to solve the problem <span class="math display">\[
-\tdd{u}{x} + 1 = 0, \quad \left.\td{u}{x}\right|_{x=\pm 1} = 0.
-\]</span> To understand what happens in this case, try solving this problem by hand. Alternatively, integrate the ODE and impose the boundary conditions.</p></li>
-</ol>
-<!-- ## Bonus problems
-
-Think about extending your solver to other types of ODEs.  For example:
-
-~~~
-<ul><li>
-~~~
-The steady reaction-convection-diffusion equation is given by
-$$
-D \tdd{u}{x} - v\td{u}{x}+  q(x, u; \mu) = 0,
-$$
-where $v$ is a parameter (usually the velocity).  Use your solver to
-compute solutions when the boundary conditions are $u(0) = 0$ and $u(1) = 0$ and the parameter values are $D = 1$, $v = 1$, and $q = 1$.  
-
-Now compute solutions for smaller values of $D$, for example, $D = 0.1$, $D = 0.05$, and $D = 0.01$.  What happens to the solution as $D$ decreases?  
-How might you adapt your
-code to handle the case $D \ll 1$ efficiently?
-
-~~~
-</li><li>
-~~~
-
-The linear beam equation is given by
-$$
--B \frac{\mathrm{d}^4 u}{\mathrm{d}x^4} + q(x) = 0,
-$$
-where $B$ is the bending modulus and $q(x)$ is a load applied along the beam.
-Since this is a fourth-order ODE, four boundary conditions are required, two at each end.  Conditions are usually imposed on $u$, $\mathrm{d}u/\mathrm{d}x$, $\mathrm{d}^2 u/\mathrm{d}x^2$, or $\mathrm{d}^3u/\mathrm{d}x^3$.
-
-Try to solve the linear beam equation with $q(x) = 1$ and the boundary conditions
-$$
-u(0) = 0, \quad \left.\tdd{u}{x}\right|_{x=0} = 0,
-\quad
-u(1) = 0, \quad \left.\tdd{u}{x}\right|_{x=1} = 0.
-$$
-**Hint**: there are a couple of ways to tackle this problem.  One approach is to use
-a finite-difference formula for the fourth derivative, which can be derived using the approach in the supplementary notes or [found online](https://en.wikipedia.org/wiki/Finite_difference_coefficient).  An alternative approach is to split the equation into a system of second-order differential equations by letting $v = \mathrm{d}^2 u / \mathrm{d}x^2$.
-
-~~~
-</li></ul>
-~~~ -->
+<p>The goal of this week is to develop code that can solve reaction-advection equations of the form <span class="math display">\[
+\pd{u}{t} + v(x,t,u) \pd{u}{x} = q(x, t, u; \mu), \tag{1}
+\]</span> where the speed <span class="math inline">\(v\)</span> can be positive or negative. The domain of the problem is given by <span class="math inline">\(a \leq x \leq b\)</span>. The term <span class="math inline">\(q(x, t, u; \mu)\)</span> represents a function that depends on the spatial coordinate <span class="math inline">\(x\)</span>, time <span class="math inline">\(t\)</span>, the solution <span class="math inline">\(u(x, t)\)</span>, and a parameter <span class="math inline">\(\mu\)</span>.</p>
+<p>Specific exercises will be added here in due course.</p>
 
 
 </section>
