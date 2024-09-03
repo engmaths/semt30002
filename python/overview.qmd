@@ -1,0 +1,9 @@
+---
+title: "Recap of Python programming"
+---
+
+Use the links below to refresh your knowledge of coding in Python:
+
+* [Overview of Python fundamentals](python_review.qmd)
+* [Overview of NumPy, SciPy, and Matplotlib](numpy.qmd)
+
