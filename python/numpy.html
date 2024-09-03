@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5: The 2D Poisson equation – Scientific Computing and Optimisation</title>
+<title>NumPy, SciPy, and Matplotlib – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -187,9 +221,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link active" data-scroll-target="#numpy">NumPy</a></li>
+  <li><a href="#importing-numpy" id="toc-importing-numpy" class="nav-link" data-scroll-target="#importing-numpy">Importing NumPy</a></li>
+  <li><a href="#defining-arrays" id="toc-defining-arrays" class="nav-link" data-scroll-target="#defining-arrays">Defining arrays</a></li>
+  <li><a href="#accessing-elements" id="toc-accessing-elements" class="nav-link" data-scroll-target="#accessing-elements">Accessing elements</a></li>
+  <li><a href="#accessing-sequential-elements" id="toc-accessing-sequential-elements" class="nav-link" data-scroll-target="#accessing-sequential-elements">Accessing sequential elements</a></li>
+  <li><a href="#some-useful-functions-for-creating-arrays" id="toc-some-useful-functions-for-creating-arrays" class="nav-link" data-scroll-target="#some-useful-functions-for-creating-arrays">Some useful functions for creating arrays</a></li>
+  <li><a href="#operations-on-numpy-arrays" id="toc-operations-on-numpy-arrays" class="nav-link" data-scroll-target="#operations-on-numpy-arrays">Operations on NumPy arrays</a></li>
+  <li><a href="#linear-algebra-with-numpy" id="toc-linear-algebra-with-numpy" class="nav-link" data-scroll-target="#linear-algebra-with-numpy">Linear algebra with NumPy</a></li>
+  <li><a href="#scipy" id="toc-scipy" class="nav-link" data-scroll-target="#scipy">SciPy</a></li>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib">Matplotlib</a></li>
+  <li><a href="#a-basic-example" id="toc-a-basic-example" class="nav-link" data-scroll-target="#a-basic-example">A basic example</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +241,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5: The 2D Poisson equation</h1>
+<h1 class="title">NumPy, SciPy, and Matplotlib</h1>
 </div>
 
 
@@ -215,47 +258,206 @@ window.Quarto = {
 </header>
 
 
-<p><span class="math display">\[
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
-\newcommand{\td}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
-\newcommand{\tdd}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
-\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
-\newcommand{\pdd}[2]{\frac{\partial^2#1}{\partial#2^2}}
-\]</span></p>
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>This week, we will use finite differences to solve PDEs in two dimensions. Particular focus will be placed on solving Poisson’s equation. For 2D problems, the number of unknowns and hence the size of the linear systems quickly grow as the number of grid points is increased. Sparse matrices, which only store the non-zero elements of a matrix, can lead to substantial reductions in the memory that needed to numerically solve the PDE, especially for 2D problems.</p>
-</section>
-<section id="supplementary-material" class="level1">
-<h1>Supplementary material</h1>
+<section id="numpy" class="level1">
+<h1>NumPy</h1>
 <ul>
-<li><a href="demos/Week05-Demos.pdf">PDF of demos</a></li>
+<li>NumPy is a Python library that enables vectors and matrices to be stored as <strong>arrays</strong></li>
+<li>NumPy provides very fast mathematical functions that can operate on these arrays.</li>
 </ul>
 </section>
-<section id="exercises" class="level1">
-<h1>Exercises</h1>
-<ol type="1">
-<li><p>Solve the Poisson equation <span class="math display">\[
-\nabla^2 u + 1 = 0
-\]</span> on the domain <span class="math inline">\(a \leq x \leq b\)</span> and <span class="math inline">\(c \leq y \leq d\)</span>. Assume that <span class="math inline">\(u = 0\)</span> on the boundaries.</p></li>
-<li><p>Use memory profiling to determine how much memory is required to solve the problem in Exercise 1. How does the memory usage depend on the number of grid points?</p></li>
-<li><p>Generalise your code from Exercise 1 so that it can solve problems of the form <span class="math display">\[
-D \nabla^2 u + q(x,y) = 0.
-\]</span> To validate your code, set <span class="math display">\[
-q(x,y) = D \pi^2 \left[\frac{1}{(b-a)^2} + \frac{1}{(d-c)^2}\right]\sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right];
-\]</span> in this case, the exact solution to the problem is given by <span class="math display">\[
-u(x,y) = \sin\left[\frac{\pi(x-a)}{b-a}\right]\sin\left[\frac{\pi(y-c)}{d-c}\right].
-\]</span></p></li>
-<li><p>Further generalise your code so that non-homogeneous Dirichlet boundary conditions can be used. For example, solve the Poisson equation for Exercise 1 but replace the boundary condition at <span class="math inline">\(x = a\)</span> with <span class="math inline">\(u(a, y) = \sin(\pi(y-c)/(d-c))\)</span>.</p></li>
-<li><p>Use sparse matrices to solve the 1D Poisson equation given by <span class="math display">\[
-\tdd{u}{x} + 1 = 0
-\]</span> with <span class="math inline">\(u(0) = u(1) = 0\)</span>.</p>
-<ol type="a">
-<li>First use 101 grid points (<span class="math inline">\(N = 100\)</span>). Time your code and profile its memory usage. Is your sparse code faster and more memory efficient than your previous code?</li>
-<li>Repeat part (a) but now use <span class="math inline">\(N = 1000\)</span>. If you have correctly implemented sparse matrices, then you should now see a significant speed up and memory reduction.</li>
-</ol></li>
-<li><p>Solve the 2D Poisson equation with sparse matrices.</p></li>
-</ol>
+<section id="importing-numpy" class="level1">
+<h1>Importing NumPy</h1>
+<p>It is common to import NumPy using the command</p>
+<div id="7b3f8801" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="defining-arrays" class="level1">
+<h1>Defining arrays</h1>
+<ul>
+<li>Arrays are defined using the <code>array</code> function.</li>
+<li>A vector (1D array) can be created by passing a list to <code>array</code></li>
+</ul>
+<p><strong>Example</strong>: Create the vector <span class="math inline">\(v = (1, 2, 3)\)</span></p>
+<div id="7c61976a" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 2 3]</code></pre>
+</div>
+</div>
+<p>A matrix (2D array) can be created by passing a nested list to <code>array</code>, where each inner list is a row of the matrix</p>
+<p><strong>Example</strong>: Create the matrix <span class="math display">\[
+M = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}
+\]</span></p>
+<div id="43ec108d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([ [<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">4</span>] ])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1 2]
+ [3 4]]</code></pre>
+</div>
+</div>
+</section>
+<section id="accessing-elements" class="level1">
+<h1>Accessing elements</h1>
+<ul>
+<li>Individual elements in a 1D array can be accessed using square brackets and a numerical index</li>
+<li>Indexing NumPy arrays starts at 0</li>
+</ul>
+<div id="3013bf23" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the second element of vector v</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
+<ul>
+<li>Use two indices separated by a comma for 2D arrays (first index = row, second index = column)</li>
+</ul>
+<div id="e911b3df" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the entry in the second row, first column of M</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M[<span class="dv">1</span>, <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3</code></pre>
+</div>
+</div>
+</section>
+<section id="accessing-sequential-elements" class="level1">
+<h1>Accessing sequential elements</h1>
+<p>A colon (:) can be used to access sequential elements in an array:</p>
+<div id="fc977446" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v[:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 2 3 4 5 6 7 8 9]</code></pre>
+</div>
+</div>
+<p>The notation <code>v[a:b]</code> will access entries starting at index <span class="math inline">\(a\)</span> and ending at <span class="math inline">\(b-1\)</span></p>
+<div id="5513f28c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the third to fifth entries</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v[<span class="dv">2</span>:<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[3 4 5]</code></pre>
+</div>
+</div>
+</section>
+<section id="some-useful-functions-for-creating-arrays" class="level1">
+<h1>Some useful functions for creating arrays</h1>
+<ul>
+<li><code>linspace(a, b, N)</code> creates a 1D array with <span class="math inline">\(N\)</span> uniformly spaced entries between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> (inclusive)</li>
+<li><code>eye(N)</code> creates the <span class="math inline">\(N \times N\)</span> identity matrix</li>
+<li><code>ones(dims)</code> creates arrays filled with ones, where <code>dims</code> is a tuple of integers that describes the dimensions of the array</li>
+<li><code>zeros(dims)</code> creates arrays filled with zeros</li>
+<li><code>random.random(dims)</code> creates an array with random numbers between 0 and 1 from a uniform distribution</li>
+</ul>
+</section>
+<section id="operations-on-numpy-arrays" class="level1">
+<h1>Operations on NumPy arrays</h1>
+<p>Many mathematical operations can be performed immediately</p>
+<ul>
+<li><code>+</code> and <code>-</code>: element-by-element addition and subtraction</li>
+<li><code>*</code>: scalar multiplication or element-by-element multiplication</li>
+<li><code>dot(a,b)</code>: dot product of two 1D arrays <code>a</code> and <code>b</code></li>
+<li><code>@</code>: matrix multiplication</li>
+</ul>
+<p>NumPy comes with mathematical functions that can operate on arrays (e.g.&nbsp;trig functions, exp, log) * <code>np.sin(x)</code>: applies the sin function to each element of <code>x</code></p>
+</section>
+<section id="linear-algebra-with-numpy" class="level1">
+<h1>Linear algebra with NumPy</h1>
+<p>The <code>linalg</code> module of NumPy has functions for linear algebra. For example:</p>
+<ul>
+<li><code>linalg.solve(A,b)</code>: Solve a linear system of equations of the form <span class="math inline">\(Ax = b\)</span></li>
+<li><code>linalg.det(A)</code>: Compute determinants of <span class="math inline">\(A\)</span></li>
+<li><code>linalg.inv(A)</code>: Compute the inverse of <span class="math inline">\(A\)</span>, ie <span class="math inline">\(A^{-1}\)</span></li>
+<li><code>linalg.eig(A)</code>: Compute the eigenvalues and eigenvectors of <span class="math inline">\(A\)</span></li>
+</ul>
+</section>
+<section id="scipy" class="level1">
+<h1>SciPy</h1>
+<p>Is a Python package that contains functions for a wide range of mathematical problems</p>
+<ul>
+<li>Special functions, e.g.&nbsp;Bessel functions</li>
+<li>Solving nonlinear equations</li>
+<li>Optimisation</li>
+<li>Interpolation</li>
+<li>Integration (including solving ODEs)</li>
+<li>Linear algebra (including sparse linear algebra)</li>
+<li>and more</li>
+</ul>
+<p>The SciPy package is imported using the code</p>
+<div id="e8a8be4e" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As part of this unit, we will be solving nonlinear algebraic equations and optimisation problems</p>
+<ul>
+<li><code>scipy.optimize.root</code> solves algebraic equations</li>
+<li><code>scipy.optimise.minimize</code> minimises a scalar function with multiple variables</li>
+</ul>
+<p>We will also learn about other SciPy functions that are useful for finding the numerical solution to PDEs and optimisation problems.</p>
+</section>
+<section id="matplotlib" class="level1">
+<h1>Matplotlib</h1>
+<ul>
+<li>Used for visualising data in Python (eg creating plots)</li>
+<li>Works well with NumPy</li>
+</ul>
+<p>Usually imported using</p>
+<div id="decb864b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-basic-example" class="level1">
+<h1>A basic example</h1>
+<p>Plot <span class="math inline">\(y = \sin(x)\)</span> from <span class="math inline">\(x = 0\)</span> to <span class="math inline">\(x = 2\pi\)</span></p>
+<div id="83d121ee" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, <span class="dv">100</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="numpy_files/figure-html/cell-11-output-1.png" width="590" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>There are many options that can edited to make figures look nicer</li>
+<li>There are also many different styles of figures (e.g.&nbsp;contour plots, scatter plots)</li>
+<li>See https://github.com/rougier/matplotlib-tutorial for a good overview of the options</li>
+</ul>
+<div id="9303f703" class="cell" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use latex fonts and use a fontsize of 16 everywhere</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">"text.usetex"</span>: <span class="va">True</span>, <span class="st">"font.size"</span>: <span class="dv">16</span>})</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add labels to the axes</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$x$'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\sin(x)$'</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># show the plot</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="numpy_files/figure-html/cell-12-output-1.png" width="619" height="441" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<ul>
+<li>NumPy provides functionality for storing numerical data as arrays and performing operations on these</li>
+<li>SciPy contains functions for solving a wide variety of mathematical problems</li>
+<li>Matplotlib is for visualising data</li>
+</ul>
 
 
 </section>
