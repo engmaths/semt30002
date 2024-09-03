@@ -8,6 +8,8 @@ website:
       - href: index.qmd
         text: Home
       - assessment.qmd
+      - href: python/overview.qmd
+        text: Python
       - text: "ODEs and PDEs (weeks 1–5)"
         menu:
           - href: scicomp/overview.qmd
