@@ -13,6 +13,9 @@ This week showcase how finite difference methods can be used to solve boundary v
 
 The code that you develop this week will form an essential role in the upcoming weeks when the focus shifts towards numerically solving partial differential equations.  
 
+# Supplementary material
+
+* [PDF of demos](demos/Week02-Demos.pdf)
 
 # Exercises
 

@@ -8,6 +8,9 @@ title: "Week 5: The 2D Poisson equation"
 
 This week, we will use finite differences to solve PDEs in two dimensions.  Particular focus will be placed on solving Poisson's equation.  For 2D problems, the number of unknowns and hence the size of the linear systems quickly grow as the number of grid points is increased.  Sparse matrices, which only store the non-zero elements of a matrix, can lead to substantial reductions in the memory that needed to numerically solve the PDE, especially for 2D problems.
 
+# Supplementary material
+
+* [PDF of demos](demos/Week05-Demos.pdf)
 
 # Exercises
 
