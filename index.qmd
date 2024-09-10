@@ -30,11 +30,31 @@ This unit will bring together your previous experience of solving mathematical p
 
 You can code in Python, Matlab, or Julia.  The choice is yours.  However, some demos and examples will only be provided in one programming language.
 
-Before the unit begins, please ensure that you have a functioning installation of your programming language of choice.  If you are coding in Python, then you will need the following packages:
+Before the unit begins, please ensure that you have a functioning installation of your programming language of choice.  
 
-* [SciPy and NumPy](https://scipy.org/), [Matplotlib](https://matplotlib.org/)
+If you are coding in Python, then you will need the following packages:
+
+* [SciPy and NumPy](https://scipy.org/)
+* [Matplotlib](https://matplotlib.org/)
 * [memory_profiler](https://pypi.org/project/memory-profiler/)
 * [Pyomo](http://www.pyomo.org/)
+
+If you are coding in Matlab, then you will need the optimisation and global optimisation toolboxes.
+
+If you are coding in Julia, then you will need the following packages:
+
+* [OrdinaryDiffEq.jl](https://docs.sciml.ai/OrdinaryDiffEq/stable/)
+* A plotting package (e.g., [GLMakie.jl](https://docs.makie.org/) or [Plots.jl](https://docs.juliaplots.org/stable/))
+* [BenchmarkTools.jl](https://juliaci.github.io/BenchmarkTools.jl/stable/)
+* [JuMP.jl](https://jump.dev/JuMP.jl/stable/)
+* Also see [modern Julia workflows](https://modernjuliaworkflows.org/)
+
+In Julia these can be installed from the REPL (compilation will take a few minutes):
+
+```julia
+import Pkg
+Pkg.add(["OrdinaryDiffEq", "GLMakie", "BenchmarkTools", "JuMP"])
+```
 
 # Teaching staff
 
