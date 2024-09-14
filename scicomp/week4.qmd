@@ -52,7 +52,7 @@ CFL number is set to $C = 0.5$, $C = 0.75$, and $C = 1$.  On the same axes, plot
 $$
 \pd{u}{t} + v(x,t)\pd{u}{x} = 0
 $$
-on the domain $-1 \leq x \leq 1$.  Let the velocity be given by $v(x, t, u) = x$.  Notice that $v < 0$ for $x < 0$ and $v > 0$ for $x > 0$.
+on the domain $-1 \leq x \leq 1$.  Let the velocity be given by $v(x, t) = x$.  Notice that $v < 0$ for $x < 0$ and $v > 0$ for $x > 0$.
 Take the initial condition to be $u(x,0) = 1 - x^2$.  Do boundary conditions need to be imposed for this problem?
 
 2. Solve the hyperbolic conservation law
