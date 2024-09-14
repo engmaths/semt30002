@@ -20,4 +20,51 @@ $$
 $$
 where the speed $v$ can be positive or negative.  The domain of the problem is given by $a \leq x \leq b$.  The term $q(x, t, u; \mu)$ represents a function that depends on the spatial coordinate $x$, time $t$, the solution $u(x, t)$, and a parameter $\mu$.  
 
-Specific exercises will be added here in due course.
+1. Solve the linear advection equation given by
+$$
+\pd{u}{t} + v \pd{u}{x} = 0
+$$
+where $v$ is a constant.  Take the domain to be $0 \leq x \leq 5$ and $0 \leq t \leq 4$.  Set the initial condition to $u(x,0) = x / 5$.
+    a) Solve with $v = 1$ and the boundary condition $u(0, t) = 0$. 
+    Validate your code using the exact solution
+    $$
+    u(x,t) = \begin{cases} 
+    0, \quad &0 \leq x \leq t, \\
+    \frac{1}{5}(x - t), \quad &t \leq x \leq 5.
+    \end{cases}
+    $$
+    b) Solve with $v = -1$ and the boundary condition $u(5, t) = 1$. Validate your code using the exact solution
+    $$
+    u(x,t) = \begin{cases} 
+    \frac{1}{5}(x + t), \quad &0 \leq x \leq 5 - t, \\
+    1, \quad &5 - t \leq x \leq 5.
+    \end{cases}
+    $$
+    c) Use the velocity decomposition to write an upwind scheme that can simultaneously handle both of these cases.
+
+1. The upwind scheme has a truncation error that is $O(\Delta x)$ in space and $O(\Delta t)$ in time.  Show that your code produces solutions with the expected accuracy.  **Hint**: One way to do this is to consider the problem in exercise 1a.  Compare your numerical approximation to $u(5,4)$ to the exact value of $1/5$ by fixing $\Delta t$ and varying $\Delta x$ and vice-versa.
+
+1. Consider again the problem in exercise 1a.  Set $N = 100$ so that
+$\Delta x$ is now fixed.  Now choose values of $\Delta t$ so that the
+CFL number is set to $C = 0.5$, $C = 0.75$, and $C = 1$.  On the same axes, plot $u(x,4)$ for all three cases along with the exact solution.  What happens when $C$ is increased to one?  How you can explain the results in term of the truncation error and the numerical diffusion coefficient?
+
+2. Solve the linear advection equation given by
+$$
+\pd{u}{t} + v(x,t)\pd{u}{x} = 0
+$$
+on the domain $-1 \leq x \leq 1$.  Let the velocity be given by $v(x, t, u) = x$.  Notice that $v < 0$ for $x < 0$ and $v > 0$ for $x > 0$.
+Take the initial condition to be $u(x,0) = 1 - x^2$.  Do boundary conditions need to be imposed for this problem?
+
+2. Solve the hyperbolic conservation law
+$$
+\pd{u}{t} + \pd{}{x}\left(j(u)\right) = 0
+$$
+when $v(u) = u + u^3 / 3$.  Take the domain to be $-2 \leq x \leq 5$ and $0 \leq t \leq 2$. The initial condition can be set to $u(x,0) = \exp(-x^2)$.  If needed, set $u = 0$ at the boundaries.
+
+
+2. Solve the forced inviscid Burgers' equation
+$$
+\pd{u}{t} + u \pd{u}{x} = 1
+$$
+over the domain $-\pi \leq x \leq \pi$ and $0 \leq t \leq 2$.
+The initial condition can be set to $u(x,0) = \sin x$.  If boundary conditions are needed, set $u = t$ at the boundary.
