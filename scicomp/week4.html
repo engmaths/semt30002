@@ -231,7 +231,37 @@ window.Quarto = {
 <p>The goal of this week is to develop code that can solve reaction-advection equations of the form <span class="math display">\[
 \pd{u}{t} + v(x,t,u) \pd{u}{x} = q(x, t, u; \mu), \tag{1}
 \]</span> where the speed <span class="math inline">\(v\)</span> can be positive or negative. The domain of the problem is given by <span class="math inline">\(a \leq x \leq b\)</span>. The term <span class="math inline">\(q(x, t, u; \mu)\)</span> represents a function that depends on the spatial coordinate <span class="math inline">\(x\)</span>, time <span class="math inline">\(t\)</span>, the solution <span class="math inline">\(u(x, t)\)</span>, and a parameter <span class="math inline">\(\mu\)</span>.</p>
-<p>Specific exercises will be added here in due course.</p>
+<ol type="1">
+<li><p>Solve the linear advection equation given by <span class="math display">\[
+\pd{u}{t} + v \pd{u}{x} = 0
+\]</span> where <span class="math inline">\(v\)</span> is a constant. Take the domain to be <span class="math inline">\(0 \leq x \leq 5\)</span> and <span class="math inline">\(0 \leq t \leq 4\)</span>. Set the initial condition to <span class="math inline">\(u(x,0) = x / 5\)</span>.</p>
+<ol type="a">
+<li>Solve with <span class="math inline">\(v = 1\)</span> and the boundary condition <span class="math inline">\(u(0, t) = 0\)</span>. Validate your code using the exact solution <span class="math display">\[
+u(x,t) = \begin{cases}
+0, \quad &amp;0 \leq x \leq t, \\
+\frac{1}{5}(x - t), \quad &amp;t \leq x \leq 5.
+\end{cases}
+\]</span></li>
+<li>Solve with <span class="math inline">\(v = -1\)</span> and the boundary condition <span class="math inline">\(u(5, t) = 1\)</span>. Validate your code using the exact solution <span class="math display">\[
+u(x,t) = \begin{cases}
+\frac{1}{5}(x + t), \quad &amp;0 \leq x \leq 5 - t, \\
+1, \quad &amp;5 - t \leq x \leq 5.
+\end{cases}
+\]</span></li>
+<li>Use the velocity decomposition to write an upwind scheme that can simultaneously handle both of these cases.</li>
+</ol></li>
+<li><p>The upwind scheme has a truncation error that is <span class="math inline">\(O(\Delta x)\)</span> in space and <span class="math inline">\(O(\Delta t)\)</span> in time. Show that your code produces solutions with the expected accuracy. <strong>Hint</strong>: One way to do this is to consider the problem in exercise 1a. Compare your numerical approximation to <span class="math inline">\(u(5,4)\)</span> to the exact value of <span class="math inline">\(1/5\)</span> by fixing <span class="math inline">\(\Delta t\)</span> and varying <span class="math inline">\(\Delta x\)</span> and vice-versa.</p></li>
+<li><p>Consider again the problem in exercise 1a. Set <span class="math inline">\(N = 100\)</span> so that <span class="math inline">\(\Delta x\)</span> is now fixed. Now choose values of <span class="math inline">\(\Delta t\)</span> so that the CFL number is set to <span class="math inline">\(C = 0.5\)</span>, <span class="math inline">\(C = 0.75\)</span>, and <span class="math inline">\(C = 1\)</span>. On the same axes, plot <span class="math inline">\(u(x,4)\)</span> for all three cases along with the exact solution. What happens when <span class="math inline">\(C\)</span> is increased to one? How you can explain the results in term of the truncation error and the numerical diffusion coefficient?</p></li>
+<li><p>Solve the linear advection equation given by <span class="math display">\[
+\pd{u}{t} + v(x,t)\pd{u}{x} = 0
+\]</span> on the domain <span class="math inline">\(-1 \leq x \leq 1\)</span>. Let the velocity be given by <span class="math inline">\(v(x, t, u) = x\)</span>. Notice that <span class="math inline">\(v &lt; 0\)</span> for <span class="math inline">\(x &lt; 0\)</span> and <span class="math inline">\(v &gt; 0\)</span> for <span class="math inline">\(x &gt; 0\)</span>. Take the initial condition to be <span class="math inline">\(u(x,0) = 1 - x^2\)</span>. Do boundary conditions need to be imposed for this problem?</p></li>
+<li><p>Solve the hyperbolic conservation law <span class="math display">\[
+\pd{u}{t} + \pd{}{x}\left(j(u)\right) = 0
+\]</span> when <span class="math inline">\(v(u) = u + u^3 / 3\)</span>. Take the domain to be <span class="math inline">\(-2 \leq x \leq 5\)</span> and <span class="math inline">\(0 \leq t \leq 2\)</span>. The initial condition can be set to <span class="math inline">\(u(x,0) = \exp(-x^2)\)</span>. If needed, set <span class="math inline">\(u = 0\)</span> at the boundaries.</p></li>
+<li><p>Solve the forced inviscid Burgers’ equation <span class="math display">\[
+\pd{u}{t} + u \pd{u}{x} = 1
+\]</span> over the domain <span class="math inline">\(-\pi \leq x \leq \pi\)</span> and <span class="math inline">\(0 \leq t \leq 2\)</span>. The initial condition can be set to <span class="math inline">\(u(x,0) = \sin x\)</span>. If boundary conditions are needed, set <span class="math inline">\(u = t\)</span> at the boundary.</p></li>
+</ol>
 
 
 </section>
