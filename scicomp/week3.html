@@ -232,7 +232,7 @@ window.Quarto = {
 <h1>Supplementary material</h1>
 <p>Use the links below to find:</p>
 <ul>
-<li><a href="demos/Week03-Demos.pdf">PDF of demos</a></li>
+<li><a href="demos/Week03-Demos.pdf">PDF of demos (updated 29/09)</a></li>
 <li><a href="w03-diffusion_equation.pdf">Some solutions to the diffusion equation</a></li>
 <li><a href="../scicomp/timing_code.html">How to time Python and Matlab code</a></li>
 </ul>
@@ -253,10 +253,10 @@ u(x,0) = \sin\left(\frac{\pi (x - a)}{b - a}\right).
 u(x, t) =  \exp\left(-\frac{D \pi^2 t}{(b-a)^2}\right)\sin\left(\frac{\pi (x - a)}{b - a}\right).
 \]</span> which you can use to test your code.</p></li>
 <li><p>Use the implicit Euler method to solve the problem in Exercise 1, using the same analytical solution to validate your code.</p></li>
-<li><p>Explicit vs implicit Euler. In this exercise, you will compare the performance of the two Euler methods. Consider the diffusion equation and boundary conditions from Exercise 1. Take <span class="math inline">\(a = 0\)</span>, <span class="math inline">\(b = 1\)</span>, and <span class="math inline">\(D = 0.1\)</span>. Discretise the spatial domain using 31 grid points (<span class="math inline">\(N = 30\)</span>) and solve the problem until time <span class="math inline">\(T = 1\)</span>.</p>
+<li><p>Explicit vs implicit Euler. In this exercise, you will compare the performance of the two Euler methods by timing your codes. Find out more about how to time your code <a href="../scicomp/timing_code.html">here</a>. Consider the diffusion equation and boundary conditions from Exercise 1. Take <span class="math inline">\(a = 0\)</span>, <span class="math inline">\(b = 1\)</span>, and <span class="math inline">\(D = 0.1\)</span>. Discretise the spatial domain using 31 grid points (<span class="math inline">\(N = 30\)</span>) and solve the problem until time <span class="math inline">\(T = 1\)</span>.</p>
 <ol type="a">
 <li>Fix the time step to be <span class="math inline">\(\Delta t = 0.005\)</span>. Show that this time step is smaller than the maximum time step that can be used with the explicit Euler method. Solve the problem using the explicit and implicit Euler method. Which method is the fastest and why?</li>
-<li>Increase the time step to <span class="math inline">\(\Delta t = 0.1\)</span> and solve with the implicit Euler method. How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with <span class="math inline">\(\Delta t = 0.005\)</span>? Which of the two methods leads to a more accurate solution when <span class="math inline">\(t = 1\)</span>? Find out more about how to time your code <a href="../scicomp/timing_code.html">here</a>.</li>
+<li>Increase the time step to <span class="math inline">\(\Delta t = 0.1\)</span> and solve with the implicit Euler method. How does the speed of the implicit Euler method now compare to the speed of the explicit Euler method with <span class="math inline">\(\Delta t = 0.005\)</span>? Which of the two methods leads to a more accurate solution when <span class="math inline">\(t = 1\)</span>?</li>
 </ol></li>
 <li><p>Extend your code so that it can solve linear reaction-diffusion equations of the form <span class="math display">\[
 \pd{u}{t} = D \pdd{u}{x} + q(x), \\
