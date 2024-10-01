@@ -188,6 +188,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
@@ -225,6 +226,12 @@ window.Quarto = {
 <h1>Overview</h1>
 <p>This week we focus on an first-order PDEs. These are PDEs that only involve first-order partial derivatives. Although these are the simplest of all PDEs, they lead to surprising numerical challenges. In particular, the finite-difference discretisation needs to adapt to the sign of the coefficient in front of the spatial derivative (the wave speed). Choosing a numerically stable discretisation requires a consideration of the direction of wave propagation. Adapting the spatial discretisation based on the direction of wave propagation is called <strong>upwinding</strong>.</p>
 <p>In this unit, we will use the upwind scheme to numerically solve first-order PDEs. Although this method is simple, it suffers from <strong>numerical diffusion</strong>. This leads to the numerical solution artifically spreading out. Moreover, there is also a restriction on the time step that is set by the <strong>CFL condition</strong>.</p>
+</section>
+<section id="supplementary-material" class="level1">
+<h1>Supplementary material</h1>
+<ul>
+<li><a href="demos/Week04-Demos.pdf">PDF of demos</a></li>
+</ul>
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
