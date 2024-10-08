@@ -229,15 +229,17 @@ window.Quarto = {
 <section id="supplementary-material" class="level1">
 <h1>Supplementary material</h1>
 <ul>
+<li><a href="../scicomp/poisson_example.html">Example code for the Poisson equation</a></li>
 <li><a href="demos/Week05-Demos.pdf">PDF of demos</a></li>
 </ul>
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
+<p>For the exercises below, you can use the <a href="../scicomp/poisson_example.html">example code</a> for solving Poisson’s equation as a starting point. Alternatively, you can build your own code from scratch to solve the problem using linear algebra functions.</p>
 <ol type="1">
 <li><p>Solve the Poisson equation <span class="math display">\[
-\nabla^2 u + 1 = 0
-\]</span> on the domain <span class="math inline">\(a \leq x \leq b\)</span> and <span class="math inline">\(c \leq y \leq d\)</span>. Assume that <span class="math inline">\(u = 0\)</span> on the boundaries.</p></li>
+\nabla^2 u + 2 = 0
+\]</span> on the domain <span class="math inline">\(0 \leq x \leq 1\)</span> and <span class="math inline">\(1 \leq y \leq 4\)</span>. Assume that <span class="math inline">\(u = 0\)</span> on the boundaries.</p></li>
 <li><p>Use memory profiling to determine how much memory is required to solve the problem in Exercise 1. How does the memory usage depend on the number of grid points?</p></li>
 <li><p>Generalise your code from Exercise 1 so that it can solve problems of the form <span class="math display">\[
 D \nabla^2 u + q(x,y) = 0.
