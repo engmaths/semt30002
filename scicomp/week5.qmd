@@ -10,15 +10,18 @@ This week, we will use finite differences to solve PDEs in two dimensions.  Part
 
 # Supplementary material
 
+* [Example code for the Poisson equation](poisson_example.qmd)
 * [PDF of demos](demos/Week05-Demos.pdf)
 
 # Exercises
 
+For the exercises below, you can use the [example code](poisson_example.qmd) for solving Poisson's equation as a starting point.  Alternatively, you can build your own code from scratch to solve the problem using linear algebra functions.
+
 1. Solve the Poisson equation
 $$
-\nabla^2 u + 1 = 0
+\nabla^2 u + 2 = 0
 $$
-on the domain $a \leq x \leq b$ and $c \leq y \leq d$.  Assume that 
+on the domain $0 \leq x \leq 1$ and $1 \leq y \leq 4$.  Assume that 
 $u = 0$ on the boundaries.
 
 1. Use memory profiling to determine how much memory is required to solve the problem in Exercise 1.  How does the memory usage depend on the number of grid points?  
