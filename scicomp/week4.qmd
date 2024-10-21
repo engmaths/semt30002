@@ -62,7 +62,7 @@ Take the initial condition to be $u(x,0) = 1 - x^2$.  Do boundary conditions nee
 $$
 \pd{u}{t} + \pd{}{x}\left(j(u)\right) = 0
 $$
-when $v(u) = u + u^3 / 3$.  Take the domain to be $-2 \leq x \leq 5$ and $0 \leq t \leq 2$. The initial condition can be set to $u(x,0) = \exp(-x^2)$.  If needed, set $u = 0$ at the boundaries.
+when $j(u) = u + u^3 / 3$.  Take the domain to be $-2 \leq x \leq 5$ and $0 \leq t \leq 2$. The initial condition can be set to $u(x,0) = \exp(-x^2)$.  If needed, set $u = 0$ at the boundaries.
 
 
 2. Solve the forced inviscid Burgers' equation
