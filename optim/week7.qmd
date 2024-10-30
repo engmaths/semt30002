@@ -25,7 +25,7 @@ of two unconstrained variables $x$ and $y$.
 2. Working by hand. Find $\nabla f$. Thus, beginning from the origin $(0,0)$, perform one step of the steepest-descent algorithm. That, is find the $\lambda^{(1)}$ such that the function $(0,0)^\mathrm{T}+\lambda\nabla f(0,0)$ of one variable $\lambda$ is minimised, and find the corresponding coordinates of the next iterate $(x^{(1)},y^{(1)})$.
 3. Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of $f(x,y)$. For stepsize selection:
    1. Use a fixed step size $\alpha$ of your choice.
-   2. Use a decaying step size $\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1} for $\gamma=0.99$.
+   2. Use a decaying step size $\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}$ for $\gamma=0.99$.
    3. Use a backtracking line search.
 4. Use your favourite package to plot (e.g., contours) of $f(x,y)$ in the quadrant $x_1,x_2\geq0$ and overlay points and lines corresponding to your part (a-c) computations and discuss. Sketch on your plot how a second iteration of the steepest-descent algorithm would proceed.
 
