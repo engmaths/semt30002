@@ -240,7 +240,7 @@ window.Quarto = {
 <li>Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of <span class="math inline">\(f(x,y)\)</span>. For stepsize selection:
 <ol type="1">
 <li>Use a fixed step size <span class="math inline">\(\alpha\)</span> of your choice.</li>
-<li>Use a decaying step size $^{(k)} = <sup>{(1)}</sup>{k-1} for <span class="math inline">\(\gamma=0.99\)</span>.</li>
+<li>Use a decaying step size <span class="math inline">\(\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}\)</span> for <span class="math inline">\(\gamma=0.99\)</span>.</li>
 <li>Use a backtracking line search.</li>
 </ol></li>
 <li>Use your favourite package to plot (e.g., contours) of <span class="math inline">\(f(x,y)\)</span> in the quadrant <span class="math inline">\(x_1,x_2\geq0\)</span> and overlay points and lines corresponding to your part (a-c) computations and discuss. Sketch on your plot how a second iteration of the steepest-descent algorithm would proceed.</li>
