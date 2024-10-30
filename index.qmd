@@ -12,11 +12,11 @@ This unit will bring together your previous experience of solving mathematical p
 * [Week 4: First-order PDEs in 1D](scicomp/week4.qmd)
 * [Week 5: The 2D Poisson equation](scicomp/week5.qmd)
 * **Week 6: Reading week (no sessions)**
-* Week 7: Optimisation
-* Week 8: Optimisation
-* Week 9: Optimisation
-* Week 10: Optimisation
-* Week 11: Optimisation and coursework support
+* [Week 7: Gradient-based optimisation](optim/week7.qmd)
+* Week 8: Gradient-free optimisation
+* Week 9: Linear programming
+* Week 10: Integer linear programming
+* Week 11: Optimisation extras and coursework support
 * Week 12: No sessions
 
 # Teaching sessions
