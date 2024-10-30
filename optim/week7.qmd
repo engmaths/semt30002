@@ -1,0 +1,90 @@
+# Week 7: Gradient-based optimisation
+
+In the following exercises you will need to develop some (simple) code to implement gradient-based optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.
+
+Most optimisation toolboxes only implement the more sophisticated methods (e.g., Adam, BFGS, Conjugate Gradient, etc). These can be good for checking your results and performance comparisons.
+
+## Supplementary material
+
+- Algorithms for Optimisation - [Local descent (line search methods)](https://algorithmsbook.com/optimization/files/chapter-4.pdf)
+- Algorithms for Optimisation - [First-order gradient](https://algorithmsbook.com/optimization/files/chapter-5.pdf)
+- Various optimisation algorithm implementations
+  - Python - [scipy.optimize](https://docs.scipy.org/doc/scipy/reference/optimize.html)
+  - Julia - [Optim.jl](https://julianlsolvers.github.io/Optim.jl/stable/)
+  - MATLAB - [Optimization Toolbox](https://uk.mathworks.com/help/optim/)
+
+## Exercise 1
+
+Consider the minimisation of the objective function
+$$
+    f(x,y)=2x^2+5y^2-2xy -2x-8y
+$$
+of two unconstrained variables $x$ and $y$.
+
+1. Working by hand. Freeze $x=0$, and find the location $y^*$ of the minimum of the function $f(0,y)$ of one variable $y$. Then freeze $y=y^*$ and find the location $x^*$ of the minimum of the function $f(x,y^*)$ of one variable $x$.
+2. Working by hand. Find $\nabla f$. Thus, beginning from the origin $(0,0)$, perform one step of the steepest-descent algorithm. That, is find the $\lambda^{(1)}$ such that the function $(0,0)^\mathrm{T}+\lambda\nabla f(0,0)$ of one variable $\lambda$ is minimised, and find the corresponding coordinates of the next iterate $(x^{(1)},y^{(1)})$.
+3. Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of $f(x,y)$. For stepsize selection:
+   1. Use a fixed step size $\alpha$ of your choice.
+   2. Use a decaying step size $\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1} for $\gamma=0.99$.
+   3. Use a backtracking line search.
+4. Use your favourite package to plot (e.g., contours) of $f(x,y)$ in the quadrant $x_1,x_2\geq0$ and overlay points and lines corresponding to your part (a-c) computations and discuss. Sketch on your plot how a second iteration of the steepest-descent algorithm would proceed.
+
+## Exercise 2
+
+The Rosenbrock function is a standard test case for many optimisation algorithms because it is ill conditioned (i.e., nasty):
+$$
+    f(x,y) = (a - x)^2 + b(y - x^2)^2
+$$
+where typically $a = 1$ and $b = 100$. The gradient of the Rosenbrock function is
+The gradient of the Rosenbrock function is given by
+
+$$
+\nabla f(x,y) = 
+\begin{bmatrix}
+\frac{\partial f}{\partial x} \\
+\frac{\partial f}{\partial y}
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2(a - x) - 4bx(y - x^2) \\
+2b(y - x^2)
+\end{bmatrix}.
+$$
+
+1. Implement a backtracking line search so that it can be applied to any objective function and optimisation method. Assume that you have the gradient  a I.e., `backtracking(rosenbrock, grad_rosenbrock, gradientdescent, [-1.5,-0.5])` should use the backtracking algorithm with the basic gradient descent optimisation algorithm and apply it to the Rosenbrock function. Here `rosenbrock` and `grad_rosenbrock` are functions of a single variable $u=[x,y]$ that return the objective function and its gradient, respectively. The function `gradientdescent` provides the search direction given by the gradient descent algorithm.
+2. Implement each of the following optimisation algorithms in a form that works with your backtracking line search from Q1.
+   - Gradient descent (basic algorithm)
+   - Gradient descent with momentum
+   - RMSProp
+   - Adam
+3. Try each of the algorithms on the Rosenbrock function. Compare the number of iterations required for convergence for each algorithm. What conclusions can you draw from this?
+
+## Exercise 3 (extension)
+
+Below are three additional objective functions commonly used to test the performance of gradient-based optimisation algorithms. Use $n=2$ in each case. (Feel free to test the performance in more dimensions!)
+
+Apply your code from exercise 2 to each of these test cases. Visualise the results.
+
+### Sphere Function
+
+The Sphere function is a simple convex function used for testing optimisation algorithms
+
+$$
+f(x) = \sum_{i=1}^{n} x_i^2.
+$$
+
+### Rastrigin Function
+
+The Rastrigin function is a non-convex function used to test the performance of optimisation algorithms on multimodal landscapes
+
+$$
+f(x) = 10n + \sum_{i=1}^{n} \left[ x_i^2 - 10 \cos(2 \pi x_i) \right].
+$$
+
+### Ackley Function
+
+The Ackley function is another non-convex function with many local minima, making it a challenging test case for optimisation algorithms
+
+$$
+f(x) = -20 \exp \left( -0.2 \sqrt{0.5 \sum_{i=1}^{n} x_i^2} \right) - \exp \left( 0.5 \sum_{i=1}^{n} \cos(2 \pi x_i) \right) + \exp(1) + 20.
+$$
