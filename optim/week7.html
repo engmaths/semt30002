@@ -249,6 +249,7 @@ window.Quarto = {
 <section id="week-7-gradient-based-optimisation" class="level1">
 <h1>Week 7: Gradient-based optimisation</h1>
 <p>In the following exercises you will need to develop some (simple) code to implement gradient-based optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.</p>
+<p>The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no “one size fits all”; different problems will be best solved using different methods.</p>
 <p>Most optimisation toolboxes only implement the more sophisticated methods (e.g., Adam, BFGS, Conjugate Gradient, etc). These can be good for checking your results and performance comparisons.</p>
 <section id="supplementary-material" class="level2">
 <h2 class="anchored" data-anchor-id="supplementary-material">Supplementary material</h2>
@@ -275,7 +276,7 @@ window.Quarto = {
 <li>Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of <span class="math inline">\(f(x,y)\)</span> above. (You can write out the gradient by hand rather than using finite differences.) Plot your results on the contour plot from part 3. For stepsize selection, try each of:
 <ol type="1">
 <li>Use a fixed step size <span class="math inline">\(\alpha\)</span> of your choice.</li>
-<li>Use a decaying step size <span class="math inline">\(\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}\)</span> for <span class="math inline">\(\gamma=0.99\)</span>.</li>
+<li>Use a decaying step size <span class="math inline">\(\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}\)</span> for <span class="math inline">\(\gamma=0.95\)</span>.</li>
 <li>Use a backtracking line search.</li>
 </ol></li>
 </ol>
