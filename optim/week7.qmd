@@ -52,6 +52,18 @@ $$
 $$
 
 1. Implement a backtracking line search so that it can be applied to any objective function and optimisation method. Assume that you have the gradient  a I.e., `backtracking(rosenbrock, grad_rosenbrock, gradientdescent, [-1.5,-0.5])` should use the backtracking algorithm with the basic gradient descent optimisation algorithm and apply it to the Rosenbrock function. Here `rosenbrock` and `grad_rosenbrock` are functions of a single variable $u=[x,y]$ that return the objective function and its gradient, respectively. The function `gradientdescent` provides the search direction given by the gradient descent algorithm.
+   
+   NOTE: all algorithms other than gradient descent require additional values to be stored (e.g., momentum). Your implementation should be able to deal with this; a _nice_ solution would be something like
+
+   ```python
+   def momentum(objfunc, stepsize, position, extra):
+       if extra is None:  # create a new vector to store momentum
+           extra = np.zeros_like(position)
+       # Calculate new position based on the stepsize given by the line search
+       # ...
+       # Return the new position and updated momentum vector
+       return (position, extra)
+   ```
 2. Implement each of the following optimisation algorithms in a form that works with your backtracking line search from Q1.
    - Gradient descent (basic algorithm)
    - Gradient descent with momentum
