@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -264,15 +298,23 @@ window.Quarto = {
 \end{bmatrix}.
 \]</span></p>
 <ol type="1">
-<li>Implement a backtracking line search so that it can be applied to any objective function and optimisation method. Assume that you have the gradient a I.e., <code>backtracking(rosenbrock, grad_rosenbrock, gradientdescent, [-1.5,-0.5])</code> should use the backtracking algorithm with the basic gradient descent optimisation algorithm and apply it to the Rosenbrock function. Here <code>rosenbrock</code> and <code>grad_rosenbrock</code> are functions of a single variable <span class="math inline">\(u=[x,y]\)</span> that return the objective function and its gradient, respectively. The function <code>gradientdescent</code> provides the search direction given by the gradient descent algorithm.</li>
-<li>Implement each of the following optimisation algorithms in a form that works with your backtracking line search from Q1.
+<li><p>Implement a backtracking line search so that it can be applied to any objective function and optimisation method. Assume that you have the gradient a I.e., <code>backtracking(rosenbrock, grad_rosenbrock, gradientdescent, [-1.5,-0.5])</code> should use the backtracking algorithm with the basic gradient descent optimisation algorithm and apply it to the Rosenbrock function. Here <code>rosenbrock</code> and <code>grad_rosenbrock</code> are functions of a single variable <span class="math inline">\(u=[x,y]\)</span> that return the objective function and its gradient, respectively. The function <code>gradientdescent</code> provides the search direction given by the gradient descent algorithm.</p>
+<p>NOTE: all algorithms other than gradient descent require additional values to be stored (e.g., momentum). Your implementation should be able to deal with this; a <em>nice</em> solution would be something like</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> momentum(objfunc, stepsize, position, extra):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> extra <span class="kw">is</span> <span class="va">None</span>:  <span class="co"># create a new vector to store momentum</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        extra <span class="op">=</span> np.zeros_like(position)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate new position based on the stepsize given by the line search</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the new position and updated momentum vector</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (position, extra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Implement each of the following optimisation algorithms in a form that works with your backtracking line search from Q1.</p>
 <ul>
 <li>Gradient descent (basic algorithm)</li>
 <li>Gradient descent with momentum</li>
 <li>RMSProp</li>
 <li>Adam</li>
 </ul></li>
-<li>Try each of the algorithms on the Rosenbrock function. Compare the number of iterations required for convergence for each algorithm. What conclusions can you draw from this?</li>
+<li><p>Try each of the algorithms on the Rosenbrock function. Compare the number of iterations required for convergence for each algorithm. What conclusions can you draw from this?</p></li>
 </ol>
 </section>
 <section id="exercise-3-extension" class="level2">
