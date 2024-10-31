@@ -2,6 +2,8 @@
 
 In the following exercises you will need to develop some (simple) code to implement gradient-based optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.
 
+The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no "one size fits all"; different problems will be best solved using different methods.
+
 Most optimisation toolboxes only implement the more sophisticated methods (e.g., Adam, BFGS, Conjugate Gradient, etc). These can be good for checking your results and performance comparisons.
 
 ## Supplementary material
@@ -26,7 +28,7 @@ of two unconstrained variables $x$ and $y$.
 3. Use your favourite package to plot (e.g., contours) of $f(x,y)$ in the quadrant $x_1,x_2\geq0$ and overlay points and lines corresponding to your part 1. and 2. answers. 
 4. Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of $f(x,y)$ above. (You can write out the gradient by hand rather than using finite differences.) Plot your results on the contour plot from part 3. For stepsize selection, try each of:
    1. Use a fixed step size $\alpha$ of your choice.
-   2. Use a decaying step size $\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}$ for $\gamma=0.99$.
+   2. Use a decaying step size $\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}$ for $\gamma=0.95$.
    3. Use a backtracking line search.
 
 ## Exercise 2
