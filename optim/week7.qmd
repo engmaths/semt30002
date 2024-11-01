@@ -15,6 +15,10 @@ Most optimisation toolboxes only implement the more sophisticated methods (e.g.,
   - Julia - [Optim.jl](https://julianlsolvers.github.io/Optim.jl/stable/)
   - MATLAB - [Optimization Toolbox](https://uk.mathworks.com/help/optim/)
 
+## Notation
+
+Throughout this unit I use superscripts in brackets to denote iteration number. Superscripts without brackets denote to the power of. I.e., $x^{(3)}$ is the value of $x$ on the third iteration, whereas $x^3$ is the third power of $x$.
+
 ## Exercise 1
 
 Consider the minimisation of the objective function
