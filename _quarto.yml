@@ -28,6 +28,8 @@ website:
         menu:
           - href: optim/overview.qmd
             text: Overview
+          - href: optim/week7.qmd
+            text: Week 7
 
 format:
   html:
