@@ -15,6 +15,7 @@ Almost all optimisation packages will implement Nelder-Mead as a simple, low-dim
   - Python - [scipy.optimize](https://docs.scipy.org/doc/scipy/reference/optimize.html)
   - Julia - [Optim.jl](https://julianlsolvers.github.io/Optim.jl/stable/)
   - MATLAB - [Optimization Toolbox](https://uk.mathworks.com/help/optim/)
+- [Functional programming in NumPy](https://numpy.org/doc/2.1/reference/routines.functional.html) - specifically the `apply_along_axis` and `apply_over_axes` functions
 
 ## Notation
 
