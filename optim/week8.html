@@ -239,7 +239,11 @@ window.Quarto = {
   <li><a href="#python-code-for-ackleys-function" id="toc-python-code-for-ackleys-function" class="nav-link" data-scroll-target="#python-code-for-ackleys-function">Python code for Ackley’s function</a></li>
   <li><a href="#julia-code-for-ackleys-function" id="toc-julia-code-for-ackleys-function" class="nav-link" data-scroll-target="#julia-code-for-ackleys-function">Julia code for Ackley’s function</a></li>
   </ul></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a>
+  <ul class="collapse">
+  <li><a href="#test-data" id="toc-test-data" class="nav-link" data-scroll-target="#test-data">Test data</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-extension" id="toc-exercise-3-extension" class="nav-link" data-scroll-target="#exercise-3-extension">Exercise 3 (extension)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -287,11 +291,11 @@ window.Quarto = {
 f(\mathbf{x}) = -a\exp\left(-b\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp\left(\frac{1}{d}\sum_{i=1}^d \cos(c x_i)\right) + a + \exp(1).
 \]</span> Typically, <span class="math inline">\(a=20\)</span>, <span class="math inline">\(b=0.2\)</span>, <span class="math inline">\(c=2\pi\)</span>. Code for Ackley’s function is below.</p>
 <ol type="1">
-<li>Visualise Ackley’s function in two dimensions for <span class="math inline">\(-30\le x\le 30\)</span>. What do you notice about this function?</li>
+<li>Visualise Ackley’s function in two dimensions for <span class="math inline">\(-30\le x\le 30\)</span>. What do you notice about this function? (Also see <a href="../optim/week8-lab.html">different ways to generate the objective function landscape</a>.)</li>
 <li>Implement Particle Swarm Optimisation on Ackley’s function in 2D using a population of 10 randomly placed particles. Visualise the step-by-step movement of the particles (e.g., draw lines between the each point each particle visits to show the time history).</li>
 <li>Change the hyperparameters of the PSO algorithm (e.g., momentum, number of particles, etc). How is the convergence of the method affected versus computational time?</li>
 <li>Increase the number of dimensions to 10. How does the performance of the algorithm change?</li>
-<li>[Extension:] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?</li>
+<li>[Extension] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?</li>
 </ol>
 <section id="python-code-for-ackleys-function" class="level3">
 <h3 class="anchored" data-anchor-id="python-code-for-ackleys-function">Python code for Ackley’s function</h3>
@@ -311,7 +315,59 @@ f(\mathbf{x}) = -a\exp\left(-b\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>To follow…</p>
+<!--
+https://medium.com/aimonks/traveling-salesman-problem-tsp-using-genetic-algorithm-fea640713758
+-->
+<p>The <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">Travelling Salesman Problem</a> is a combinatorial problem where you need to choose the optimal ordering of cities to visit (and sell your goods in) such that you never visit the same city twice and you minimise the total distance travelled.</p>
+<p>We can find good (near optimal) solutions using a genetic algorithm.</p>
+<p>The first question is how to represent a journey. The easiest way is to use a vector of integers, where each integer represents a city. (E.g., 0 = London, 1 = Birmingham, etc.) The objective function is then the sum of the Euclidean distances between each city, in the order given by the solution vector.</p>
+<p>The constraints on the problem will be satisfied if each city is only in the vector once.</p>
+<p>Assuming that the start and end points can be different (i.e., you don’t need to return to your starting position), for a list of 20 cities there are <span class="math inline">\(20! = 2,432,902,008,176,640,000\)</span> possible combinations. Exhaustive search is not feasible.</p>
+<ol type="1">
+<li>What might a suitable crossover function be? (I.e., combining two parents to generate a child vector.) Remember that the constraints must still be satisfied.</li>
+<li>What might a suitable mutation function be? (I.e., modifying a child vector to give a slightly different vector.)</li>
+<li>Write code for each element of the genetic algorithm
+<ol type="1">
+<li>Generate the initial population.</li>
+<li>Calculate the fitness of each solution.</li>
+<li>Select solutions to breed from.</li>
+<li>Apply the crossover function to each pair of solutions.</li>
+<li>Apply the mutation function to ecah child solution.</li>
+<li>Replace the population with the child population.</li>
+<li>Go to 2 until the termination criteria have been met.</li>
+</ol></li>
+<li>Run your code with the UK cities data provided below.</li>
+</ol>
+<section id="test-data" class="level3">
+<h3 class="anchored" data-anchor-id="test-data">Test data</h3>
+<p>Obtained from ChatGPT with the prompt “Give me the coordinates of the top 20 cities in the UK as a Python list”.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uk_cities_coordinates <span class="op">=</span> [</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"London"</span>, <span class="fl">51.5074</span>, <span class="op">-</span><span class="fl">0.1278</span>],</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Birmingham"</span>, <span class="fl">52.4862</span>, <span class="op">-</span><span class="fl">1.8904</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Glasgow"</span>, <span class="fl">55.8642</span>, <span class="op">-</span><span class="fl">4.2518</span>],</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Liverpool"</span>, <span class="fl">53.4084</span>, <span class="op">-</span><span class="fl">2.9916</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Bristol"</span>, <span class="fl">51.4545</span>, <span class="op">-</span><span class="fl">2.5879</span>],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Manchester"</span>, <span class="fl">53.4808</span>, <span class="op">-</span><span class="fl">2.2426</span>],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Sheffield"</span>, <span class="fl">53.3811</span>, <span class="op">-</span><span class="fl">1.4701</span>],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Leeds"</span>, <span class="fl">53.8008</span>, <span class="op">-</span><span class="fl">1.5491</span>],</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Edinburgh"</span>, <span class="fl">55.9533</span>, <span class="op">-</span><span class="fl">3.1883</span>],</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Leicester"</span>, <span class="fl">52.6369</span>, <span class="op">-</span><span class="fl">1.1398</span>],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Coventry"</span>, <span class="fl">52.4068</span>, <span class="op">-</span><span class="fl">1.5197</span>],</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Kingston upon Hull"</span>, <span class="fl">53.7676</span>, <span class="op">-</span><span class="fl">0.3274</span>],</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Cardiff"</span>, <span class="fl">51.4816</span>, <span class="op">-</span><span class="fl">3.1791</span>],</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Nottingham"</span>, <span class="fl">52.9548</span>, <span class="op">-</span><span class="fl">1.1581</span>],</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Stoke-on-Trent"</span>, <span class="fl">53.0027</span>, <span class="op">-</span><span class="fl">2.1794</span>],</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Southampton"</span>, <span class="fl">50.9097</span>, <span class="op">-</span><span class="fl">1.4044</span>],</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Newcastle upon Tyne"</span>, <span class="fl">54.9783</span>, <span class="op">-</span><span class="fl">1.6174</span>],</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Portsmouth"</span>, <span class="fl">50.8198</span>, <span class="op">-</span><span class="fl">1.0878</span>],</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Bradford"</span>, <span class="fl">53.7950</span>, <span class="op">-</span><span class="fl">1.7594</span>],</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Belfast"</span>, <span class="fl">54.5973</span>, <span class="op">-</span><span class="fl">5.9301</span>],</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="exercise-3-extension" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-extension">Exercise 3 (extension)</h2>
+<p>Apply the Simulated Annealing algorithm to either of the problems (Exercise 1 or Exercise 2) above. The function to generate new solutions in Simulated Annealing can be similar to / the same as your mutation function for the genetic algorithm.</p>
 
 
 </section>
