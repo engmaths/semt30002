@@ -34,11 +34,11 @@ f(\mathbf{x}) = -a\exp\left(-b\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp
 $$
 Typically, $a=20$, $b=0.2$, $c=2\pi$. Code for Ackley's function is below.
 
-1. Visualise Ackley's function in two dimensions for $-30\le x\le 30$. What do you notice about this function?
+1. Visualise Ackley's function in two dimensions for $-30\le x\le 30$. What do you notice about this function? (Also see [different ways to generate the objective function landscape](week8-lab.ipynb).)
 2. Implement Particle Swarm Optimisation on Ackley's function in 2D using a population of 10 randomly placed particles. Visualise the step-by-step movement of the particles (e.g., draw lines between the each point each particle visits to show the time history).
 3. Change the hyperparameters of the PSO algorithm (e.g., momentum, number of particles, etc). How is the convergence of the method affected versus computational time?
 4. Increase the number of dimensions to 10. How does the performance of the algorithm change?
-5. \[Extension:\] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?
+5. \[Extension\] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?
 
 ### Python code for Ackley's function
 
@@ -61,4 +61,61 @@ end
 
 ## Exercise 2
 
-To follow...
+<!--
+https://medium.com/aimonks/traveling-salesman-problem-tsp-using-genetic-algorithm-fea640713758
+-->
+
+The [Travelling Salesman Problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) is a combinatorial problem where you need to choose the optimal ordering of cities to visit (and sell your goods in) such that you never visit the same city twice and you minimise the total distance travelled.
+
+We can find good (near optimal) solutions using a genetic algorithm.
+
+The first question is how to represent a journey. The easiest way is to use a vector of integers, where each integer represents a city. (E.g., 0 = London, 1 = Birmingham, etc.) The objective function is then the sum of the Euclidean distances between each city, in the order given by the solution vector.
+
+The constraints on the problem will be satisfied if each city is only in the vector once. 
+
+Assuming that the start and end points can be different (i.e., you don't need to return to your starting position), for a list of 20 cities there are $20! = 2,432,902,008,176,640,000$ possible combinations. Exhaustive search is not feasible.
+
+1. What might a suitable crossover function be? (I.e., combining two parents to generate a child vector.) Remember that the constraints must still be satisfied.
+2. What might a suitable mutation function be? (I.e., modifying a child vector to give a slightly different vector.)
+3. Write code for each element of the genetic algorithm
+   1. Generate the initial population.
+   2. Calculate the fitness of each solution.
+   3. Select solutions to breed from.
+   4. Apply the crossover function to each pair of solutions.
+   5. Apply the mutation function to ecah child solution.
+   6. Replace the population with the child population.
+   7. Go to 2 until the termination criteria have been met.
+4. Run your code with the UK cities data provided below.
+
+### Test data
+
+Obtained from ChatGPT with the prompt "Give me the coordinates of the top 20 cities in the UK as a Python list".
+
+```python
+uk_cities_coordinates = [
+    ["London", 51.5074, -0.1278],
+    ["Birmingham", 52.4862, -1.8904],
+    ["Glasgow", 55.8642, -4.2518],
+    ["Liverpool", 53.4084, -2.9916],
+    ["Bristol", 51.4545, -2.5879],
+    ["Manchester", 53.4808, -2.2426],
+    ["Sheffield", 53.3811, -1.4701],
+    ["Leeds", 53.8008, -1.5491],
+    ["Edinburgh", 55.9533, -3.1883],
+    ["Leicester", 52.6369, -1.1398],
+    ["Coventry", 52.4068, -1.5197],
+    ["Kingston upon Hull", 53.7676, -0.3274],
+    ["Cardiff", 51.4816, -3.1791],
+    ["Nottingham", 52.9548, -1.1581],
+    ["Stoke-on-Trent", 53.0027, -2.1794],
+    ["Southampton", 50.9097, -1.4044],
+    ["Newcastle upon Tyne", 54.9783, -1.6174],
+    ["Portsmouth", 50.8198, -1.0878],
+    ["Bradford", 53.7950, -1.7594],
+    ["Belfast", 54.5973, -5.9301],
+]
+```
+
+## Exercise 3 (extension)
+
+Apply the Simulated Annealing algorithm to either of the problems (Exercise 1 or Exercise 2) above. The function to generate new solutions in Simulated Annealing can be similar to / the same as your mutation function for the genetic algorithm.
