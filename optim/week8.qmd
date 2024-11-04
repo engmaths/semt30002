@@ -1,0 +1,58 @@
+# Week 8: Gradient-free optimisation
+
+In the following exercises you will need to develop some (simple) code to implement gradient-free optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.
+
+The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no "one size fits all"; different problems will be best solved using different methods.
+
+Almost all optimisation packages will implement Nelder-Mead as a simple, low-dimensional, gradient-free optimisation algorithm. However, population-based methods are less commonly found in existing packages because they require much more tuning towards the specific problem of interest.
+
+## Supplementary material
+
+- Algorithms for Optimisation - [Direct Methods (Nelder-Mead)](https://algorithmsbook.com/optimization/files/chapter-7.pdf)
+- Algorithms for Optimisation - [Stochastic Methods (Simulated Annealing)](https://algorithmsbook.com/optimization/files/chapter-8.pdf)
+- Algorithms for Optimisation - [Population Methods (Genetic Algorithms and Particle Swarm Optimisation)](https://algorithmsbook.com/optimization/files/chapter-9.pdf)
+- Various optimisation algorithm implementations
+  - Python - [scipy.optimize](https://docs.scipy.org/doc/scipy/reference/optimize.html)
+  - Julia - [Optim.jl](https://julianlsolvers.github.io/Optim.jl/stable/)
+  - MATLAB - [Optimization Toolbox](https://uk.mathworks.com/help/optim/)
+
+## Notation
+
+Throughout this unit I use superscripts in brackets to denote iteration number. Superscripts without brackets denote to the power of. I.e., $x^{(3)}$ is the value of $x$ on the third iteration, whereas $x^3$ is the third power of $x$.
+
+## Exercise 1
+
+Ackley's function is a commonly used optimisation test function with many local minima. It is given by
+$$
+f(\mathbf{x}) = -a\exp\left(-b\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp\left(\frac{1}{d}\sum_{i=1}^d \cos(c x_i)\right) + a + \exp(1).
+$$
+Typically, $a=20$, $b=0.2$, $c=2\pi$. Code for Ackley's function is below.
+
+1. Visualise Ackley's function in two dimensions for $-30\le x\le 30$. What do you notice about this function?
+2. Implement Particle Swarm Optimisation on Ackley's function in 2D using a population of 10 randomly placed particles. Visualise the step-by-step movement of the particles (e.g., draw lines between the each point each particle visits to show the time history).
+3. Change the hyperparameters of the PSO algorithm (e.g., momentum, number of particles, etc). How is the convergence of the method affected versus computational time?
+4. Increase the number of dimensions to 10. How does the performance of the algorithm change?
+5. \[Extension:\] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?
+
+### Python code for Ackley's function
+
+```python
+def ackley(x, a=20, b=0.2, c=2*np.pi):
+    d = len(x)
+    return -a * np.exp(-b * np.sqrt(np.sum(np.square(x))/d)) - \
+        np.exp(np.sum(np.cos(c * x))/d) + a + np.exp(1)
+```
+
+### Julia code for Ackley's function
+
+```julia
+function ackley(x, a=20, b=0.2, c=2π)
+    d = length(x)
+    return -a * exp(-b * sqrt(sum(x.^2)/d)) - 
+        exp(sum(cos.(c .* x))/d) + a + exp(1)
+end
+```
+
+## Exercise 2
+
+To follow...
