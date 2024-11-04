@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>week8 – Scientific Computing and Optimisation</title>
+<title>Week 8 lab – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,35 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -229,92 +200,142 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-8-gradient-free-optimisation" id="toc-week-8-gradient-free-optimisation" class="nav-link active" data-scroll-target="#week-8-gradient-free-optimisation">Week 8: Gradient-free optimisation</a>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#test-different-approaches-to-generating-the-objective-function-surface" id="toc-test-different-approaches-to-generating-the-objective-function-surface" class="nav-link" data-scroll-target="#test-different-approaches-to-generating-the-objective-function-surface">Test different approaches to generating the objective function surface</a>
   <ul class="collapse">
-  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#notes-from-the-demo-session" id="toc-notes-from-the-demo-session" class="nav-link" data-scroll-target="#notes-from-the-demo-session">Notes from the demo session</a></li>
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a>
-  <ul class="collapse">
-  <li><a href="#python-code-for-ackleys-function" id="toc-python-code-for-ackleys-function" class="nav-link" data-scroll-target="#python-code-for-ackleys-function">Python code for Ackley’s function</a></li>
-  <li><a href="#julia-code-for-ackleys-function" id="toc-julia-code-for-ackleys-function" class="nav-link" data-scroll-target="#julia-code-for-ackleys-function">Julia code for Ackley’s function</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  </ul></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
+  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 8 lab</h1>
+</div>
 
 
 
-<section id="week-8-gradient-free-optimisation" class="level1">
-<h1>Week 8: Gradient-free optimisation</h1>
-<p>In the following exercises you will need to develop some (simple) code to implement gradient-free optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.</p>
-<p>The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no “one size fits all”; different problems will be best solved using different methods.</p>
-<p>Almost all optimisation packages will implement Nelder-Mead as a simple, low-dimensional, gradient-free optimisation algorithm. However, population-based methods are less commonly found in existing packages because they require much more tuning towards the specific problem of interest.</p>
-<section id="supplementary-material" class="level2">
-<h2 class="anchored" data-anchor-id="supplementary-material">Supplementary material</h2>
-<ul>
-<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-7.pdf">Direct Methods (Nelder-Mead)</a></li>
-<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-8.pdf">Stochastic Methods (Simulated Annealing)</a></li>
-<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-9.pdf">Population Methods (Genetic Algorithms and Particle Swarm Optimisation)</a></li>
-<li>Various optimisation algorithm implementations
-<ul>
-<li>Python - <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html">scipy.optimize</a></li>
-<li>Julia - <a href="https://julianlsolvers.github.io/Optim.jl/stable/">Optim.jl</a></li>
-<li>MATLAB - <a href="https://uk.mathworks.com/help/optim/">Optimization Toolbox</a></li>
-</ul></li>
-<li><a href="https://numpy.org/doc/2.1/reference/routines.functional.html">Functional programming in NumPy</a> - specifically the <code>apply_along_axis</code> and <code>apply_over_axes</code> functions</li>
-</ul>
-</section>
-<section id="notes-from-the-demo-session" class="level2">
-<h2 class="anchored" data-anchor-id="notes-from-the-demo-session">Notes from the demo session</h2>
-<ul>
-<li><a href="https://etherpad.wikimedia.org/p/optim-08">Shared code</a></li>
-<li><a href="../optim/week8-lab.html">Different ways to generate the objective function landscape</a></li>
-</ul>
-</section>
-<section id="notation" class="level2">
-<h2 class="anchored" data-anchor-id="notation">Notation</h2>
-<p>Throughout this unit I use superscripts in brackets to denote iteration number. Superscripts without brackets denote to the power of. I.e., <span class="math inline">\(x^{(3)}\)</span> is the value of <span class="math inline">\(x\)</span> on the third iteration, whereas <span class="math inline">\(x^3\)</span> is the third power of <span class="math inline">\(x\)</span>.</p>
-</section>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<p>Ackley’s function is a commonly used optimisation test function with many local minima. It is given by <span class="math display">\[
-f(\mathbf{x}) = -a\exp\left(-b\sqrt{\frac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp\left(\frac{1}{d}\sum_{i=1}^d \cos(c x_i)\right) + a + \exp(1).
-\]</span> Typically, <span class="math inline">\(a=20\)</span>, <span class="math inline">\(b=0.2\)</span>, <span class="math inline">\(c=2\pi\)</span>. Code for Ackley’s function is below.</p>
-<ol type="1">
-<li>Visualise Ackley’s function in two dimensions for <span class="math inline">\(-30\le x\le 30\)</span>. What do you notice about this function?</li>
-<li>Implement Particle Swarm Optimisation on Ackley’s function in 2D using a population of 10 randomly placed particles. Visualise the step-by-step movement of the particles (e.g., draw lines between the each point each particle visits to show the time history).</li>
-<li>Change the hyperparameters of the PSO algorithm (e.g., momentum, number of particles, etc). How is the convergence of the method affected versus computational time?</li>
-<li>Increase the number of dimensions to 10. How does the performance of the algorithm change?</li>
-<li>[Extension:] Break the overall population into sub-swarms, so that you now track a global minimum, a sub-swarm minimum, and a personal minimum, with corresponding forces on each particle in those three directions. How does this change the behaviour of the algorithm?</li>
-</ol>
-<section id="python-code-for-ackleys-function" class="level3">
-<h3 class="anchored" data-anchor-id="python-code-for-ackleys-function">Python code for Ackley’s function</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ackley(x, a<span class="op">=</span><span class="dv">20</span>, b<span class="op">=</span><span class="fl">0.2</span>, c<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="bu">len</span>(x)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>a <span class="op">*</span> np.exp(<span class="op">-</span>b <span class="op">*</span> np.sqrt(np.<span class="bu">sum</span>(np.square(x))<span class="op">/</span>d)) <span class="op">-</span> <span class="op">\</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        np.exp(np.<span class="bu">sum</span>(np.cos(c <span class="op">*</span> x))<span class="op">/</span>d) <span class="op">+</span> a <span class="op">+</span> np.exp(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="julia-code-for-ackleys-function" class="level3">
-<h3 class="anchored" data-anchor-id="julia-code-for-ackleys-function">Julia code for Ackley’s function</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ackley</span>(x, a<span class="op">=</span><span class="fl">20</span>, b<span class="op">=</span><span class="fl">0.2</span>, c<span class="op">=</span><span class="fl">2</span>π)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="fu">length</span>(x)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>a <span class="op">*</span> <span class="fu">exp</span>(<span class="op">-</span>b <span class="op">*</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span>)<span class="op">/</span>d)) <span class="op">-</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">exp</span>(<span class="fu">sum</span>(<span class="fu">cos</span>.(c <span class="op">.*</span> x))<span class="op">/</span>d) <span class="op">+</span> a <span class="op">+</span> <span class="fu">exp</span>(<span class="fl">1</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>To follow…</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ackley(x, a<span class="op">=</span><span class="dv">20</span>, b<span class="op">=</span><span class="fl">0.2</span>, c<span class="op">=</span><span class="dv">2</span><span class="op">*</span>np.pi):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> <span class="bu">len</span>(x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>a <span class="op">*</span> np.exp(<span class="op">-</span>b <span class="op">*</span> np.sqrt(np.<span class="bu">sum</span>(np.square(x))<span class="op">/</span>d)) <span class="op">-</span> <span class="op">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        np.exp(np.<span class="bu">sum</span>(np.cos(c <span class="op">*</span> x))<span class="op">/</span>d) <span class="op">+</span> a <span class="op">+</span> np.exp(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="test-different-approaches-to-generating-the-objective-function-surface" class="level2">
+<h2 class="anchored" data-anchor-id="test-different-approaches-to-generating-the-objective-function-surface">Test different approaches to generating the objective function surface</h2>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 1: list comprehension (2D)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> method1(n):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)  <span class="co"># n points between -30 and 30</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)  <span class="co"># n points between -30 and 30</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x, y, np.array([[ackley(np.array([i, j])) <span class="cf">for</span> i <span class="kw">in</span> x] <span class="cf">for</span> j <span class="kw">in</span> x]))  <span class="co"># 2D array using a list comprehension</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit method1(<span class="dv">501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.75 s ± 75.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 2: pre-allocated array (2D)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> method2(n):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)  <span class="co"># n points between -30 and 30</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)  <span class="co"># n points between -30 and 30</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.zeros((n, n))  <span class="co"># pre-allocate the 2D array</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            z[i, j] <span class="op">=</span> ackley(np.array([x[i], y[j]]))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x, y, z)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit method2(<span class="dv">501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.79 s ± 47.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 3: meshgrid with list comprehension (1D)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> method3(n):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>, n)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    (xx, yy) <span class="op">=</span> np.meshgrid(x, y)  <span class="co"># 2D arrays of x and y values separately</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    xy <span class="op">=</span> np.column_stack((xx.flatten(), yy.flatten()))  <span class="co"># 2D array of all combinations of x and y; first column is x and second column is y</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x, y, np.array([ackley(xyi) <span class="cf">for</span> xyi <span class="kw">in</span> xy]).reshape(xx.shape))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit method3(<span class="dv">501</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.79 s ± 249 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+</div>
+</div>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>There is no discernable difference between the different methods - use whichever comes most naturally!</p>
+</section>
+</section>
+<section id="plotting" class="level2">
+<h2 class="anchored" data-anchor-id="plotting">Plotting</h2>
+<div id="cell-9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot contour lines</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(x, y, z) <span class="op">=</span> method1(<span class="dv">1001</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.contour(x, x, z, levels<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">21</span>), colors<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week8-lab_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="julia" class="level2">
+<h2 class="anchored" data-anchor-id="julia">Julia</h2>
+<p>Corresponding Julia code (same as method 1 in Python) is given by</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">method1</span>(n)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">30</span>, <span class="fl">30</span>, length<span class="op">=</span>n)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">30</span>, <span class="fl">30</span>, length<span class="op">=</span>n)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="fu">ackley</span>([xi, yi]) for xi <span class="kw">in</span> x, yi <span class="kw">in</span> y]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which when timed gives</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="im">using</span> <span class="bu">BenchmarkTools</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="pp">@btime</span> <span class="fu">method1</span>(<span class="fl">501</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">34.832</span> ms (<span class="fl">753005</span> allocations<span class="op">:</span> <span class="fl">59.36</span> MiB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which is 108 times faster. A small modification to use statically-sized arrays gives a further speed up</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StaticArrays</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">method2</span>(n)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">30</span>, <span class="fl">30</span>, length<span class="op">=</span>n)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">30</span>, <span class="fl">30</span>, length<span class="op">=</span>n)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="fu">ackley</span>(<span class="pp">@SVector</span>[xi, yi]) for xi <span class="kw">in</span> x, yi <span class="kw">in</span> y]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which when timed gives</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="pp">@btime</span> <span class="fu">method2</span>(<span class="fl">501</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">8.870</span> ms (<span class="fl">2</span> allocations<span class="op">:</span> <span class="fl">1.92</span> MiB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which is now 427 times faster than Python. Summary: Python is slow…</p>
+
+
 </section>
 
 </main> <!-- /main -->
