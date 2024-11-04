@@ -27,8 +27,8 @@ $$
 $$
 of two unconstrained variables $x$ and $y$.
 
-1. Working by hand. Freeze $x=0$, and find the location $y^*$ of the minimum of the function $f(0,y)$ of one variable $y$. Then freeze $y=y^*$ and find the location $x^*$ of the minimum of the function $f(x,y^*)$ of one variable $x$.
-2. Working by hand. Find $\nabla f$. Thus, beginning from the origin $(0,0)$, perform one step of the steepest-descent algorithm. That, is find the $\alpha^{(1)}$ such that the function $(0,0)^\mathrm{T}+\alpha\nabla f(0,0)$ of one variable $\alpha$ is minimised, and find the corresponding coordinates of the next iterate $(x^{(1)},y^{(1)})$.
+1. \[Coordinate descent algorithm\] Working by hand. Freeze $x=0$, and find the location $y^*$ of the minimum of the function $f(0,y)$ of one variable $y$. Then freeze $y=y^*$ and find the location $x^*$ of the minimum of the function $f(x,y^*)$ of one variable $x$.
+2. \[Gradient descent algorithm\] Working by hand. Find $\nabla f$. Thus, beginning from the origin $(0,0)$, perform one step of the gradient descent algorithm. That, is find the $\alpha^{(1)}$ such that the function $(0,0)^\mathrm{T}+\alpha\nabla f(0,0)$ of one variable $\alpha$ is minimised, and find the corresponding coordinates of the next iterate $(x^{(1)},y^{(1)})$.
 3. Use your favourite package to plot (e.g., contours) of $f(x,y)$ in the quadrant $x_1,x_2\geq0$ and overlay points and lines corresponding to your part 1. and 2. answers. 
 4. Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of $f(x,y)$ above. (You can write out the gradient by hand rather than using finite differences.) Plot your results on the contour plot from part 3. For stepsize selection, try each of:
    1. Use a fixed step size $\alpha$ of your choice.
