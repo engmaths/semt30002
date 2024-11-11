@@ -50,7 +50,7 @@ If you can install Pyomo using `pip` (e.g., `pip install pyomo`), you can then a
 
 If you have a Google account, you have free access to [Colab](https://colab.research.google.com/). This provides a notebook-style interface to cloud-based computers with Python already installed. Simply create a new notebook in Colab and add these lines to the top of the notebook:
 
-```
+```bash
 !pip install pyomo
 !apt install -y -qq glpk-utils
 ```
