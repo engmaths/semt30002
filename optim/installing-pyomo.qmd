@@ -25,14 +25,14 @@ conda install -c conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt
 If the command is not found, it means that `conda` is not on your system path (i.e., the list of folders that Windows searches for programs to run). If you installed Miniconda in the default place, you should be able to change to the installation folder and run the command from there:
 
 ```bash
-cd \\Users\\Your Username\\AppData\\Local\\miniconda3\\Scripts
+cd \Users\Your Username\AppData\Local\miniconda3\Scripts
 conda install -c conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt
 ```
 
 or (on some installs)
 
 ```bash
-cd \\Users\\Your Username\\miniconda3\\Scripts
+cd \Users\Your Username\miniconda3\Scripts
 conda install -c conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt
 ```
 
@@ -44,7 +44,7 @@ If you use PyCharm, Spyder, or VS Code, you will need to change the Python inter
 
 ## Installing GLPK directly
 
-If you can install Pyomo using `pip` (e.g., `pip install pyomo`), you can then add solvers manually. GLPK is a basic solver but sufficient for most of our needs. You can download `winglpk-4.65.zip` from <https://sourceforge.net/projects/winglpk/files/winglpk/GLPK-4.65/>. You need two files from the zip: `w64\\glpk_4_65.dll` and `w64\\glpsol.exe`. The installation guide of GLPK recommends adding these files to the folder `C:\\Windows\\System32` or another folder that is present on your path (i.e., the list of folders that Windows searches for programs to run).
+If you can install Pyomo using `pip` (e.g., `pip install pyomo`), you can then add solvers manually. GLPK is a basic solver but sufficient for most of our needs. You can download `winglpk-4.65.zip` from <https://sourceforge.net/projects/winglpk/files/winglpk/GLPK-4.65/>. You need two files from the zip: `w64\glpk_4_65.dll` and `w64\glpsol.exe`. The installation guide of GLPK recommends adding these files to the folder `C:\Windows\System32` or another folder that is present on your path (i.e., the list of folders that Windows searches for programs to run).
 
 ## Using Google Colab
 
