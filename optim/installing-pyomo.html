@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Recap of Python programming – Scientific Computing and Optimisation</title>
+<title>installing-pyomo – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -97,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Assessment</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../python/overview.html" aria-current="page"> 
+    <a class="nav-link" href="../python/overview.html"> 
 <span class="menu-text">Python</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -165,38 +199,68 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#installing-pyomo" id="toc-installing-pyomo" class="nav-link active" data-scroll-target="#installing-pyomo">Installing Pyomo</a>
+  <ul class="collapse">
+  <li><a href="#installation-via-conda-existing-install" id="toc-installation-via-conda-existing-install" class="nav-link" data-scroll-target="#installation-via-conda-existing-install">Installation via Conda (existing install)</a></li>
+  <li><a href="#installation-via-conda-new-install" id="toc-installation-via-conda-new-install" class="nav-link" data-scroll-target="#installation-via-conda-new-install">Installation via Conda (new install)</a></li>
+  <li><a href="#installing-glpk-directly" id="toc-installing-glpk-directly" class="nav-link" data-scroll-target="#installing-glpk-directly">Installing GLPK directly</a></li>
+  <li><a href="#using-google-colab" id="toc-using-google-colab" class="nav-link" data-scroll-target="#using-google-colab">Using Google Colab</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Recap of Python programming</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Use the links below to refresh your knowledge of coding in Python:</p>
+<section id="installing-pyomo" class="level1">
+<h1>Installing Pyomo</h1>
+<p>Pyomo is a Python wrapper around various solvers written in other languages. While Pyomo itself can be installed easily via <code>pip</code> or <code>conda</code>, it can be harder to install the solvers.</p>
+<section id="installation-via-conda-existing-install" class="level2">
+<h2 class="anchored" data-anchor-id="installation-via-conda-existing-install">Installation via Conda (existing install)</h2>
+<p>If you have installed Python via <a href="https://docs.anaconda.com/miniconda/miniconda-install/">Miniconda</a> or <a href="https://www.anaconda.com/">Anaconda</a>, then you can install the required packages directly with <code>conda</code>.</p>
+<p>From a terminal (Windows start menu → Terminal), run</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge pyomo glpk ipopt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To install Pyomo and the GLPK/Ipopt solvers. If the command is not found, you might need to run this command from an Anaconda command line (it might be an option on your start menu).</p>
+</section>
+<section id="installation-via-conda-new-install" class="level2">
+<h2 class="anchored" data-anchor-id="installation-via-conda-new-install">Installation via Conda (new install)</h2>
+<p>Download and install <a href="https://docs.anaconda.com/miniconda/miniconda-install/">Miniconda</a>. Since this is a new installation, you will need to install various packages. I recommend running the following from a terminal (Windows start menu → Terminal) to install common packages:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the command is not found, it means that <code>conda</code> is not on your system path (i.e., the list of folders that Windows searches for programs to run). If you installed Miniconda in the default place, you should be able to change to the installation folder and run the command from there:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="dt">\\</span>Users<span class="dt">\\</span>Your Username<span class="dt">\\</span>AppData<span class="dt">\\</span>Local<span class="dt">\\</span>miniconda3<span class="dt">\\</span>Scripts</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or (on some installs)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="dt">\\</span>Users<span class="dt">\\</span>Your Username<span class="dt">\\</span>miniconda3<span class="dt">\\</span>Scripts</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge scipy numpy matplotlib ipython pyomo glpk ipopt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you use PyCharm, Spyder, or VS Code, you will need to change the Python interpreter they use to the new one.</p>
 <ul>
-<li><a href="../python/python_review.html">Overview of Python fundamentals</a></li>
-<li><a href="../python/numpy.html">Overview of NumPy, SciPy, and Matplotlib</a></li>
+<li><a href="https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html">PyCharm instructions</a></li>
+<li><a href="https://docs.spyder-ide.org/current/faq.html">Spyder instructions</a> - see “How do I get Spyder to work with my existing Python packages/environment”</li>
+<li><a href="https://code.visualstudio.com/docs/python/environments">VS Code instructions</a></li>
 </ul>
+</section>
+<section id="installing-glpk-directly" class="level2">
+<h2 class="anchored" data-anchor-id="installing-glpk-directly">Installing GLPK directly</h2>
+<p>If you can install Pyomo using <code>pip</code> (e.g., <code>pip install pyomo</code>), you can then add solvers manually. GLPK is a basic solver but sufficient for most of our needs. You can download <code>winglpk-4.65.zip</code> from <a href="https://sourceforge.net/projects/winglpk/files/winglpk/GLPK-4.65/" class="uri">https://sourceforge.net/projects/winglpk/files/winglpk/GLPK-4.65/</a>. You need two files from the zip: <code>w64\\glpk_4_65.dll</code> and <code>w64\\glpsol.exe</code>. The installation guide of GLPK recommends adding these files to the folder <code>C:\\Windows\\System32</code> or another folder that is present on your path (i.e., the list of folders that Windows searches for programs to run).</p>
+</section>
+<section id="using-google-colab" class="level2">
+<h2 class="anchored" data-anchor-id="using-google-colab">Using Google Colab</h2>
+<p>If you have a Google account, you have free access to <a href="https://colab.research.google.com/">Colab</a>. This provides a notebook-style interface to cloud-based computers with Python already installed. Simply create a new notebook in Colab and add these lines to the top of the notebook:</p>
+<pre><code>!pip install pyomo
+!apt install -y -qq glpk-utils</code></pre>
+<p>These commands need to be run each time you re-open the notebook, but they only need to be run once per session. As such, it is best to keep them in a cell that is separate from the rest of your work at the top of the notebook.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
