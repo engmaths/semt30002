@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>week8 – Scientific Computing and Optimisation</title>
+<title>Week 8: Gradient-free optimisation – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -233,9 +233,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-8-gradient-free-optimisation" id="toc-week-8-gradient-free-optimisation" class="nav-link active" data-scroll-target="#week-8-gradient-free-optimisation">Week 8: Gradient-free optimisation</a>
-  <ul class="collapse">
-  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
+  <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link active" data-scroll-target="#supplementary-material">Supplementary material</a></li>
   <li><a href="#notes-from-the-demo-session" id="toc-notes-from-the-demo-session" class="nav-link" data-scroll-target="#notes-from-the-demo-session">Notes from the demo session</a></li>
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a>
@@ -248,18 +246,31 @@ window.Quarto = {
   <li><a href="#test-data" id="toc-test-data" class="nav-link" data-scroll-target="#test-data">Test data</a></li>
   </ul></li>
   <li><a href="#exercise-3-extension" id="toc-exercise-3-extension" class="nav-link" data-scroll-target="#exercise-3-extension">Exercise 3 (extension)</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 8: Gradient-free optimisation</h1>
+</div>
 
 
 
-<section id="week-8-gradient-free-optimisation" class="level1">
-<h1>Week 8: Gradient-free optimisation</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>In the following exercises you will need to develop some (simple) code to implement gradient-free optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.</p>
 <p>The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no “one size fits all”; different problems will be best solved using different methods.</p>
 <p>Almost all optimisation packages will implement Nelder-Mead as a simple, low-dimensional, gradient-free optimisation algorithm. However, population-based methods are less commonly found in existing packages because they require much more tuning towards the specific problem of interest.</p>
@@ -374,7 +385,6 @@ https://medium.com/aimonks/traveling-salesman-problem-tsp-using-genetic-algorith
 <p>Apply the Simulated Annealing algorithm to either of the problems (Exercise 1 or Exercise 2) above. The function to generate new solutions in Simulated Annealing can be similar to / the same as your mutation function for the genetic algorithm.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
