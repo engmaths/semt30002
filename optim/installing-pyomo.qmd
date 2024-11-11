@@ -1,4 +1,6 @@
-# Installing Pyomo
+---
+title: "Installing Pyomo"
+---
 
 Pyomo is a Python wrapper around various solvers written in other languages. While Pyomo itself can be installed easily via `pip` or `conda`, it can be harder to install the solvers.
 

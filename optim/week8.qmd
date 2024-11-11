@@ -1,4 +1,6 @@
-# Week 8: Gradient-free optimisation
+---
+title: "Week 8: Gradient-free optimisation"
+---
 
 In the following exercises you will need to develop some (simple) code to implement gradient-free optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.
 
