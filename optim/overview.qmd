@@ -5,4 +5,6 @@ title: "Scientific Computing: Overview"
 The weeks 7-11 will focus on optimisation algorithms and their use in scientific computing. We will cover a range of numerical algorithms including gradient-based methods (e.g., Adam - used for training neural networks), gradient-free methods (e.g., Nelder-Mead and genetic algorithms), linear programming (often used for optimising business processes), and (mixed) integer linear programming.
 
 * [Week 7: Gradient-based optimisation](week7.qmd)
-* [Week 7: Gradient-free optimisation](week8.qmd)
+* [Week 8: Gradient-free optimisation](week8.qmd)
+* Week 9: Linear programming
+  * [Installing Pyomo](installing-pyomo.qmd)

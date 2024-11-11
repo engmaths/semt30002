@@ -38,6 +38,7 @@ If you are coding in Python, then you will need the following packages:
 * [Matplotlib](https://matplotlib.org/)
 * [memory_profiler](https://pypi.org/project/memory-profiler/)
 * [Pyomo](http://www.pyomo.org/)
+  * See [installing Pyomo](optim/installing-pyomo.qmd) for more details
 
 If you are coding in Matlab, then you will need the optimisation and global optimisation toolboxes.
 
