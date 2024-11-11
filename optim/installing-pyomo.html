@@ -254,8 +254,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-google-colab" class="level2">
 <h2 class="anchored" data-anchor-id="using-google-colab">Using Google Colab</h2>
 <p>If you have a Google account, you have free access to <a href="https://colab.research.google.com/">Colab</a>. This provides a notebook-style interface to cloud-based computers with Python already installed. Simply create a new notebook in Colab and add these lines to the top of the notebook:</p>
-<pre><code>!pip install pyomo
-!apt install -y -qq glpk-utils</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">!pip</span> install pyomo</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">!apt</span> install <span class="at">-y</span> <span class="at">-qq</span> glpk-utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These commands need to be run each time you re-open the notebook, but they only need to be run once per session. As such, it is best to keep them in a cell that is separate from the rest of your work at the top of the notebook.</p>
 
 
