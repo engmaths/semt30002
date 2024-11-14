@@ -29,19 +29,20 @@ The costs (per kg) of each of these ingredients are
 | Cabbage    | 0.50 |
 | Cucumber   | 0.15 |
 
-Their nutritional contents with requirements per dish are
+Their nutritional contents, with requirements per side dish, are
 
 | Nutrition            | Carrot | Cabbage | Cucumber | Requirement |
 |----------------------|-------:|--------:|---------:|------------:|
 | Vitamin A (mg/kg)    | 35     | 0.5     |      0.5 | 0.5mg       |
 | Vitamin B (mg/kg)    | 60     | 300     |      10  | 15mg        |
-| Dietary Fibre (g/kg) | 30     | 20      |      10  | 5g          |
+| Dietary Fibre (g/kg) | 30     | 20      |      10  | 4g          |
 
-1. Create variables corresponding to each ingredient. E.g., `pyo.Var(within=pyo.NonNegativeReals)`.
-2. Create an objective function to minimise the total cost. E.g., `pyo.Objective(expr=..., sense=pyo.minimize)`.
-3. Create constraints for each of the nutritional requirements. E.g., `pyo.Constraint(expr=...)`.
-4. Solve the linear program. E.g., `solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()`. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 290g)?
-5. Let's suppose that cucumbers aren't available. There are a couple of ways we could achieve this - for example, we could rebuild with the third column removed. Alternatively, we could add an equality constraint on the problem (cucumber = 0).
+1. Create a model object to hold the problem. E.g., `pyo.ConcreteModel()`.
+2. Create variables corresponding to each ingredient. E.g., `pyo.Var(within=pyo.NonNegativeReals)`.
+3. Create an objective function to minimise the total cost. E.g., `pyo.Objective(expr=..., sense=pyo.minimize)`.
+4. Create constraints for each of the nutritional requirements. E.g., `pyo.Constraint(expr=...)`.
+5. Solve the linear program. E.g., `solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()`. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 290g)?
+6. Let's suppose that cucumbers aren't available. There are a couple of ways we could achieve this - for example, we could rebuild with the third column removed. Alternatively, we could add an equality constraint on the problem (cucumber = 0).
 
 ## Exercise 2 - a simple diet problem extended
 
@@ -55,4 +56,3 @@ The goal with this exercise is to simplify the construction of the objective fun
 
 ## Exercise 3 - a bigger diet problem
 
-To follow.
