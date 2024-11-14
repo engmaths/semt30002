@@ -41,7 +41,7 @@ Their nutritional contents, with requirements per side dish, are
 2. Create variables corresponding to each ingredient. E.g., `pyo.Var(within=pyo.NonNegativeReals)`.
 3. Create an objective function to minimise the total cost. E.g., `pyo.Objective(expr=..., sense=pyo.minimize)`.
 4. Create constraints for each of the nutritional requirements. E.g., `pyo.Constraint(expr=...)`.
-5. Solve the linear program. E.g., `solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()`. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 290g)?
+5. Solve the linear program. E.g., `solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()`. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 294g)?
 6. Let's suppose that cucumbers aren't available. There are a couple of ways we could achieve this - for example, we could rebuild with the third column removed. Alternatively, we could add an equality constraint on the problem (cucumber = 0).
 
 ## Exercise 2 - a simple diet problem extended
@@ -51,7 +51,15 @@ The goal with this exercise is to simplify the construction of the objective fun
 1. Read slides 28-30 of the Pyomo Workshop Slides (link above; "Simple Modeling Example: Classic Knapsack Problem" onwards). How might you create a similar structure for the diet problem?
 2. Use the variables (carrot, cabbage, cucumber) as the indices, with the cost and nutritional content as dictionaries (e.g., `cost = {'carrot': 0.75, ...}` and `vitaminA = {'carrot': 35}`). Create the full problem in Pyomo, solve it, and check your answer matches with exercise 1.
 3. Using dictionaries, it was possible to simplify the problem so we have a single variable (with indices `['carrot', 'cabbage', 'cucumber']`), but all the constraints are still defined separately. To store all the constraint information in a single table, we can create a dictionary of the form `nutrition = {('carrot', 'vitamin A'): 35, ('carrot', 'vitamin B'): 60, ..., ('cucumber', 'fibre'): 10}`. Create a dictionary for the nutrition and a separate dictionary for the requirements.
-4. How can you use this form to condense the creation of all the constraints? Solve the problem and check that your results match your previous results.
+4. Rather than give names to individual constraints, it is possible to create a list of constraints in Pyomo. This enables us to use loops to create many constraints easily. The form of the command is
+
+   ```python
+   model.constraints = pyo.ConstraintList()
+   for n in nutrient_names:
+      model.constraints.add(...)
+   ```
+
+   How can you use this form to condense the creation of all the constraints? Solve the problem and check that your results match your previous results.
    - Creating a dictionary by hand in this way is quite painful. We'd usually load one in from a spreadsheet directly - see the next exercise.
 
 ## Exercise 3 - a bigger diet problem
