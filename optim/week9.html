@@ -245,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Their nutritional contents with requirements per dish are</p>
+<p>Their nutritional contents, with requirements per side dish, are</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -276,11 +276,12 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">30</td>
 <td style="text-align: right;">20</td>
 <td style="text-align: right;">10</td>
-<td style="text-align: right;">5g</td>
+<td style="text-align: right;">4g</td>
 </tr>
 </tbody>
 </table>
 <ol type="1">
+<li>Create a model object to hold the problem. E.g., <code>pyo.ConcreteModel()</code>.</li>
 <li>Create variables corresponding to each ingredient. E.g., <code>pyo.Var(within=pyo.NonNegativeReals)</code>.</li>
 <li>Create an objective function to minimise the total cost. E.g., <code>pyo.Objective(expr=..., sense=pyo.minimize)</code>.</li>
 <li>Create constraints for each of the nutritional requirements. E.g., <code>pyo.Constraint(expr=...)</code>.</li>
@@ -303,7 +304,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="exercise-3---a-bigger-diet-problem" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3---a-bigger-diet-problem">Exercise 3 - a bigger diet problem</h2>
-<p>To follow.</p>
 
 
 </section>
