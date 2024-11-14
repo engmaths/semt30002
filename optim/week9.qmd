@@ -64,3 +64,85 @@ The goal with this exercise is to simplify the construction of the objective fun
 
 ## Exercise 3 - a bigger diet problem
 
+In this problem, we have a much bigger and more realistic data set to work with. In this case you would not want to work by hand. Instead, we will use the approaches developed in exercise 2 to solve the problem.
+
+1. Download the data files:
+   - [optim-09-lab-FoodContentsData.csv](https://github.com/engmaths/semt30002/blob/b36da33fc3def9261f84e0a9340c262063383dff/optim/optim-09-lab-FoodContentsData.csv)
+   - [optim-09-lab-FoodPriceData.csv](https://github.com/engmaths/semt30002/raw/9def02bbd7e4534109cd094f693ed4e24dc3c311/optim/optim-09-lab-FoodPriceData.csv)
+   - [optim-09-lab-NutritionalRequirementsData.csv](https://github.com/engmaths/semt30002/blob/9def02bbd7e4534109cd094f693ed4e24dc3c311/optim/optim-09-lab-NutritionalRequirementsData.csv)
+2. Open each one in Excel (or similar) to familiarise yourself with the data.
+3. Import [Pandas](https://pandas.pydata.org/) to read the CSV files: `import pandas as pd`.
+4. Load the data files using `data = pd.read_csv(filename, index_col=0)`.
+5. The list of foods can be extracted from the food price data by taking the first column: `foods = prices.index.values.tolist()`. Similarly, the list of nutrient names can be taken from the first column of the nutritional requirements: `nutrient_names = requirements.index.values.tolist()`.
+6. Convert the data files into dictionaries using `data_dict = data.stack().to_dict()`.
+7. Set up your linear programming problem as in exercise 2 and solve it.
+   - Note that there are both minimum and maximum nutritional requirements.
+
+The solution that I get is:
+
+```text
+Frozen Broccoli  =  0.0
+Carrots, Raw  =  0.257921686004706
+Celery, Raw  =  0.0
+Frozen Corn  =  0.0
+Lettuce, Iceberg,Raw  =  0.0
+Peppers, Sweet, Raw  =  0.0
+Potatoes, Baked  =  6.11992356370029
+Tofu  =  0.0
+Roasted Chicken  =  0.0
+Spaghetti W/ Sauce  =  0.0
+Tomato,Red,Ripe,Raw  =  0.0
+Apple, Raw, w/Skin  =  0.0
+Banana  =  0.0
+Grapes  =  0.0
+Kiwifruit, Raw, Fresh  =  0.0
+Oranges  =  0.0
+Bagels  =  0.0
+Wheat Bread  =  0.0
+White Bread  =  0.0
+Oatmeal Cookies  =  0.0
+Apple Pie  =  0.0
+Chocolate Chip Cookies  =  0.0
+Butter, Regular  =  0.0
+Cheddar Cheese  =  0.0
+3.3% Fat, Whole Milk  =  0.0
+2% Lowfat Milk  =  0.0
+Skim Milk  =  2.00270396628937
+Poached Eggs  =  0.0
+Scrambled Eggs  =  0.0
+Bologna, Turkey  =  0.0
+Frankfurter, Beef  =  0.0
+Ham, Sliced, Extralean  =  0.0
+Kielbasa, Pork  =  0.0
+Cap'N Crunch  =  0.0
+Cheerios  =  0.0
+Corn Flakes, Kellogg'S  =  0.0
+Raisin Bran, Kellogg'S  =  0.0
+Rice Krispies  =  0.0
+Special K  =  0.0
+Oatmeal  =  0.0
+Malt-O-Meal, Choc  =  0.0
+Pizza w/Pepperoni  =  0.0
+Taco  =  0.0
+Hamburger w/Toppings  =  0.0
+Hotdog, Plain  =  0.0
+Couscous  =  0.0
+White Rice  =  0.117814898855647
+Macaroni, cooked  =  0.0
+Peanut Butter  =  3.92286261080103
+Pork  =  0.0
+Sardines in Oil  =  0.0
+White Tuna in Water  =  0.0
+Popcorn, Air-Popped  =  0.15278313277272
+Potato Chips, BBQ  =  0.0
+Pretzels  =  0.0
+Tortilla Chips  =  0.0
+Chicken Noodle Soup  =  0.0
+Splt Pea&Ham Soup  =  0.0
+Veggie Beef Soup  =  0.0
+New Eng Clam Chwd  =  0.0
+Tomato Soup  =  0.0
+New Eng Clam Chwd, w/Mlk  =  0.0
+Crm Mshrm Soup, w/Mlk  =  0.0
+Bean Bacon Soup, w/Watr  =  0.0
+```
