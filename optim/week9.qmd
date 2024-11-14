@@ -67,9 +67,9 @@ The goal with this exercise is to simplify the construction of the objective fun
 In this problem, we have a much bigger and more realistic data set to work with. In this case you would not want to work by hand. Instead, we will use the approaches developed in exercise 2 to solve the problem.
 
 1. Download the data files:
-   - [optim-09-lab-FoodContentsData.csv](https://github.com/engmaths/semt30002/blob/b36da33fc3def9261f84e0a9340c262063383dff/optim/optim-09-lab-FoodContentsData.csv)
-   - [optim-09-lab-FoodPriceData.csv](https://github.com/engmaths/semt30002/raw/9def02bbd7e4534109cd094f693ed4e24dc3c311/optim/optim-09-lab-FoodPriceData.csv)
-   - [optim-09-lab-NutritionalRequirementsData.csv](https://github.com/engmaths/semt30002/blob/9def02bbd7e4534109cd094f693ed4e24dc3c311/optim/optim-09-lab-NutritionalRequirementsData.csv)
+   - [optim-09-lab-FoodContentsData.csv](https://raw.githubusercontent.com/engmaths/semt30002/b36da33fc3def9261f84e0a9340c262063383dff/optim/optim-09-lab-FoodContentsData.csv)
+   - [optim-09-lab-FoodPriceData.csv](https://raw.githubusercontent.com/engmaths/semt30002/b36da33fc3def9261f84e0a9340c262063383dff/optim/optim-09-lab-FoodPriceData.csv)
+   - [optim-09-lab-NutritionalRequirementsData.csv](https://raw.githubusercontent.com/engmaths/semt30002/b36da33fc3def9261f84e0a9340c262063383dff/optim/optim-09-lab-NutritionalRequirementsData.csv)
 2. Open each one in Excel (or similar) to familiarise yourself with the data.
 3. Import [Pandas](https://pandas.pydata.org/) to read the CSV files: `import pandas as pd`.
 4. Load the data files using `data = pd.read_csv(filename, index_col=0)`.
