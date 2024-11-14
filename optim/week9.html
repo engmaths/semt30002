@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 7: Gradient-based optimisation – Scientific Computing and Optimisation</title>
+<title>Week 9: Linear programming – Scientific Computing and Optimisation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -101,35 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -238,15 +175,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link active" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#exercise-3-extension" id="toc-exercise-3-extension" class="nav-link" data-scroll-target="#exercise-3-extension">Exercise 3 (extension)</a>
-  <ul class="collapse">
-  <li><a href="#sphere-function" id="toc-sphere-function" class="nav-link" data-scroll-target="#sphere-function">Sphere Function</a></li>
-  <li><a href="#rastrigin-function" id="toc-rastrigin-function" class="nav-link" data-scroll-target="#rastrigin-function">Rastrigin Function</a></li>
-  <li><a href="#ackley-function" id="toc-ackley-function" class="nav-link" data-scroll-target="#ackley-function">Ackley Function</a></li>
-  </ul></li>
+  <li><a href="#exercise-1---a-simple-diet-problem" id="toc-exercise-1---a-simple-diet-problem" class="nav-link" data-scroll-target="#exercise-1---a-simple-diet-problem">Exercise 1 - a simple diet problem</a></li>
+  <li><a href="#exercise-2---a-simple-diet-problem-extended" id="toc-exercise-2---a-simple-diet-problem-extended" class="nav-link" data-scroll-target="#exercise-2---a-simple-diet-problem-extended">Exercise 2 - a simple diet problem extended</a></li>
+  <li><a href="#exercise-3---a-bigger-diet-problem" id="toc-exercise-3---a-bigger-diet-problem" class="nav-link" data-scroll-target="#exercise-3---a-bigger-diet-problem">Exercise 3 - a bigger diet problem</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +186,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 7: Gradient-based optimisation</h1>
+<h1 class="title">Week 9: Linear programming</h1>
 </div>
 
 
@@ -272,107 +203,109 @@ window.Quarto = {
 </header>
 
 
-<p>In the following exercises you will need to develop some (simple) code to implement gradient-based optimisation algorithms. You are free to use any resources available to develop your codes, but I recommend trying to understand the details of how they work to build up intuition for later in the course.</p>
-<p>The purpose of all these exercises is to help you understand the strengths and weakness of different approaches. In optimisation, there is no “one size fits all”; different problems will be best solved using different methods.</p>
-<p>Most optimisation toolboxes only implement the more sophisticated methods (e.g., Adam, BFGS, Conjugate Gradient, etc). These can be good for checking your results and performance comparisons.</p>
+<p>In the following exercises you will learn the basics of Pyomo. Setting up a simple problem is relatively straightforward, but adding extra variables/constraints quickly becomes problematic if you don’t learn how to use its more advanced functionality.</p>
+<p>These exercises will take you through setting up a basic problem with simple notation before moving to the more advanced functionality on the same problem. Finally, we will tackle a significantly larger problem requiring importing data.</p>
 <section id="supplementary-material" class="level2">
 <h2 class="anchored" data-anchor-id="supplementary-material">Supplementary material</h2>
 <ul>
-<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-4.pdf">Local descent (line search methods)</a></li>
-<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-5.pdf">First-order gradient</a></li>
-<li>Various optimisation algorithm implementations
+<li>Algorithms for Optimisation - <a href="https://algorithmsbook.com/optimization/files/chapter-11.pdf">Linear constrained optimization</a></li>
+<li><a href="https://github.com/Pyomo/pyomo-tutorials/raw/main/Pyomo-Workshop-December-2023.pdf">Pyomo Workshop Slides</a> - slide 25 onwards in particular</li>
+<li>Various linear programming implementations
 <ul>
-<li>Python - <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html">scipy.optimize</a></li>
-<li>Julia - <a href="https://julianlsolvers.github.io/Optim.jl/stable/">Optim.jl</a></li>
+<li>Python - <a href="https://www.pyomo.org/">Pyomo</a></li>
+<li>Julia - <a href="https://jump.dev/JuMP.jl/stable/">JuMP</a></li>
 <li>MATLAB - <a href="https://uk.mathworks.com/help/optim/">Optimization Toolbox</a></li>
 </ul></li>
 </ul>
 </section>
-<section id="notation" class="level2">
-<h2 class="anchored" data-anchor-id="notation">Notation</h2>
-<p>Throughout this unit I use superscripts in brackets to denote iteration number. Superscripts without brackets denote to the power of. I.e., <span class="math inline">\(x^{(3)}\)</span> is the value of <span class="math inline">\(x\)</span> on the third iteration, whereas <span class="math inline">\(x^3\)</span> is the third power of <span class="math inline">\(x\)</span>.</p>
-</section>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
-<p>Consider the minimisation of the objective function <span class="math display">\[
-    f(x,y)=2x^2+5y^2-2xy -2x-8y
-\]</span> of two unconstrained variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<section id="exercise-1---a-simple-diet-problem" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1---a-simple-diet-problem">Exercise 1 - a simple diet problem</h2>
+<p>The backdrop to this exercise is <a href="https://www.youtube.com/watch?v=36Uj1ZhWqa8" class="uri">https://www.youtube.com/watch?v=36Uj1ZhWqa8</a>; there is no need to watch the video unless you would like a reminder of how linear programming works.</p>
+<p>In this exercise, a company would like to minimise the cost of “healthy” side dishes for their burgers. They have three basic ingredients: carrot, white cabbage, and pickled cucumbers.</p>
+<p>The costs (per kg) of each of these ingredients are</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ingredient</th>
+<th style="text-align: right;">Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Carrot</td>
+<td style="text-align: right;">0.75</td>
+</tr>
+<tr class="even">
+<td>Cabbage</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td>Cucumber</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+</tbody>
+</table>
+<p>Their nutritional contents with requirements per dish are</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Nutrition</th>
+<th style="text-align: right;">Carrot</th>
+<th style="text-align: right;">Cabbage</th>
+<th style="text-align: right;">Cucumber</th>
+<th style="text-align: right;">Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vitamin A (mg/kg)</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0.5mg</td>
+</tr>
+<tr class="even">
+<td>Vitamin B (mg/kg)</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">15mg</td>
+</tr>
+<tr class="odd">
+<td>Dietary Fibre (g/kg)</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">5g</td>
+</tr>
+</tbody>
+</table>
 <ol type="1">
-<li>[Coordinate descent algorithm] Working by hand. Freeze <span class="math inline">\(x=0\)</span>, and find the location <span class="math inline">\(y^*\)</span> of the minimum of the function <span class="math inline">\(f(0,y)\)</span> of one variable <span class="math inline">\(y\)</span>. Then freeze <span class="math inline">\(y=y^*\)</span> and find the location <span class="math inline">\(x^*\)</span> of the minimum of the function <span class="math inline">\(f(x,y^*)\)</span> of one variable <span class="math inline">\(x\)</span>.</li>
-<li>[Gradient descent algorithm] Working by hand. Find <span class="math inline">\(\nabla f\)</span>. Thus, beginning from the origin <span class="math inline">\((0,0)\)</span>, perform one step of the gradient descent algorithm. That, is find the <span class="math inline">\(\alpha^{(1)}\)</span> such that the function <span class="math inline">\((0,0)^\mathrm{T}+\alpha\nabla f(0,0)\)</span> of one variable <span class="math inline">\(\alpha\)</span> is minimised, and find the corresponding coordinates of the next iterate <span class="math inline">\((x^{(1)},y^{(1)})\)</span>.</li>
-<li>Use your favourite package to plot (e.g., contours) of <span class="math inline">\(f(x,y)\)</span> in the quadrant <span class="math inline">\(x_1,x_2\geq0\)</span> and overlay points and lines corresponding to your part 1. and 2. answers.</li>
-<li>Develop, exhibit, and explain gradient descent code that finds the minimum value and the location of the minimum of <span class="math inline">\(f(x,y)\)</span> above. (You can write out the gradient by hand rather than using finite differences.) Plot your results on the contour plot from part 3. For stepsize selection, try each of:
-<ol type="1">
-<li>Use a fixed step size <span class="math inline">\(\alpha\)</span> of your choice.</li>
-<li>Use a decaying step size <span class="math inline">\(\alpha^{(k)} = \alpha^{(1)}\gamma^{k-1}\)</span> for <span class="math inline">\(\gamma=0.95\)</span>.</li>
-<li>Use a backtracking line search.</li>
-</ol></li>
+<li>Create variables corresponding to each ingredient. E.g., <code>pyo.Var(within=pyo.NonNegativeReals)</code>.</li>
+<li>Create an objective function to minimise the total cost. E.g., <code>pyo.Objective(expr=..., sense=pyo.minimize)</code>.</li>
+<li>Create constraints for each of the nutritional requirements. E.g., <code>pyo.Constraint(expr=...)</code>.</li>
+<li>Solve the linear program. E.g., <code>solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()</code>. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 290g)?</li>
+<li>Let’s suppose that cucumbers aren’t available. There are a couple of ways we could achieve this - for example, we could rebuild with the third column removed. Alternatively, we could add an equality constraint on the problem (cucumber = 0).</li>
 </ol>
 </section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<p>The Rosenbrock function is a standard test case for many optimisation algorithms because it is ill conditioned (i.e., nasty): <span class="math display">\[
-    f(x,y) = (a - x)^2 + b(y - x^2)^2
-\]</span> where typically <span class="math inline">\(a = 1\)</span> and <span class="math inline">\(b = 100\)</span>. The gradient of the Rosenbrock function is The gradient of the Rosenbrock function is given by</p>
-<p><span class="math display">\[
-\nabla f(x,y) =
-\begin{bmatrix}
-\frac{\partial f}{\partial x} \\
-\frac{\partial f}{\partial y}
-\end{bmatrix}
-=
-\begin{bmatrix}
--2(a - x) - 4bx(y - x^2) \\
-2b(y - x^2)
-\end{bmatrix}.
-\]</span></p>
+<section id="exercise-2---a-simple-diet-problem-extended" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2---a-simple-diet-problem-extended">Exercise 2 - a simple diet problem extended</h2>
+<p>The goal with this exercise is to simplify the construction of the objective function and the constraints. Often data is provided in tableaus (as above) and instead of manually typing out constraints, we can use loops over the rows/columns of the table. This may not seem simpler for this small example, but it will be significantly easier for large problems.</p>
 <ol type="1">
-<li><p>Implement a backtracking line search so that it can be applied to any objective function and optimisation method. Assume that you have the gradient a I.e., <code>backtracking(rosenbrock, grad_rosenbrock, gradientdescent, [-1.5,-0.5])</code> should use the backtracking algorithm with the basic gradient descent optimisation algorithm and apply it to the Rosenbrock function. Here <code>rosenbrock</code> and <code>grad_rosenbrock</code> are functions of a single variable <span class="math inline">\(u=[x,y]\)</span> that return the objective function and its gradient, respectively. The function <code>gradientdescent</code> provides the search direction given by the gradient descent algorithm.</p>
-<p>NOTE: all algorithms other than gradient descent require additional values to be stored (e.g., momentum). Your implementation should be able to deal with this; a <em>nice</em> solution would be something like</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> momentum(objfunc, stepsize, position, extra):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> extra <span class="kw">is</span> <span class="va">None</span>:  <span class="co"># create a new vector to store momentum</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        extra <span class="op">=</span> np.zeros_like(position)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate new position based on the stepsize given by the line search</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the new position and updated momentum vector</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (position, extra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Implement each of the following optimisation algorithms in a form that works with your backtracking line search from Q1.</p>
+<li>Read slides 28-30 of the Pyomo Workshop Slides (link above; “Simple Modeling Example: Classic Knapsack Problem” onwards). How might you create a similar structure for the diet problem?</li>
+<li>Use the variables (carrot, cabbage, cucumber) as the indices, with the cost and nutritional content as dictionaries (e.g., <code>cost = {'carrot': 0.75, ...}</code> and <code>vitaminA = {'carrot': 35}</code>). Create the full problem in Pyomo, solve it, and check your answer matches with exercise 1.</li>
+<li>Using dictionaries, it was possible to simplify the problem so we have a single variable (with indices <code>['carrot', 'cabbage', 'cucumber']</code>), but all the constraints are still defined separately. To store all the constraint information in a single table, we can create a dictionary of the form <code>nutrition = {('carrot', 'vitamin A'): 35, ('carrot', 'vitamin B'): 60, ..., ('cucumber', 'fibre'): 10}</code>. Create a dictionary for the nutrition and a separate dictionary for the requirements.</li>
+<li>How can you use this form to condense the creation of all the constraints? Solve the problem and check that your results match your previous results.
 <ul>
-<li>Gradient descent (basic algorithm)</li>
-<li>Gradient descent with momentum</li>
-<li>RMSProp</li>
-<li>Adam</li>
+<li>Creating a dictionary by hand in this way is quite painful. We’d usually load one in from a spreadsheet directly - see the next exercise.</li>
 </ul></li>
-<li><p>Try each of the algorithms on the Rosenbrock function. Compare the number of iterations required for convergence for each algorithm. What conclusions can you draw from this?</p></li>
 </ol>
 </section>
-<section id="exercise-3-extension" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3-extension">Exercise 3 (extension)</h2>
-<p>Below are three additional objective functions commonly used to test the performance of gradient-based optimisation algorithms. Use <span class="math inline">\(n=2\)</span> in each case. (Feel free to test the performance in more dimensions!)</p>
-<p>Apply your code from exercise 2 to each of these test cases. Visualise the results.</p>
-<section id="sphere-function" class="level3">
-<h3 class="anchored" data-anchor-id="sphere-function">Sphere Function</h3>
-<p>The Sphere function is a simple convex function used for testing optimisation algorithms</p>
-<p><span class="math display">\[
-f(x) = \sum_{i=1}^{n} x_i^2.
-\]</span></p>
-</section>
-<section id="rastrigin-function" class="level3">
-<h3 class="anchored" data-anchor-id="rastrigin-function">Rastrigin Function</h3>
-<p>The Rastrigin function is a non-convex function used to test the performance of optimisation algorithms on multimodal landscapes</p>
-<p><span class="math display">\[
-f(x) = 10n + \sum_{i=1}^{n} \left[ x_i^2 - 10 \cos(2 \pi x_i) \right].
-\]</span></p>
-</section>
-<section id="ackley-function" class="level3">
-<h3 class="anchored" data-anchor-id="ackley-function">Ackley Function</h3>
-<p>The Ackley function is another non-convex function with many local minima, making it a challenging test case for optimisation algorithms</p>
-<p><span class="math display">\[
-f(x) = -20 \exp \left( -0.2 \sqrt{0.5 \sum_{i=1}^{n} x_i^2} \right) - \exp \left( 0.5 \sum_{i=1}^{n} \cos(2 \pi x_i) \right) + \exp(1) + 20.
-\]</span></p>
+<section id="exercise-3---a-bigger-diet-problem" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3---a-bigger-diet-problem">Exercise 3 - a bigger diet problem</h2>
+<p>To follow.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
