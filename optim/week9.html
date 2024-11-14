@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -285,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Create variables corresponding to each ingredient. E.g., <code>pyo.Var(within=pyo.NonNegativeReals)</code>.</li>
 <li>Create an objective function to minimise the total cost. E.g., <code>pyo.Objective(expr=..., sense=pyo.minimize)</code>.</li>
 <li>Create constraints for each of the nutritional requirements. E.g., <code>pyo.Constraint(expr=...)</code>.</li>
-<li>Solve the linear program. E.g., <code>solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()</code>. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 290g)?</li>
+<li>Solve the linear program. E.g., <code>solver = pyo.SolverFactory('glpk') ; results = solver.solve(model, tee=True) ; model.pprint()</code>. Does the solution match that of the YouTube video (carrot = 9.5g, cabbage = 38g, cucumber = 294g)?</li>
 <li>Let’s suppose that cucumbers aren’t available. There are a couple of ways we could achieve this - for example, we could rebuild with the third column removed. Alternatively, we could add an equality constraint on the problem (cucumber = 0).</li>
 </ol>
 </section>
@@ -293,10 +327,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="exercise-2---a-simple-diet-problem-extended">Exercise 2 - a simple diet problem extended</h2>
 <p>The goal with this exercise is to simplify the construction of the objective function and the constraints. Often data is provided in tableaus (as above) and instead of manually typing out constraints, we can use loops over the rows/columns of the table. This may not seem simpler for this small example, but it will be significantly easier for large problems.</p>
 <ol type="1">
-<li>Read slides 28-30 of the Pyomo Workshop Slides (link above; “Simple Modeling Example: Classic Knapsack Problem” onwards). How might you create a similar structure for the diet problem?</li>
-<li>Use the variables (carrot, cabbage, cucumber) as the indices, with the cost and nutritional content as dictionaries (e.g., <code>cost = {'carrot': 0.75, ...}</code> and <code>vitaminA = {'carrot': 35}</code>). Create the full problem in Pyomo, solve it, and check your answer matches with exercise 1.</li>
-<li>Using dictionaries, it was possible to simplify the problem so we have a single variable (with indices <code>['carrot', 'cabbage', 'cucumber']</code>), but all the constraints are still defined separately. To store all the constraint information in a single table, we can create a dictionary of the form <code>nutrition = {('carrot', 'vitamin A'): 35, ('carrot', 'vitamin B'): 60, ..., ('cucumber', 'fibre'): 10}</code>. Create a dictionary for the nutrition and a separate dictionary for the requirements.</li>
-<li>How can you use this form to condense the creation of all the constraints? Solve the problem and check that your results match your previous results.
+<li><p>Read slides 28-30 of the Pyomo Workshop Slides (link above; “Simple Modeling Example: Classic Knapsack Problem” onwards). How might you create a similar structure for the diet problem?</p></li>
+<li><p>Use the variables (carrot, cabbage, cucumber) as the indices, with the cost and nutritional content as dictionaries (e.g., <code>cost = {'carrot': 0.75, ...}</code> and <code>vitaminA = {'carrot': 35}</code>). Create the full problem in Pyomo, solve it, and check your answer matches with exercise 1.</p></li>
+<li><p>Using dictionaries, it was possible to simplify the problem so we have a single variable (with indices <code>['carrot', 'cabbage', 'cucumber']</code>), but all the constraints are still defined separately. To store all the constraint information in a single table, we can create a dictionary of the form <code>nutrition = {('carrot', 'vitamin A'): 35, ('carrot', 'vitamin B'): 60, ..., ('cucumber', 'fibre'): 10}</code>. Create a dictionary for the nutrition and a separate dictionary for the requirements.</p></li>
+<li><p>Rather than give names to individual constraints, it is possible to create a list of constraints in Pyomo. This enables us to use loops to create many constraints easily. The form of the command is</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model.constraints <span class="op">=</span> pyo.ConstraintList()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> nutrient_names:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   model.constraints.add(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>How can you use this form to condense the creation of all the constraints? Solve the problem and check that your results match your previous results.</p>
 <ul>
 <li>Creating a dictionary by hand in this way is quite painful. We’d usually load one in from a spreadsheet directly - see the next exercise.</li>
 </ul></li>
