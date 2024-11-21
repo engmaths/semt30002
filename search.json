@@ -205,35 +205,35 @@
   {
     "objectID": "optim/week10.html",
     "href": "optim/week10.html",
-    "title": "Week 9: Integer programming",
+    "title": "Week 10: Integer programming",
     "section": "",
     "text": "In the following exercises, we will examine how to build integer programs from a given problem statement. The software available (Pyomo, JuMP, etc) can automatically solve most problems (with a big caveat that anything with more than a large handful of variables will take a really long time to solve, unless it has special structure). The real challenge is usually getting a good mathematical formulation."
   },
   {
     "objectID": "optim/week10.html#supplementary-material",
     "href": "optim/week10.html#supplementary-material",
-    "title": "Week 9: Integer programming",
+    "title": "Week 10: Integer programming",
     "section": "Supplementary material",
     "text": "Supplementary material\n\nAlgorithms for Optimisation - Discrete optimization\nPyomo Workshop Slides - slide 25 onwards in particular\nVarious integer programming implementations\n\nPython - Pyomo\nJulia - JuMP\nMATLAB - Optimization Toolbox\n\nAdditional integer programming exercises - OR-Notes by J E Beasley"
   },
   {
     "objectID": "optim/week10.html#exercise-1---another-diet-problem",
     "href": "optim/week10.html#exercise-1---another-diet-problem",
-    "title": "Week 9: Integer programming",
+    "title": "Week 10: Integer programming",
     "section": "Exercise 1 - another diet problem",
     "text": "Exercise 1 - another diet problem\nConsider (a type of diet problem) the manufacturer of animal feed who is producing feed mix for dairy cattle. In this simple example the feed mix contains two active ingredients and a filler to provide bulk. One kg of feed mix must contain a minimum quantity of each of four nutrients as below:\n\n\n\nNutrient\nA\nB\nC\nD\n\n\n\n\ngram\n90\n50\n20\n2\n\n\n\nwhere the ingredients have the following nutrients and costs:\n\n\n\n\nA\nB\nC\nD\nCost/kg\n\n\n\n\nIngredient 1 (gram/kg)\n100\n80\n40\n10\n40\n\n\nIngredient 2 (gram/kg)\n200\n150\n20\n-\n60\n\n\n\nThanks to http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html for this which has a range of other fun problems.\n\nLet \\(x_1\\), \\(x_2\\), and \\(x_3\\) be the amounts in kg of the two active ingredients and the filler. Note \\(x_1+x_2+x_3=1\\) is a constraint. Write down the nutrient constraints, and formulate and solve the (least cost) linear program. (No integer programming yet.)\nSuppose there is a fixed cost of 15 units for incorporating any non-zero amount of ingredient 2. Model this by introducing a new (binary, i.e., 0 or 1) variable \\(y\\) such that \\(y=1\\) if \\(x_2&gt;0\\) with \\(15y\\) added to the cost. Note because \\(x_2\\leq 1\\) automatically holds, we may introduce the constraint \\(x_2\\leq y\\). Formulate the integer linear program and solve.\nSuppose now we need not satisfy all four nutrient constraints but need only satisfy three of them: i.e., whereas before the optimal solution required all four nutrient constraints to be satisfied now the optimal solution could (if it is worthwhile to do so) only have three (any three) of these nutrient constraints satisfied and the fourth violated. Introduce 4 new binary variables and solve the problem. (See source webpage for hints.)"
   },
   {
     "objectID": "optim/week10.html#exercise-2---the-n-queens-problem",
     "href": "optim/week10.html#exercise-2---the-n-queens-problem",
-    "title": "Week 9: Integer programming",
+    "title": "Week 10: Integer programming",
     "section": "Exercise 2 - the N-queens problem",
     "text": "Exercise 2 - the N-queens problem\nThe N-queens problem involves placing N chess queens on an N×N chessboard such that no two queens can attack each other. This means no two queens can share the same row, column, or diagonal. The goal is to find a possible arrangements that satisfy these conditions.\n\nRepresent the placement of queens on an N×N chess board as an N×N binary matrix. For a fixed value of N (e.g., N=4), write down the constraints on this binary matrix. Implement this problem in Pyomo/JuMP/the MATLAB Optimization Toolbox to find a solution.\nGeneralise the generation of constraints so you can tackle any value for N. How does the time to compute a solution grow with N?"
   },
   {
     "objectID": "optim/week10.html#exercise-3---extension-the-marriage-problem",
     "href": "optim/week10.html#exercise-3---extension-the-marriage-problem",
-    "title": "Week 9: Integer programming",
+    "title": "Week 10: Integer programming",
     "section": "Exercise 3 - (extension) the marriage problem",
     "text": "Exercise 3 - (extension) the marriage problem\nA classical example of bipartite matching.\nDown at the dating agency, we conveniently (this is a mathematical idealisation!) have \\(p\\) men and \\(p\\) women and we assume each person is seeking a monogamous relationship with an individual of the opposite sex. Based on questionnaire data, the agency has computed an incompatibility score \\(c_{ij}\\) for each man \\(i\\) with each woman \\(j\\) — i.e., a value of 0 denotes perfect compatibility. Write the optimal pairing strategy as a linear program and solve. Random cost matrices may be generated with the provided code below.\n\nThis is an example of a so-called bipartite matching problem. Google it, and read about the which is the original way of solving these problems. Try coding up the Hungarian Algorithm.\nPossible extensions to this problem. Differing numbers of men and women — what to do? For simplicity, you might continue to assume two distinct genders, but what about other attachment types, eg if some individuals are bisexual and can thus be paired either with a bisexual individual of the same gender or with a heterosexual individual of the opposite gender. What about polygamy? Model how the programs might change and implement them.\n\n\nPython\ndef generate_incompatibility_matrix(n):\n    mFeature = np.random.rand(n,1)\n    fFeature = np.random.rand(n,1)\n    return np.abs(mFeature - fFeature.T)\n\n\nJulia\nfunction generate_incompatibility_matrix(n)\n    mFeature = rand(n)\n    fFeature = rand(n)\n    return abs.(mFeature .- fFeature')\nend\n\n\nMATLAB\nfunction c = generate_incompatibility_matrix(n)\n    mFeature = rand(n);\n    fFeature = rand(n);\n    c = abs(mFeature - fFeature');\nend"
   },
