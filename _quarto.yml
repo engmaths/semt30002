@@ -34,6 +34,8 @@ website:
             text: Week 8
           - href: optim/week9.qmd
             text: Week 9
+          - href: optim/week10.qmd
+            text: Week 10
           - href: optim/installing-pyomo.qmd
             text: Installing Pyomo
 

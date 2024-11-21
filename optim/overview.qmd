@@ -8,3 +8,4 @@ The weeks 7-11 will focus on optimisation algorithms and their use in scientific
 * [Week 8: Gradient-free optimisation](week8.qmd)
 * [Week 9: Linear programming](week9.qmd)
   * [Installing Pyomo](installing-pyomo.qmd)
+* [Week 10: Integer programming](week10.qmd)

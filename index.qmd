@@ -15,7 +15,7 @@ This unit will bring together your previous experience of solving mathematical p
 * [Week 7: Gradient-based optimisation](optim/week7.qmd)
 * [Week 8: Gradient-free optimisation](optim/week8.qmd)
 * [Week 9: Linear programming](optim/week9.qmd)
-* Week 10: Integer linear programming
+* [Week 10: Integer linear programming](optim/week10.qmd)
 * Week 11: Optimisation extras and coursework support
 * Week 12: No sessions
 
