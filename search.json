@@ -326,6 +326,6 @@
     "href": "optim/overview.html",
     "title": "Optimisation: Overview",
     "section": "",
-    "text": "The weeks 7-11 will focus on optimisation algorithms and their use in scientific computing. We will cover a range of numerical algorithms including gradient-based methods (e.g., Adam - used for training neural networks), gradient-free methods (e.g., Nelder-Mead and genetic algorithms), linear programming (often used for optimising business processes), and (mixed) integer linear programming.\n\nWeek 7: Gradient-based optimisation\nWeek 8: Gradient-free optimisation\nWeek 9: Linear programming\n\nInstalling Pyomo"
+    "text": "The weeks 7-11 will focus on optimisation algorithms and their use in scientific computing. We will cover a range of numerical algorithms including gradient-based methods (e.g., Adam - used for training neural networks), gradient-free methods (e.g., Nelder-Mead and genetic algorithms), linear programming (often used for optimising business processes), and (mixed) integer linear programming.\n\nWeek 7: Gradient-based optimisation\nWeek 8: Gradient-free optimisation\nWeek 9: Linear programming\n\nInstalling Pyomo\n\nWeek 10: Integer programming"
   }
 ]
