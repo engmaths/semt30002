@@ -15,20 +15,9 @@ The code that you develop this week will form an essential role in the upcoming 
 
 # Supplementary material
 
-* [PDF of demos](demos/Week02-Demos.pdf)
+* [PDF of demos]()
 
 # Exercises
-
-The goal of the exercises is to create a BVP solver that is capable
-of finding numerical solutions to ODEs of the form
-$$
-D \tdd{u}{x} + q(x, u; \mu) = 0,
-$$
-where the domain of the problem is given by $a \leq x \leq b$.  In this equation, $D > 0$ is a parameter.  The term $q(x, u; \mu)$ represents a function that depends on the spatial coordinate $x$, the solution $u(x)$, and a parameter $\mu$.  Your solver should be able to handle all three types of boundary conditions (Dirichlet, Neumann, and Robin).
-
-
-Building this solver is a big task.  The exercises below are designed so that you can see how to build your code by solving a sequence of simpler problems.  Test your code extensively and only add complexity once you are certain it works correctly.
-
 
 1. Use finite differences to find a numerical solution to
 $$
@@ -51,7 +40,7 @@ in this case, the exact solution is given by
 $$
 u(x) = -\frac{1}{2D}(x-a)(x-b) +  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x - a) + \gamma_1.
 $$
-Once you've developed code for the problem with $q(x) = 1$, add an $x$ dependence into $q$.  Can you find some exact solutions for this case?
+Once you've developed code for the problem with $q(x) = 1$, add an $x$ dependence into $q$.  Can you find some exact solutions for this case that can be used for code validation?
 
 3. Generalise your code so that the source term $q$ can now depend on the solution $u$ as well as a parameter $\mu$.  Use your code to solve the equation
 $$
@@ -66,9 +55,19 @@ with the boundary conditions $\phi(-1) = -1$ and $\phi(1) = 1$ when (a) $\mu = 0
 4. (Optional) Solve the previous exercise using your own implementation of Newton's method and a built-in algebraic solver (e.g. `root` or `fsolve`).  Compare the performance of the solver.  What solver is more likely to converge?  *Answer: you should see that Newton's method is more likely to converge (assuming you're using the default options with the built-in solver)*. 
 
 
-4. Update your code so that it can account for any combination of Dirichlet, Neumann, and Robin boundary conditions.  Remember to validate your code against problems with known solutions!
+4. Extend your code further so that it can solve problems of the
+form
+$$
+D \tdd{u}{x} + q(x, u, \mu) = 0, \quad
+u(a) = \gamma_1, \quad \left.\td{u}{x}\right|_{x=b} = \delta.
+$$
+As a starting point, set $q = 1$, $\gamma_1 = 0$, and $\delta = 0$.  In this case, the exact solution is 
+$$
+u(x) = \frac{1}{2D}(x - a)(2b - a - x).
+$$
 
-5. Try using your code to solve the problem
+
+5. (Optional) Try using your code to solve the problem
 $$
 \tdd{u}{x} + 1 = 0, \quad \left.\td{u}{x}\right|_{x=\pm 1} = 0.
 $$

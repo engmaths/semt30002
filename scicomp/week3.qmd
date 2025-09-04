@@ -20,23 +20,12 @@ The implicit Euler method is more complex because it involves solving a system o
 Use the links below to find:
 
 
-* [PDF of demos (updated 29/09)](demos/Week03-Demos.pdf)
+* [PDF of demos (updated 29/09)]()
 * [Some solutions to the diffusion equation](w03-diffusion_equation.pdf)
 * [How to time Python and Matlab code](timing_code.qmd)
 
 
 # Exercises
-
-The goal of this week is to develop code that can solve
-reaction-diffusion equations of the form
-$$
-\pd{u}{t} = D \pdd{u}{x} + q(x, t, u; \mu), \tag{1}
-$$
-where the diffusion coefficient $D > 0$.  The domain of the problem is given by $a \leq x \leq b$.  The term $q(x, t, u; \mu)$ represents a function that depends on the spatial coordinate $x$, time $t$, the solution $u(x, t)$, and a parameter $\mu$.  
-
-Your code should be able to handle all combinations of boundary conditions.  You should implement both the explicit and implicit Euler method.
-
-
 
 1. Use the explicit Euler method to solve the linear diffusion equation without a source term
 $$
@@ -79,12 +68,12 @@ You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$ and use 
 
     **Hint**: It may help to code up an explicit Euler method for this problem first due to its simplicity. Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.
 
-4. Extend your code so that it can handle Neumann and Robin boundary conditions.  One way to start this process is to solve
+4. Neumann boundary conditions.  Numerically solve the problem given by
 $$
 \pd{u}{t} = D\pdd{u}{x}
 $$
-with boundary conditions given by
+with boundary and initial conditions given by
 $$
-\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=L} = j,  \quad u(x,0) = 0.
+\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=b} = j,  \quad u(x,0) = 0.
 $$
-**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $L \gg 1$ (e.g. $L = 10$) and use the similarity solution in the supplementary notes, which gives $u(L,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$.
+**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$.

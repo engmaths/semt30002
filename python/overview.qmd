@@ -1,9 +1,18 @@
 ---
-title: "Recap of Python programming"
+title: "Coding"
 ---
+
+This page contains some useful info on programming.
+
+## Python basics
 
 Use the links below to refresh your knowledge of coding in Python:
 
 * [Overview of Python fundamentals](python_review.qmd)
 * [Overview of NumPy, SciPy, and Matplotlib](numpy.qmd)
 
+## Timing your code
+
+Use the link below to learn how to time your Python or Matlab code:
+
+* [Timing Python or Matlab code](/scicomp/timing_code.qmd)

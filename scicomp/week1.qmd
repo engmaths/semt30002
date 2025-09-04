@@ -24,17 +24,12 @@ If the formula is valid, determine the order of the approximation.
 Is the approximation formula valid when $C = -5$?  If so, what is the
 order of the approximation?
 
-2. Implement a version of Euler's method that can solve an arbitrary system of ODEs of the form
-$$
-\td{\vec{u}}{t} = \vec{f}(\vec{u}, t, \mu),
-$$
-where $\mu$ represents one or many parameters that the function  $\boldsymbol{f}$ might depend on.  The initial condition is $\boldsymbol{u}(0) = \boldsymbol{u}_0$.
-3. Validate your implementation of Euler's method by numerically solving the system of ODEs given by
+2. Use Euler's method to solve the ODE system given by
 $$
 \td{u_1}{t} = -\omega u_2, \qquad 
 \td{u_2}{t} = \omega u_1, \tag{1}
 $$
-over the time range $0 \leq t \leq 2 \pi$.  The initial condition can be set to $u_1(0) = 1$ and $u_2(0) = 0$.  The exact solution to this problem is given by $u_1(t) = \cos(\omega t)$ and $u_2(t) = \sin (\omega t)$.
+over the time range $0 \leq t \leq 2 \pi$.  The initial condition can be set to $u_1(0) = 1$ and $u_2(0) = 0$.  The exact solution to this problem is given by $u_1(t) = \cos(\omega t)$ and $u_2(t) = \sin (\omega t)$.  You can use this exact solution to validate your code and check that it is working correctly.
     (a) Set $\omega = 1$ and use $N_t = 100$ time steps to find a numerical solution.  Plot $u_1$ as a function of time using your numerical solution and the exact solution.  
     (b) Keeping $\omega = 1$, create similar plots when $N_t$ is decreased to 50 and increased to 1000.  From the plots, what happens to the accuracy of the numerical solution as $N_t$ increases?
 

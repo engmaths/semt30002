@@ -11,7 +11,7 @@ This week, we will use finite differences to solve PDEs in two dimensions.  Part
 # Supplementary material
 
 * [Example code for the Poisson equation](poisson_example.qmd)
-* [PDF of demos](demos/Week05-Demos.pdf)
+* [PDF of demos]()
 
 # Exercises
 
@@ -51,4 +51,4 @@ with $u(0) = u(1) = 0$.
     (b) Repeat part (a) but now use $N = 1000$.  If you have correctly implemented sparse matrices, then you should now see a significant speed up and memory reduction.
 
 
-6. Solve the 2D Poisson equation with sparse matrices.
+6. Solve the 2D Poisson equation with sparse matrices.  Use memory profiling to examine the memory saved by using sparse matrices.

@@ -12,16 +12,9 @@ In this unit, we will use the upwind scheme to numerically solve first-order PDE
 
 # Supplementary material
 
-* [PDF of demos](demos/Week04-Demos.pdf)
+* [PDF of demos]()
 
 # Exercises
-
-The goal of this week is to develop code that can solve
-reaction-advection equations of the form
-$$
-\pd{u}{t} + v(x,t,u) \pd{u}{x} = q(x, t, u; \mu), \tag{1}
-$$
-where the speed $v$ can be positive or negative.  The domain of the problem is given by $a \leq x \leq b$.  The term $q(x, t, u; \mu)$ represents a function that depends on the spatial coordinate $x$, time $t$, the solution $u(x, t)$, and a parameter $\mu$.  
 
 1. Solve the linear advection equation given by
 $$

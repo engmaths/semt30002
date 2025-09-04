@@ -8,8 +8,16 @@ website:
       - href: index.qmd
         text: Home
       - assessment.qmd
-      - href: python/overview.qmd
-        text: Python
+      - text: Coding
+        menu:
+          - href: python/overview.qmd
+            text: Overview
+          - href: python/python_review.qmd
+            text: Python recap
+          - href: python/numpy.qmd
+            text: NumPy, SciPy, Matplotlib
+          - href: scicomp/timing_code.qmd
+            text: Timing code
       - text: "ODEs and PDEs (weeks 1–5)"
         menu:
           - href: scicomp/overview.qmd
