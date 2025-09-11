@@ -10,7 +10,7 @@ To start off the unit, we dive into finite differences.  This is a general metho
 
 # Supplementary material
 
-* [PDF of demos](demos/Week01-Demos.pdf)
+* [PDF of demos](demos/Week01-DemosSlides.pdf)
 * [Notes on the derivation of finite-difference formulae using Taylor expansions](w01-finite_differences.pdf)
 
 # Exercises

@@ -15,7 +15,7 @@ The code that you develop this week will form an essential role in the upcoming 
 
 # Supplementary material
 
-* [PDF of demos]()
+* [PDF of demos](demos/Week02-DemosSlides.pdf)
 
 # Exercises
 
