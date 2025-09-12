@@ -22,7 +22,7 @@ This unit will bring together your previous experience of solving mathematical p
 # Teaching sessions
 
 * Monday 1200--1300 - demo and Q&A session - MVB 1.15
-* Thursday 1600--1800 - lab session -- QB 1.19 (Weeks 1 and 2 only) then MVB 1.15
+* Thursday 1300--1500 - lab session -- MVB 1.15
 * Friday 1300--1400 - drop-in (optional) - MVB 1.15
 
 
