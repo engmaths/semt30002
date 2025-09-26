@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-33486d6390cc5f9ef26896ba28f0e32f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -232,7 +232,10 @@ window.Quarto = {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#coursework-style-problem" id="toc-coursework-style-problem" class="nav-link" data-scroll-target="#coursework-style-problem">Coursework-style problem</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -275,8 +278,9 @@ window.Quarto = {
 <h1>Supplementary material</h1>
 <p>Use the links below to find:</p>
 <ul>
-<li><a href="">PDF of demos (updated 29/09)</a></li>
+<li><a href="">PDF of demos</a></li>
 <li><a href="w03-diffusion_equation.pdf">Some solutions to the diffusion equation</a></li>
+<li><a href="imex.pdf">Notes on implicit-explicit (IMEX) methods</a></li>
 <li><a href="../scicomp/timing_code.html">How to time Python and Matlab code</a></li>
 </ul>
 </section>
@@ -305,15 +309,23 @@ u(x, t) =  \exp\left(-\frac{D \pi^2 t}{(b-a)^2}\right)\sin\left(\frac{\pi (x - a
 \]</span> on the domain <span class="math inline">\(0 \leq x \leq 10\)</span>. The boundary and initial conditions are <span class="math display">\[
 u(0,t) = 1, \qquad u(10,t) = 0, \qquad u(x,0) = 0.
 \]</span> You can take <span class="math inline">\(D = 0.1\)</span> and <span class="math inline">\(r = 2\)</span>. Run your simulation until <span class="math inline">\(t = 20\)</span> and use 51 grid points (<span class="math inline">\(N = 50\)</span>). What types of solution do you see?</p>
-<p><strong>Hint</strong>: It may help to code up an explicit Euler method for this problem first due to its simplicity. Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.</p></li>
-<li><p>Neumann boundary conditions. Numerically solve the problem given by <span class="math display">\[
-\pd{u}{t} = D\pdd{u}{x}
-\]</span> with boundary and initial conditions given by <span class="math display">\[
-\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=b} = j,  \quad u(x,0) = 0.
-\]</span> <strong>Hint</strong>: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take <span class="math inline">\(b \gg 1\)</span> (e.g.&nbsp;<span class="math inline">\(b = 10\)</span>) and use the similarity solution in the supplementary notes, which gives <span class="math inline">\(u(b,t) \simeq j(4 t / \pi D)^{1/2}\)</span> for sufficiently small values of <span class="math inline">\(t\)</span>.</p></li>
+<p><strong>Hint</strong>: there are three ways to solve this problem: (i) using the explicit Euler method, which is the easiest to implement; (ii) using the implicit Euler method, which allows larger time steps to be taken; and (iii) using an <a href="imex.pdf">implicit-explicit (IMEX) method</a>, which combines the simplicity of explicit Euler with the numerical stability of implicit Euler. Try starting with the explicit Euler or IMEX method.</p></li>
 </ol>
+<!-- 4. Neumann boundary conditions.  Numerically solve the problem given by
+$$
+\pd{u}{t} = D\pdd{u}{x}
+$$
+with boundary and initial conditions given by
+$$
+\quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=b} = j,  \quad u(x,0) = 0.
+$$
+**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$. -->
+<section id="coursework-style-problem" class="level2">
+<h2 class="anchored" data-anchor-id="coursework-style-problem">Coursework-style problem</h2>
+<p>TBA</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
