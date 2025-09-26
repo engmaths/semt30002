@@ -20,8 +20,9 @@ The implicit Euler method is more complex because it involves solving a system o
 Use the links below to find:
 
 
-* [PDF of demos (updated 29/09)]()
+* [PDF of demos]()
 * [Some solutions to the diffusion equation](w03-diffusion_equation.pdf)
+* [Notes on implicit-explicit (IMEX) methods](imex.pdf)
 * [How to time Python and Matlab code](timing_code.qmd)
 
 
@@ -66,9 +67,11 @@ u(0,t) = 1, \qquad u(10,t) = 0, \qquad u(x,0) = 0.
 $$
 You can take $D = 0.1$ and $r = 2$.  Run your simulation until $t = 20$ and use 51 grid points ($N = 50$).  What types of solution do you see?
 
-    **Hint**: It may help to code up an explicit Euler method for this problem first due to its simplicity. Then, implement an implicit Euler method, and validate the results by comparing with your explicit Euler method.
+    **Hint**: there are three ways to solve this problem: (i) using the explicit Euler method, which is the easiest to implement; (ii) using the implicit Euler method, which allows larger time steps to be
+    taken; and (iii) using an [implicit-explicit (IMEX) method](imex.pdf), which
+    combines the simplicity of explicit Euler with the numerical stability of implicit Euler.  Try starting with the explicit Euler or IMEX method.
 
-4. Neumann boundary conditions.  Numerically solve the problem given by
+<!-- 4. Neumann boundary conditions.  Numerically solve the problem given by
 $$
 \pd{u}{t} = D\pdd{u}{x}
 $$
@@ -76,4 +79,8 @@ with boundary and initial conditions given by
 $$
 \quad u(0,t) = 0, \quad D\left.\pd{u}{x}\right|_{x=b} = j,  \quad u(x,0) = 0.
 $$
-**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$.
+**Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$. -->
+
+## Coursework-style problem
+
+TBA
