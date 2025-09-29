@@ -322,7 +322,24 @@ $$
 **Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$. -->
 <section id="coursework-style-problem" class="level2">
 <h2 class="anchored" data-anchor-id="coursework-style-problem">Coursework-style problem</h2>
-<p>TBA</p>
+<p>This problem explores the fluid and solid mechanics of coffee brewing. Consider a fresh layer of coffee grains of height <span class="math inline">\(H = 10\)</span> mm. The coffee is on placed top of a perforated metal surface that allows water to pass through it. Let <span class="math inline">\(z\)</span> be an upwards-pointing vertical coordinate such that <span class="math inline">\(z = 0\)</span> corresponds to the bottom of the coffee and <span class="math inline">\(z = H\)</span> corresponds to the top of the coffee. At time <span class="math inline">\(t = 0\)</span>, water enters the top surface of the coffee. The water then flows through the coffee grains and leaves through the bottom surface.</p>
+<p>The coffee grains form a porous solid that deforms as water flows through it. The flow of water through the solid, along with the gravitational force, generates a pressure gradient. The pressure gradient acts on the solid to deform it. The pressure in the coffee grains, <span class="math inline">\(p(z,t)\)</span>, satisfies the following equation <span class="math display">\[\begin{align}
+\frac{1}{E}\pd{p}{t} = K \pdd{p}{z}.
+\end{align}\]</span> Here, <span class="math inline">\(E = 10^5\)</span> Pa is the Young’s modulus and <span class="math inline">\(K = 5.6 \times 10^{-10}\)</span> m<span class="math inline">\(^2\)</span> Pa<span class="math inline">\(^{-1}\)</span> s<span class="math inline">\(^{-1}\)</span> is the hydraulic conductivity. The Young’s modulus measures the stiffness of the porous solid formed by the coffee grains, and <span class="math inline">\(K\)</span> characterises how easy it is for fluid to flow through the coffee grains.</p>
+<p>The pressure of the coffee is initially at the atmospheric pressure, <span class="math inline">\(p(z,0) = p_a\)</span>, where <span class="math inline">\(p_a = 101.3\)</span> kPa. The pressure at the bottom of the coffee can be assumed to be equal to the atmospheric pressure, <span class="math inline">\(p(0,t) = p_a\)</span>. To account for the influx of water at the top of the coffee grains, the boundary condition at <span class="math inline">\(z = H\)</span> is given by <span class="math display">\[\begin{align}
+K \left(\pd{p}{z} + \rho g\right)_{z = H} = F(t)
+\end{align}\]</span> where <span class="math inline">\(\rho= 1000\)</span> kg m<span class="math inline">\(^{-3}\)</span> is the density of wet coffee, <span class="math inline">\(g = 9.81\)</span> m/s<span class="math inline">\(^2\)</span> is the gravitational acceleration, and <span class="math inline">\(F(t)\)</span> represents the flux of water coming into the coffee. We will assume that the flux is given by <span class="math display">\[\begin{align}
+F(t) = \begin{cases} F_0, \quad 0 \leq t \leq 10~\text{s}, \\
+0, \quad t &gt; 10~\text{s},
+\end{cases}
+\end{align}\]</span> where <span class="math inline">\(F_0 = 2 \times 10^{-5}\)</span> m/s, which represents a 10 second injection of water into the coffee.</p>
+<ol type="1">
+<li><p>Calculate the difference in fluid pressure at the top surface, <span class="math inline">\(\Delta p = p(H,t) - p_a\)</span> after 5, 10, 15, and 30 s have passed. <em>Answers (to 3 significant figures): 652, 1890, 577, -13.9 Pa</em>.</p></li>
+<li><p>Compute the steady-state pressure profile and plot. Recall that the steady-state pressure is obtained by assuming that time <span class="math inline">\(t\)</span> is very large and that the solution does not depend on time. How does your steady-state profile compared to the pressure you computed from problem 1? <em>Answer: you should find that your time-dependent solution approaches the steady-state solution</em>.</p></li>
+<li><p>The displacement of the coffee grains, <span class="math inline">\(u(z,t)\)</span>, can be determined from the equation <span class="math display">\[\begin{align}
+\pd{u}{z} = \frac{p-p_a}{E}.
+\end{align}\]</span> Since coffee cannot pass through the metal surface on which it rests, the displacement at <span class="math inline">\(z = 0\)</span> is zero, <span class="math inline">\(u(0,t) = 0\)</span>. The deformed thickness of the coffee layer is given by <span class="math inline">\(h(t) = H + u(H,t)\)</span>. Plot how the thickness of the coffee layer changes in time. Is the final thickness of the coffee layer larger or smaller than the initial thickness? <em>Answer: smaller, the coffee layer shrinks</em>. <img src="coffee.png" class="img-fluid quarto-figure quarto-figure-center" alt="Solution to part 3"></p></li>
+</ol>
 
 
 </section>
