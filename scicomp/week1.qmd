@@ -72,4 +72,4 @@ In the exercises below, assume that the current is being drawn for one hour.
 
 2. Is a battery pack with $N = 50$ batteries safe to use? *Answer: no*.
 
-3. What is the largest number of batteries that a pack can contain yet still be safe to use?  *Answer: 11*.
+3. What is the largest number of batteries that a pack can contain yet still be safe to use?  *Answer: 6*.
