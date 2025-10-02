@@ -20,7 +20,7 @@ The implicit Euler method is more complex because it involves solving a system o
 Use the links below to find:
 
 
-* [PDF of demos]()
+* [PDF of demos](demos/Week03-DemosSlides.pdf)
 * [Some solutions to the diffusion equation](w03-diffusion_equation.pdf)
 * [Notes on implicit-explicit (IMEX) methods](imex.pdf)
 * [How to time Python and Matlab code](timing_code.qmd)
