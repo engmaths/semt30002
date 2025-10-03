@@ -12,7 +12,7 @@ In this unit, we will use the upwind scheme to numerically solve first-order PDE
 
 # Supplementary material
 
-* [PDF of demos]()
+* [PDF of demos](demos/Week04-DemosSlides.pdf)
 
 # Exercises
 
