@@ -61,6 +61,34 @@ print('There are', dof, 'unknowns to solve for')
 k = lambda i,j : i + (Nx - 1) * j
 
 """
+Setting the initial guess of the solution, which is assumed
+to be given by u(x,y) = x*y*(1-x)*(1-y).  First we
+create this as a 2D array named u_0.  Then we convert
+the 2D array into a 1D array named U_0.  Notice how the
+mapping function k defined above is used to calculate
+the indices of the 1D array using the two local grid
+indices i and j
+"""
+
+# pre-allocate the 2D array
+u_0 = np.zeros((Nx - 1, Ny - 1))
+
+# use a double for loop to create the initial guess as a 2D array
+
+for i in range(Nx - 1):
+    for j in range(Ny - 1):
+        u_0[i, j] = x_int[i]*y_int[j]*(1-x_int[i])*(1-y_int[j])
+
+# pre-allocate the 1D array
+U_0 = np.zeros((Nx - 1) * (Ny - 1))
+
+# use a double for loop to store each u[i,j] in U_k
+for i in range(Nx - 1):
+    for j in range(Ny - 1):
+        U_0[k(i,j)] = u_0[i,j]
+
+
+"""
 Function to pass to SciPy's root.  This function
 builds the algebraic system in the form F(U) = 0,
 where U is a 1D array that contains the solution
@@ -168,11 +196,8 @@ def dirichlet_problem(U):
 
 
 """
-solve the algebraic system using SciPy's root function
+Solve the algebraic system using SciPy's root function
 """
-
-# First we set the initial guess (in this case zeros)
-U_0 = np.zeros((Nx-1) * (Ny-1))
 
 # Solve
 sol = root(dirichlet_problem, U_0)
@@ -205,5 +230,15 @@ ax.plot_surface(xx, yy, u.T, cmap=cm.coolwarm)
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("u")
+fig.tight_layout()
+
+# contour plots are often better to use because 
+# all the features can be seen
+plt.figure()
+plt.contourf(xx, yy, u.T, 50, cmap = cm.coolwarm)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.colorbar()
+
 plt.show()
 ```
