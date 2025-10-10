@@ -41,7 +41,7 @@ $u_1^{N_t}$ is the numerical solution at time step $N_t$.
     (a) For a fixed value of $\omega = 1$, how fast does the error decrease with $\Delta t$?  Is it linear, quadratic, etc?  Is this what you expect based on the truncation error of Euler's method?  
     (b) For a fixed number of time steps, $N_t = 10^4$, how does the error change as $\omega$ increases?  Can you provide a justification of the results you see?  For this problem, try setting $\omega = 1, 2, 4, 8, 16$.
 
-# Coursework-style problem
+## Coursework-style problem
 
 Consider a pack of $N$ identical lithium-ion batteries that are connected in series.  Let $i = 1$ denote the first battery in the pack and $i = N$ denote the last battery in the pack.  The other batteries are labelled with $i = 2, 3, \ldots, N - 1$.  Due to the geometry of the pack, only batteries 1 and $N$ are in contact with the environment.  Battery $i$ is in contact with batteries $i-1$ and $i + 1$.
 
@@ -73,3 +73,18 @@ In the exercises below, assume that the current is being drawn for one hour.
 2. Is a battery pack with $N = 50$ batteries safe to use? *Answer: no*.
 
 3. What is the largest number of batteries that a pack can contain yet still be safe to use?  *Answer: 6*.
+
+
+## Answers to selected exercises
+
+1. $C = 5$ does not lead to a valid differentiation formula.  $C = -5$ does lead to a valid differentiation formula that is second-order accurate, with $TE = O((\Delta x)^2)$.
+
+2. 
+    (a) Use the exact solution to validate your code and see what the numerical solution should look like. 
+    (b) The accuracy of the solution increases as $N_t$ increases.
+
+3. The parameter $\omega$ corresponds to the natural frequency of the mass-spring system.
+
+4. 
+    (a) The error decrease linearly with $\Delta t$.  
+    (b) The error increases quadratically with $\omega$. This result is agrees with theory, as the truncation error is proportional to $\ddot{u}_1$. From the exact solution, $\ddot{u}_1$ is proportional to $\omega^2$.  This result implies that the accuracy of Euler's method not only depends on the size of $\Delta t$, but also how fast the derivative of the solution is changing.

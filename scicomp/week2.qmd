@@ -53,7 +53,7 @@ with the boundary conditions $\phi(-1) = -1$ and $\phi(1) = 1$ when (a) $\mu = 0
 
     **Hint 2**: If you find it difficult to obtain a solution when $\mu = 100$, then try to increase $\mu$ in increments from $0.5$ to $100$.  Each time a new solution is successfully computed, use it as the initial guess for the next (larger) value of $\mu$.  This process of gradually ramping up a parameter and using the previously computed solution as the next initial guess is called [natural parameter continuation](https://en.wikipedia.org/wiki/Numerical_continuation#Natural_parameter_continuation).
 
-4. (Optional) Solve the previous exercise using your own implementation of Newton's method and a built-in algebraic solver (e.g. `root` or `fsolve`).  Compare the performance of the solver.  What solver is more likely to converge?  *Answer: you should see that Newton's method is more likely to converge (assuming you're using the default options with the built-in solver)*. 
+4. (Optional) Solve the previous exercise using your own implementation of Newton's method and a built-in algebraic solver (e.g. `root` or `fsolve`).  Compare the performance of the solver.  What solver is more likely to converge?
 
 
 4. Extend your code further so that it can solve problems of the
@@ -74,6 +74,13 @@ $$
 $$
 To understand what happens in this case, try solving this problem by hand.  Alternatively, integrate the ODE and impose the boundary conditions.
 
+## Answers to selected exercises
+
+3\. ![Answer to exercise 3 with $\mu = 100$.](week02_q3.svg)
+
+4\. You should see that Newton's method is more likely to converge, assuming you're using the default options with the built-in solver.
+
+6\. This ODE does not have a solution.  Numerical methods will always fail to find a solution.
 
 <!-- ## Bonus problems
 

@@ -114,3 +114,10 @@ where $F_0 = 2 \times 10^{-5}$ m/s, which represents a 10 second injection of wa
 \end{align}
 Since coffee cannot pass through the metal surface on which it rests, the displacement at $z = 0$ is zero, $u(0,t) = 0$.  The deformed thickness of the coffee layer is given by $h(t) = H + u(H,t)$.  Plot how the thickness of the coffee layer changes in time. Is the final thickness of the coffee layer larger or smaller than the initial thickness?  *Answer: smaller, the coffee layer shrinks*.
 ![Solution to part 3](coffee.png){fig-align="center"}
+
+
+## Answers to selected exercises
+
+3\. (a) Explicit Euler is the fastest because the computational cost of each time step is smaller. (b) Implicit Euler is now the fastest because it now requires less time steps.  However, the explicit Euler method is the more accurate method because the time step is smaller.
+
+5\. ![Answer to Exercise 5](week03_q5.svg)

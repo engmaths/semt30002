@@ -64,3 +64,14 @@ $$
 $$
 over the domain $-\pi \leq x \leq \pi$ and $0 \leq t \leq 2$.
 The initial condition can be set to $u(x,0) = \sin x$.  If boundary conditions are needed, set $u = t$ at the boundary.
+
+
+## Answers to selected exercises
+
+3. As C increases to one, the numerical solution becomes more accurate and there is less numerical diffusion.  From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to $(1 - C)$.  Setting $C = 1$ therefore eliminates numerical diffusion.
+
+4. No boundary conditions are needed
+
+5. ![Answer to Exercise 5](week04_q5.png)
+
+6. ![Answer to Exercise 6](week04_q6.png)
