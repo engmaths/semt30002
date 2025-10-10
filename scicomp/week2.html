@@ -232,7 +232,10 @@ window.Quarto = {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#answers-to-selected-exercises" id="toc-answers-to-selected-exercises" class="nav-link" data-scroll-target="#answers-to-selected-exercises">Answers to selected exercises</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -301,7 +304,7 @@ u(x) = -\frac{1}{2D}(x-a)(x-b) +  \left(\frac{\gamma_2 - \gamma_1}{b-a}\right)(x
 \]</span> with the boundary conditions <span class="math inline">\(\phi(-1) = -1\)</span> and <span class="math inline">\(\phi(1) = 1\)</span> when (a) <span class="math inline">\(\mu = 0.5\)</span> and (b) <span class="math inline">\(\mu = 100\)</span>.</p>
 <p><strong>Hint 1</strong>: If <span class="math inline">\(q\)</span> depends nonlinearly on the solution, as with this problem, then a good initial guess of the solution is usually required for the nonlinear solver to converge. For this problem, a good initial guess can be found by noting that when <span class="math inline">\(\mu\)</span> is small, the source term <span class="math inline">\(q\)</span> is approximately zero. The solution in this case is given by (1), which can be used to form an initial guess.</p>
 <p><strong>Hint 2</strong>: If you find it difficult to obtain a solution when <span class="math inline">\(\mu = 100\)</span>, then try to increase <span class="math inline">\(\mu\)</span> in increments from <span class="math inline">\(0.5\)</span> to <span class="math inline">\(100\)</span>. Each time a new solution is successfully computed, use it as the initial guess for the next (larger) value of <span class="math inline">\(\mu\)</span>. This process of gradually ramping up a parameter and using the previously computed solution as the next initial guess is called <a href="https://en.wikipedia.org/wiki/Numerical_continuation#Natural_parameter_continuation">natural parameter continuation</a>.</p></li>
-<li><p>(Optional) Solve the previous exercise using your own implementation of Newton’s method and a built-in algebraic solver (e.g.&nbsp;<code>root</code> or <code>fsolve</code>). Compare the performance of the solver. What solver is more likely to converge? <em>Answer: you should see that Newton’s method is more likely to converge (assuming you’re using the default options with the built-in solver)</em>.</p></li>
+<li><p>(Optional) Solve the previous exercise using your own implementation of Newton’s method and a built-in algebraic solver (e.g.&nbsp;<code>root</code> or <code>fsolve</code>). Compare the performance of the solver. What solver is more likely to converge?</p></li>
 <li><p>Extend your code further so that it can solve problems of the form <span class="math display">\[
 D \tdd{u}{x} + q(x, u, \mu) = 0, \quad
 u(a) = \gamma_1, \quad \left.\td{u}{x}\right|_{x=b} = \delta.
@@ -312,6 +315,11 @@ u(x) = \frac{1}{2D}(x - a)(2b - a - x).
 \tdd{u}{x} + 1 = 0, \quad \left.\td{u}{x}\right|_{x=\pm 1} = 0.
 \]</span> To understand what happens in this case, try solving this problem by hand. Alternatively, integrate the ODE and impose the boundary conditions.</p></li>
 </ol>
+<section id="answers-to-selected-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="answers-to-selected-exercises">Answers to selected exercises</h2>
+<p>3. <img src="week02_q3.svg" class="img-fluid" alt="Answer to exercise 3 with \mu = 100."></p>
+<p>4. You should see that Newton’s method is more likely to converge, assuming you’re using the default options with the built-in solver.</p>
+<p>6. This ODE does not have a solution. Numerical methods will always fail to find a solution.</p>
 <!-- ## Bonus problems
 
 Think about extending your solver to other types of ODEs.  For example:
@@ -355,6 +363,7 @@ a finite-difference formula for the fourth derivative, which can be derived usin
 ~~~ -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

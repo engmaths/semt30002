@@ -232,7 +232,10 @@ window.Quarto = {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#supplementary-material" id="toc-supplementary-material" class="nav-link" data-scroll-target="#supplementary-material">Supplementary material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#answers-to-selected-exercises" id="toc-answers-to-selected-exercises" class="nav-link" data-scroll-target="#answers-to-selected-exercises">Answers to selected exercises</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -309,8 +312,27 @@ u(x,t) = \begin{cases}
 \pd{u}{t} + u \pd{u}{x} = 1
 \]</span> over the domain <span class="math inline">\(-\pi \leq x \leq \pi\)</span> and <span class="math inline">\(0 \leq t \leq 2\)</span>. The initial condition can be set to <span class="math inline">\(u(x,0) = \sin x\)</span>. If boundary conditions are needed, set <span class="math inline">\(u = t\)</span> at the boundary.</p></li>
 </ol>
+<section id="answers-to-selected-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="answers-to-selected-exercises">Answers to selected exercises</h2>
+<ol start="3" type="1">
+<li><p>As C increases to one, the numerical solution becomes more accurate and there is less numerical diffusion. From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to <span class="math inline">\((1 - C)\)</span>. Setting <span class="math inline">\(C = 1\)</span> therefore eliminates numerical diffusion.</p></li>
+<li><p>No boundary conditions are needed</p></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week04_q5.png" class="img-fluid figure-img"></p>
+<figcaption>Answer to Exercise 5</figcaption>
+</figure>
+</div></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week04_q6.png" class="img-fluid figure-img"></p>
+<figcaption>Answer to Exercise 6</figcaption>
+</figure>
+</div></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
