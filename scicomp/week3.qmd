@@ -89,7 +89,7 @@ The coffee grains form a porous solid that deforms as water flows through it.  T
 \begin{align}
 \frac{1}{E}\pd{p}{t} = K \pdd{p}{z}.
 \end{align}
-Here, $E = 10^5$ Pa is the Young's modulus and $K = 5.6 \times 10^{-10}$ m$^2$ Pa$^{-1}$ s$^{-1}$ is the hydraulic conductivity.  The Young's modulus measures the stiffness of the porous solid formed by the coffee grains, and $K$ characterises how easy it is for fluid to flow through the coffee grains.
+Here, $E = 10^4$ Pa is the Young's modulus and $K = 5.6 \times 10^{-10}$ m$^2$ Pa$^{-1}$ s$^{-1}$ is the hydraulic conductivity.  The Young's modulus measures the stiffness of the porous solid formed by the coffee grains, and $K$ characterises how easy it is for fluid to flow through the coffee grains.
 
 
 The pressure of the coffee is initially at the atmospheric pressure, $p(z,0) = p_a$, where $p_a = 101.3$ kPa.  The pressure at the bottom of the coffee can be assumed to be equal to the atmospheric pressure, $p(0,t) = p_a$.  To account for the influx of water at the top of the coffee grains, the boundary condition at $z = H$ is given by
