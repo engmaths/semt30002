@@ -72,6 +72,8 @@ The initial condition can be set to $u(x,0) = \sin x$.  If boundary conditions a
 
 4. No boundary conditions are needed
 
-5. ![Answer to Exercise 5](week04_q5.png)
+5. See figure below
+    ![Answer to Exercise 5](week04_q5.png)
 
-6. ![Answer to Exercise 6](week04_q6.png)
+6. See figure below
+    ![Answer to Exercise 6](week04_q6.png)

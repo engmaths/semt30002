@@ -76,7 +76,9 @@ To understand what happens in this case, try solving this problem by hand.  Alte
 
 ## Answers to selected exercises
 
-3\. ![Answer to exercise 3 with $\mu = 100$.](week02_q3.svg)
+3\. See figure below.
+
+![Answer to exercise 3 with $\mu = 100$.](week02_q3.svg)
 
 4\. You should see that Newton's method is more likely to converge, assuming you're using the default options with the built-in solver.
 

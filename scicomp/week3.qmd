@@ -120,4 +120,5 @@ Since coffee cannot pass through the metal surface on which it rests, the displa
 
 3\. (a) Explicit Euler is the fastest because the computational cost of each time step is smaller. (b) Implicit Euler is now the fastest because it now requires less time steps.  However, the explicit Euler method is the more accurate method because the time step is smaller.
 
-5\. ![Answer to Exercise 5](week03_q5.svg)
+5\. See figure below
+![Answer to Exercise 5](week03_q5.svg)
