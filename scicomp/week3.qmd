@@ -104,7 +104,7 @@ F(t) = \begin{cases} F_0, \quad 0 \leq t \leq 10~\text{s}, \\
 \end{align}
 where $F_0 = 2 \times 10^{-5}$ m/s, which represents a 10 second injection of water into the coffee.
 
-1. Calculate the difference in fluid pressure at the top surface, $\Delta p = p(H,t) - p_a$ after 5, 10, 15, and 30 s have passed.  *Answers (to 3 significant figures): 652, 1890, 577, -13.9 Pa*.
+1. Calculate the difference in fluid pressure at the top surface, $\Delta p = p(H,t) - p_a$ after 5, 10, 15, and 30 s have passed.  *Answers (to 3 significant figures): 154, 206, 20.6, -83.16 Pa*.
 
 1. Compute the steady-state pressure profile and plot.  Recall that the steady-state pressure is obtained by assuming that time $t$ is very large and that the solution does not depend on time.  How does your steady-state profile compared to the pressure you computed from problem 1?  *Answer: you should find that your time-dependent solution approaches the steady-state solution*. 
 
