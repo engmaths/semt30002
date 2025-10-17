@@ -38,11 +38,11 @@ where $v$ is a constant.  Take the domain to be $0 \leq x \leq 5$ and $0 \leq t 
     $$
     c) Use the velocity decomposition to write an upwind scheme that can simultaneously handle both of these cases.
 
-1. The upwind scheme has a truncation error that is $O(\Delta x)$ in space and $O(\Delta t)$ in time.  Show that your code produces solutions with the expected accuracy.  **Hint**: One way to do this is to consider the problem in exercise 1a.  Compare your numerical approximation to $u(5,4)$ to the exact value of $1/5$ by fixing $\Delta t$ and varying $\Delta x$ and vice-versa.
+1. Use exercise 1a to explore the truncation error of the upwind scheme by comparing your numerical approximation to $u(5,4)$ to the exact value of $1/5$.  Do this in two ways.  First, fix the value of $\Delta t$, vary $\Delta x$, and compute and plot the truncation error.  Then, compute the truncation error by fixing the value of $\Delta x$ and varying the size of the time step $\Delta t$.  Are the results what you expect?  To understand the results, try solving Exercise 3.
 
 1. Consider again the problem in exercise 1a.  Set $N = 100$ so that
 $\Delta x$ is now fixed.  Now choose values of $\Delta t$ so that the
-CFL number is set to $C = 0.5$, $C = 0.75$, and $C = 1$.  On the same axes, plot $u(x,4)$ for all three cases along with the exact solution.  What happens when $C$ is increased to one?  How you can explain the results in term of the truncation error and the numerical diffusion coefficient?
+CFL number is set to $C = 0.5$, $C = 0.8$, and $C = 1$.  On the same axes, plot $u(x,4)$ for all three cases along with the exact solution.  What happens when $C$ is increased to one?  How you can explain the results in term of the truncation error and the numerical diffusion coefficient?
 
 2. Solve the linear advection equation given by
 $$
@@ -68,7 +68,11 @@ The initial condition can be set to $u(x,0) = \sin x$.  If boundary conditions a
 
 ## Answers to selected exercises
 
-3. As C increases to one, the numerical solution becomes more accurate and there is less numerical diffusion.  From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to $(1 - C)$.  Setting $C = 1$ therefore eliminates numerical diffusion.
+2. See figures below
+    ![Answer to Exercise 2](week04_q2a.png)
+    ![Answer to Exercise 2](week04_q2b.png)
+
+3. As $C$ increases to one, the numerical solution becomes more accurate and there is less numerical diffusion.  From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to $(1 - C)$.  Setting $C = 1$ therefore eliminates numerical diffusion.  Decreasing $\Delta t$ with a fixed value of $\Delta x$ means that $C$ decreases from one, leading to more error, as seen in Exercise 2.
 
 4. No boundary conditions are needed
 
