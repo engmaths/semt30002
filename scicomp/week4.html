@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1713a1406d2974de726a81ab5f352b8f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -300,8 +300,8 @@ u(x,t) = \begin{cases}
 \]</span></li>
 <li>Use the velocity decomposition to write an upwind scheme that can simultaneously handle both of these cases.</li>
 </ol></li>
-<li><p>The upwind scheme has a truncation error that is <span class="math inline">\(O(\Delta x)\)</span> in space and <span class="math inline">\(O(\Delta t)\)</span> in time. Show that your code produces solutions with the expected accuracy. <strong>Hint</strong>: One way to do this is to consider the problem in exercise 1a. Compare your numerical approximation to <span class="math inline">\(u(5,4)\)</span> to the exact value of <span class="math inline">\(1/5\)</span> by fixing <span class="math inline">\(\Delta t\)</span> and varying <span class="math inline">\(\Delta x\)</span> and vice-versa.</p></li>
-<li><p>Consider again the problem in exercise 1a. Set <span class="math inline">\(N = 100\)</span> so that <span class="math inline">\(\Delta x\)</span> is now fixed. Now choose values of <span class="math inline">\(\Delta t\)</span> so that the CFL number is set to <span class="math inline">\(C = 0.5\)</span>, <span class="math inline">\(C = 0.75\)</span>, and <span class="math inline">\(C = 1\)</span>. On the same axes, plot <span class="math inline">\(u(x,4)\)</span> for all three cases along with the exact solution. What happens when <span class="math inline">\(C\)</span> is increased to one? How you can explain the results in term of the truncation error and the numerical diffusion coefficient?</p></li>
+<li><p>Use exercise 1a to explore the truncation error of the upwind scheme by comparing your numerical approximation to <span class="math inline">\(u(5,4)\)</span> to the exact value of <span class="math inline">\(1/5\)</span>. Do this in two ways. First, fix the value of <span class="math inline">\(\Delta t\)</span>, vary <span class="math inline">\(\Delta x\)</span>, and compute and plot the truncation error. Then, compute the truncation error by fixing the value of <span class="math inline">\(\Delta x\)</span> and varying the size of the time step <span class="math inline">\(\Delta t\)</span>. Are the results what you expect? To understand the results, try solving Exercise 3.</p></li>
+<li><p>Consider again the problem in exercise 1a. Set <span class="math inline">\(N = 100\)</span> so that <span class="math inline">\(\Delta x\)</span> is now fixed. Now choose values of <span class="math inline">\(\Delta t\)</span> so that the CFL number is set to <span class="math inline">\(C = 0.5\)</span>, <span class="math inline">\(C = 0.8\)</span>, and <span class="math inline">\(C = 1\)</span>. On the same axes, plot <span class="math inline">\(u(x,4)\)</span> for all three cases along with the exact solution. What happens when <span class="math inline">\(C\)</span> is increased to one? How you can explain the results in term of the truncation error and the numerical diffusion coefficient?</p></li>
 <li><p>Solve the linear advection equation given by <span class="math display">\[
 \pd{u}{t} + v(x,t)\pd{u}{x} = 0
 \]</span> on the domain <span class="math inline">\(-1 \leq x \leq 1\)</span>. Let the velocity be given by <span class="math inline">\(v(x, t) = x\)</span>. Notice that <span class="math inline">\(v &lt; 0\)</span> for <span class="math inline">\(x &lt; 0\)</span> and <span class="math inline">\(v &gt; 0\)</span> for <span class="math inline">\(x &gt; 0\)</span>. Take the initial condition to be <span class="math inline">\(u(x,0) = 1 - x^2\)</span>. Do boundary conditions need to be imposed for this problem?</p></li>
@@ -314,8 +314,9 @@ u(x,t) = \begin{cases}
 </ol>
 <section id="answers-to-selected-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="answers-to-selected-exercises">Answers to selected exercises</h2>
-<ol start="3" type="1">
-<li><p>As C increases to one, the numerical solution becomes more accurate and there is less numerical diffusion. From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to <span class="math inline">\((1 - C)\)</span>. Setting <span class="math inline">\(C = 1\)</span> therefore eliminates numerical diffusion.</p></li>
+<ol start="2" type="1">
+<li><p>See figures below <img src="week04_q2a.png" class="img-fluid" alt="Answer to Exercise 2"> <img src="week04_q2b.png" class="img-fluid" alt="Answer to Exercise 2"></p></li>
+<li><p>As <span class="math inline">\(C\)</span> increases to one, the numerical solution becomes more accurate and there is less numerical diffusion. From the formula for the truncation error, we see the numerical diffusion coefficient is proportional to <span class="math inline">\((1 - C)\)</span>. Setting <span class="math inline">\(C = 1\)</span> therefore eliminates numerical diffusion. Decreasing <span class="math inline">\(\Delta t\)</span> with a fixed value of <span class="math inline">\(\Delta x\)</span> means that <span class="math inline">\(C\)</span> decreases from one, leading to more error, as seen in Exercise 2.</p></li>
 <li><p>No boundary conditions are needed</p></li>
 <li><p>See figure below <img src="week04_q5.png" class="img-fluid" alt="Answer to Exercise 5"></p></li>
 <li><p>See figure below <img src="week04_q6.png" class="img-fluid" alt="Answer to Exercise 6"></p></li>

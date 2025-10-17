@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://engmaths.github.io/semt30002/assessment.html</loc>
-    <lastmod>2025-10-12T19:59:24.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/timing_code.html</loc>
-    <lastmod>2025-10-12T19:59:24.423Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week5.html</loc>
-    <lastmod>2025-10-12T19:59:24.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/poisson_example.html</loc>
-    <lastmod>2025-10-12T19:59:24.423Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
-    <lastmod>2025-10-12T19:59:24.425Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/week10.html</loc>
-    <lastmod>2025-10-12T19:59:24.413Z</lastmod>
+    <loc>https://engmaths.github.io/semt30002/index.html</loc>
+    <lastmod>2025-10-17T07:24:22.709Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/optim/week9.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
+    <lastmod>2025-10-17T07:24:22.711Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/week10.html</loc>
+    <lastmod>2025-10-17T07:24:22.710Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/optim/week8.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
+    <lastmod>2025-10-17T07:24:22.711Z</lastmod>
   </url>
   <url>
-    <loc>https://engmaths.github.io/semt30002/index.html</loc>
-    <lastmod>2025-10-12T19:59:24.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/python/numpy.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/python/python_review.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/python/overview.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/week7.html</loc>
-    <lastmod>2025-10-12T19:59:24.413Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/installing-pyomo.html</loc>
-    <lastmod>2025-10-12T19:59:24.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/week8-lab.html</loc>
-    <lastmod>2025-10-12T19:59:24.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
-    <lastmod>2025-10-12T19:59:24.413Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week3.html</loc>
-    <lastmod>2025-10-12T19:59:24.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week4.html</loc>
-    <lastmod>2025-10-12T19:59:24.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://engmaths.github.io/semt30002/scicomp/week2.html</loc>
-    <lastmod>2025-10-12T19:59:24.426Z</lastmod>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week5.html</loc>
+    <lastmod>2025-10-17T07:24:22.722Z</lastmod>
   </url>
   <url>
     <loc>https://engmaths.github.io/semt30002/scicomp/overview.html</loc>
-    <lastmod>2025-10-12T19:59:24.423Z</lastmod>
+    <lastmod>2025-10-17T07:24:22.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week2.html</loc>
+    <lastmod>2025-10-17T07:24:22.721Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week3.html</loc>
+    <lastmod>2025-10-17T07:24:22.721Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/python/overview.html</loc>
+    <lastmod>2025-10-17T07:24:22.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/python/python_review.html</loc>
+    <lastmod>2025-10-17T07:24:22.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/assessment.html</loc>
+    <lastmod>2025-10-17T07:24:22.709Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/python/numpy.html</loc>
+    <lastmod>2025-10-17T07:24:22.711Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/poisson_example.html</loc>
+    <lastmod>2025-10-17T07:24:22.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/timing_code.html</loc>
+    <lastmod>2025-10-17T07:24:22.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week4.html</loc>
+    <lastmod>2025-10-17T07:24:22.722Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/scicomp/week1.html</loc>
+    <lastmod>2025-10-17T07:24:22.721Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/week8-lab.html</loc>
+    <lastmod>2025-10-17T07:24:22.711Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/overview.html</loc>
+    <lastmod>2025-10-17T07:24:22.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/week7.html</loc>
+    <lastmod>2025-10-17T07:24:22.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://engmaths.github.io/semt30002/optim/installing-pyomo.html</loc>
+    <lastmod>2025-10-17T07:24:22.709Z</lastmod>
   </url>
 </urlset>
