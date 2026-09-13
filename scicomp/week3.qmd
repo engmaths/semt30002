@@ -81,7 +81,7 @@ $$
 $$
 **Hint**: To validate your code, you can find an exact solution to this problem using the separation of variables. Alternatively, you can take $b \gg 1$ (e.g. $b = 10$) and use the similarity solution in the supplementary notes, which gives $u(b,t) \simeq j(4 t / \pi D)^{1/2}$ for sufficiently small values of $t$. -->
 
-## Coursework-style problem
+## Real-world problem: coffee brewing
 
 This problem explores the fluid and solid mechanics of coffee brewing.  Consider a fresh layer of coffee grains of height $H = 10$ mm.  The coffee is on placed top of a perforated metal surface that allows water to pass through it.  Let $z$ be an upwards-pointing vertical coordinate such that $z = 0$ corresponds to the bottom of the coffee and $z = H$ corresponds to the top of the coffee.  At time $t = 0$, water enters the top surface of the coffee.  The water then flows through the coffee grains and leaves through the bottom surface.  
 

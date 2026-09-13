@@ -21,8 +21,8 @@ This unit will bring together your previous experience of solving mathematical p
 
 # Teaching sessions
 
-* Monday 1200--1300 - demo and Q&A session - MVB 1.15
-* Thursday 1300--1500 - lab session -- MVB 1.15
+* Monday 1300--1400 - demo and Q&A session - MVB 1.15
+* Friday 0900--1100 - lab session -- MVB 1.15
 * Friday 1300--1400 - drop-in (optional) - MVB 1.15
 
 
@@ -62,3 +62,4 @@ Pkg.add(["OrdinaryDiffEq", "GLMakie", "BenchmarkTools", "JuMP"])
 * Dr Matthew Hennessy (unit director): [matthew.hennessy@bristol.ac.uk](mailto:matthew.hennessy@bristol.ac.uk)
 * Prof David Barton (unit lecturer): [david.barton@bristol.ac.uk](mailto:david.barton@bristol.ac.uk)
 * Mr Jasper Knox (teaching assistant): [wa20553@bristol.ac.uk](mailto:wa20553@bristol.ac.uk@bristol.ac.uk)
+* Ms Joyce Lienu Tchuente (TA): [ui23013@bristol.ac.uk](mailto:ui23013@bristol.ac.uk)
