@@ -40,21 +40,26 @@ If you are coding in Python, then you will need the following packages:
 * [Pyomo](http://www.pyomo.org/)
   * See [installing Pyomo](optim/installing-pyomo.qmd) for more details
 
+You can also use any of the packages that are included in the [Python standard library](https://docs.python.org/3/library/index.html).  If you need to import data for the coursework, then using [Pandas](https://pandas.pydata.org/) is permitted.
+
 If you are coding in Matlab, then you will need the optimisation and global optimisation toolboxes.
 
 If you are coding in Julia, then you will need the following packages:
 
 * [OrdinaryDiffEq.jl](https://docs.sciml.ai/OrdinaryDiffEq/stable/)
 * A plotting package (e.g., [GLMakie.jl](https://docs.makie.org/) or [Plots.jl](https://docs.juliaplots.org/stable/))
+* Packages for linear algebra and solving linear systems, e.g. [LinearAlgebra.jl](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) and [LinearSolver.jl](https://github.com/SciML/LinearSolve.jl)
 * [BenchmarkTools.jl](https://juliaci.github.io/BenchmarkTools.jl/stable/)
 * [JuMP.jl](https://jump.dev/JuMP.jl/stable/)
 * Also see [modern Julia workflows](https://modernjuliaworkflows.org/)
+
+Additional packages can be used to import data (e.g. DataFrames.jl or Pandas.jl).
 
 In Julia these can be installed from the REPL (compilation will take a few minutes):
 
 ```julia
 import Pkg
-Pkg.add(["OrdinaryDiffEq", "GLMakie", "BenchmarkTools", "JuMP"])
+Pkg.add(["OrdinaryDiffEq", "GLMakie", "LinearAlgebra", "BenchmarkTools", "JuMP"])
 ```
 
 # Teaching staff
