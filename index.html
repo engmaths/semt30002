@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-65ab6f6afcc98c2005f3bec1c5e98b7d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7100700a5d4657facf49b32369185e6d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -308,18 +308,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>See <a href="./optim/installing-pyomo.html">installing Pyomo</a> for more details</li>
 </ul></li>
 </ul>
+<p>You can also use any of the packages that are included in the <a href="https://docs.python.org/3/library/index.html">Python standard library</a>. If you need to import data for the coursework, then using <a href="https://pandas.pydata.org/">Pandas</a> is permitted.</p>
 <p>If you are coding in Matlab, then you will need the optimisation and global optimisation toolboxes.</p>
 <p>If you are coding in Julia, then you will need the following packages:</p>
 <ul>
 <li><a href="https://docs.sciml.ai/OrdinaryDiffEq/stable/">OrdinaryDiffEq.jl</a></li>
 <li>A plotting package (e.g., <a href="https://docs.makie.org/">GLMakie.jl</a> or <a href="https://docs.juliaplots.org/stable/">Plots.jl</a>)</li>
+<li>Packages for linear algebra and solving linear systems, e.g.&nbsp;<a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/">LinearAlgebra.jl</a> and <a href="https://github.com/SciML/LinearSolve.jl">LinearSolver.jl</a></li>
 <li><a href="https://juliaci.github.io/BenchmarkTools.jl/stable/">BenchmarkTools.jl</a></li>
 <li><a href="https://jump.dev/JuMP.jl/stable/">JuMP.jl</a></li>
 <li>Also see <a href="https://modernjuliaworkflows.org/">modern Julia workflows</a></li>
 </ul>
+<p>Additional packages can be used to import data (e.g.&nbsp;DataFrames.jl or Pandas.jl).</p>
 <p>In Julia these can be installed from the REPL (compilation will take a few minutes):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pkg</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">"OrdinaryDiffEq"</span>, <span class="st">"GLMakie"</span>, <span class="st">"BenchmarkTools"</span>, <span class="st">"JuMP"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">"OrdinaryDiffEq"</span>, <span class="st">"GLMakie"</span>, <span class="st">"LinearAlgebra"</span>, <span class="st">"BenchmarkTools"</span>, <span class="st">"JuMP"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="teaching-staff" class="level1">
 <h1>Teaching staff</h1>
