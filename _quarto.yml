@@ -18,6 +18,8 @@ website:
             text: NumPy, SciPy, Matplotlib
           - href: scicomp/timing_code.qmd
             text: Timing code
+          - href: python/animations.qmd
+            text: Animations in VS Code
       - text: "ODEs and PDEs (weeks 1–5)"
         menu:
           - href: scicomp/overview.qmd

@@ -1,0 +1,49 @@
+---
+title: Animations in VS Code
+---
+
+If you are coding using Jupyter notebooks in VS Code, then
+it is possible to create animations by importing the
+`HTML` class from the IPython module.  See the code
+snippet below for an example
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from IPython.display import HTML
+
+# create independent variables
+t = np.logspace(-2, 1, 30)
+x = np.linspace(-3, 3, 300)
+
+# create function to plot
+u = lambda t: 1 / np.sqrt(4 * np.pi * t) * np.exp(-x**2 / 4 / t)
+
+# plot the first time point
+fig, ax = plt.subplots()
+line = plt.plot(x, u(t[0]), lw = 2, color = 'k')[0]
+
+# edit the figure properties
+ax.set(
+    xlim = [-3, 3], 
+    ylim = [0, 3], 
+    xlabel = '$x$', 
+    ylabel = '$u(x,t)$'
+    )
+
+def update(frame):
+    """
+    Define a function to update the figure.  Here,
+    frame is an integer that is used to update the
+    data in the plot.  In this case, frame is used
+    to increment time
+    """    
+    line.set_ydata(u(t[frame]))
+    ax.set_title(f'$t = {t[frame]:.3f}$')
+    return line
+
+# animate
+ani = animation.FuncAnimation(fig = fig, func = update, frames = 30)
+HTML(ani.to_jshtml())  # Embed animation as HTML5
+```
